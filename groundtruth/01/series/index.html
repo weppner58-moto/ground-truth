@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The three-part carousel series for Ground Truth No. 01, in full.">
+<meta property="og:title" content="Ground Truth No. 01 — The LinkedIn series">
+<meta property="og:description" content="The three-part carousel series for Ground Truth No. 01, in full.">
+<meta property="og:type" content="article">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>Ground Truth 01 — Carousels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap">
+<style>
+:root{
+  --paper:#E9E6DF; --paper2:#DFDCD4; --ink:#15171A; --ink2:#4A4E54; --ink3:#7C8189;
+  --rule:#C4C0B6; --rule2:#A9A499; --cyan:#0D6F7D; --mag:#A81F58;
+  --dark:#0B0C0E; --dink:#E7E9EB; --dink3:#6C7379; --dcyan:#4FC3D2; --dmag:#D6437A; --drule:#23272B;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --body:"Public Sans",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  --disp:"Big Shoulders Display","Public Sans",Impact,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#2a2c30;font-family:var(--body);color:var(--ink)}
+.wrapper{display:flex;flex-direction:column;align-items:center;gap:26px;padding:26px 12px 60px}
+.parthead{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#9aa0a6;margin:34px 0 4px;align-self:center}
+
+/* 1080x1350 slide, scaled responsively for screen; PNG capture uses the unscaled node */
+.slide{
+  width:1080px;height:1350px;flex:0 0 auto;position:relative;overflow:hidden;
+  background:var(--paper);color:var(--ink);padding:96px 88px;display:flex;flex-direction:column;
+}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(21,23,26,.055) 1px,transparent 1.1px);background-size:5px 5px}
+.slide.dk{background:var(--dark);color:var(--dink)}
+.slide.dk::after{background-image:radial-gradient(rgba(231,233,235,.045) 1px,transparent 1.1px)}
+.slide > *{position:relative;z-index:1}
+
+.mark{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:26px;letter-spacing:.03em;line-height:1}
+.mark i{font-style:normal;color:var(--cyan)}
+.dk .mark i{color:var(--dcyan)}
+.tophdr{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:56px}
+.dk .tophdr{border-color:var(--drule)}
+.tag{font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+.dk .tag{color:var(--dink3)}
+
+h1{font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:.005em;margin:0;font-size:132px}
+h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.005em;margin:0 0 34px;font-size:74px;max-width:17ch}
+h3{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:40px;line-height:1;letter-spacing:.015em;margin:0 0 26px}
+p{font-size:30px;line-height:1.5;margin:0 0 26px;max-width:26ch}
+p.wide{max-width:34ch}
+.kick{font-family:var(--mono);font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--mag);margin-bottom:30px}
+.dk .kick{color:var(--dmag)}
+strong{font-weight:600}
+em{font-style:italic;color:var(--ink2)}
+.dk em{color:var(--dink3)}
+.big{font-family:var(--disp);font-weight:800;font-size:200px;line-height:.82;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.big.mag{color:var(--mag)} .dk .big.mag{color:var(--dmag)}
+.big.cy{color:var(--cyan)} .dk .big.cy{color:var(--dcyan)}
+.sub{font-family:var(--mono);font-size:17px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);margin-top:20px;line-height:1.7}
+.dk .sub{color:var(--dink3)}
+.spacer{flex:1}
+.foot{border-top:1px solid var(--rule);padding-top:22px;font-family:var(--mono);font-size:14px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);display:flex;justify-content:space-between}
+.dk .foot{border-color:var(--drule);color:var(--dink3)}
+.quote{font-family:var(--body);font-style:italic;font-size:36px;line-height:1.42;max-width:24ch;border-left:5px solid var(--mag);padding-left:32px}
+.dk .quote{border-color:var(--dmag)}
+.src{font-family:var(--mono);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:26px}
+.dk .src{color:var(--dink3)}
+ul{margin:0;padding-left:34px;font-size:28px;line-height:1.5}
+li{margin-bottom:22px;max-width:28ch}
+.row{display:flex;gap:56px}
+.col{flex:1}
+.stat{border-top:4px solid var(--ink);padding-top:20px}
+.dk .stat{border-color:var(--dink)}
+.stat.m{border-color:var(--mag)} .dk .stat.m{border-color:var(--dmag)}
+.stat .k{font-family:var(--mono);font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;line-height:1.5}
+.dk .stat .k{color:var(--dink3)}
+.stat .v{font-family:var(--disp);font-weight:800;font-size:96px;line-height:.9;font-variant-numeric:tabular-nums}
+.stat .v.m{color:var(--mag)} .dk .stat .v.m{color:var(--dmag)}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.ax{font-family:var(--mono);font-size:17px;fill:var(--ink3);letter-spacing:.06em}
+.dk .ax{fill:var(--dink3)}
+.vl{font-family:var(--mono);font-size:21px;fill:var(--ink);font-weight:500}
+.dk .vl{fill:var(--dink)}
+.vlm{fill:var(--mag)} .dk .vlm{fill:var(--dmag)}
+.gl{stroke:rgba(21,23,26,.13);stroke-width:1.5}
+.dk .gl{stroke:rgba(231,233,235,.14)}
+.zl{stroke:var(--rule2);stroke-width:2}
+.dk .zl{stroke:#343A40}
+.bC{fill:var(--cyan)} .dk .bC{fill:var(--dcyan)}
+.bM{fill:var(--mag)} .dk .bM{fill:var(--dmag)}
+.bG{fill:var(--ink3)} .dk .bG{fill:var(--dink3)}
+.tl-line{stroke:var(--rule2);stroke-width:3}
+.dk .tl-line{stroke:#343A40}
+
+/* --- web view: scale slides to viewport; capture script removes body.web --- */
+body.web{background:var(--paper)}
+body.web .wrapper{gap:0;padding:0 0 60px}
+body.web .slide{zoom:min(1, calc((100vw - 20px) / 1080))}
+body.web .parthead{color:var(--ink3);padding:44px 0 12px;font-size:13px}
+body.web .webhdr{max-width:1080px;margin:0 auto;padding:48px 20px 10px;font-family:var(--body)}
+body.web .webhdr h4{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(32px,7vw,58px);line-height:.94;margin:0 0 16px}
+body.web .webhdr p{font-size:clamp(15px,2.4vw,18px);max-width:60ch;color:var(--ink2);line-height:1.6;margin:0 0 14px}
+body.web .webhdr a{color:var(--cyan)}
+@media print{.wrapper{gap:0;padding:0}.parthead{display:none}}
+</style>
+
+<div class="webhdr">
+  <h4>Ground Truth No. 01<br>The 386% Problem</h4>
+  <p>The LinkedIn series in full — three parts, twenty-eight slides. Every figure is drawn from an SEC filing or a manufacturer's published specification. The complete brief, with each source linked to the document, is <a href="/groundtruth/01">here</a>.</p>
+  <p style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:18px">Contact Patch Advisory &middot; William Weppner &middot; September 2026</p>
+</div>
+<div class="wrapper">
+
+<!-- ══════════════ PART 1 — THE NUMBER ══════════════ -->
+<div class="parthead">Part 1 — The Number · 11 slides</div>
+
+<!-- 1.1 cover -->
+<div class="slide dk" id="s1-1">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">Ground Truth No. 01</div></div>
+  <div class="spacer"></div>
+  <div class="kick">Part 1 of 3 · Electric Motorcycles</div>
+  <h1>386%<br>OF<br>WHAT?</h1>
+  <p class="wide" style="margin-top:44px;color:var(--dink3);font-size:32px">A quarter, a plan of record, and the difference between a percentage and a number.</p>
+  <div class="spacer"></div>
+  <div class="foot"><span>LiveWire Group · LVWR</span><span>September 2026</span></div>
+</div>
+
+<!-- 1.1b timeline -->
+<div class="slide" id="s1-1b">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">01 / 11</div></div>
+  <h2 style="font-size:62px">Sixteen years of trying to build this</h2>
+  <svg viewBox="0 0 900 700" aria-label="Timeline of Harley-Davidson's electric motorcycle programme from 2010 to 2026.">
+    <line class="tl-line" x1="36" y1="14" x2="36" y2="686"></line>
+    <circle cx="36" cy="34" r="9" class="bG"></circle>
+    <text class="vl" x="70" y="28" style="font-size:19px">2010</text>
+    <text class="ax" x="70" y="54" style="font-size:16px">H-D launches its electric motorcycle initiative</text>
+    <circle cx="36" cy="104" r="9" class="bM"></circle>
+    <text class="vl vlm" x="70" y="98" style="font-size:19px">MAR 2018 — ALTA MOTORS</text>
+    <text class="ax" x="70" y="124" style="font-size:16px">H-D takes a minority stake. Six months later it walks.</text>
+    <circle cx="36" cy="174" r="9" class="bM"></circle>
+    <text class="vl vlm" x="70" y="168" style="font-size:19px">18 OCT 2018</text>
+    <text class="ax" x="70" y="194" style="font-size:16px">Alta ceases operations. Patents go to BRP in 2019.</text>
+    <circle cx="36" cy="244" r="9" class="bC"></circle>
+    <text class="vl" x="70" y="238" style="font-size:19px">2019 — TWO ACQUISITIONS OF DIRECTION</text>
+    <text class="ax" x="70" y="264" style="font-size:16px">H-D buys STACYC. First H-D LiveWire delivered, Sept.</text>
+    <circle cx="36" cy="314" r="9" class="bC"></circle>
+    <text class="vl" x="70" y="308" style="font-size:19px">JUL 2021 — LIVEWIRE ONE</text>
+    <text class="ax" x="70" y="334" style="font-size:16px">$21,999. The same motorcycle, rebadged.</text>
+    <circle cx="36" cy="384" r="9" class="bG"></circle>
+    <text class="vl" x="70" y="378" style="font-size:19px">DEC 2021</text>
+    <text class="ax" x="70" y="404" style="font-size:16px">KYMCO collaboration signed. Merger announced next day.</text>
+    <circle cx="36" cy="454" r="9" class="bC"></circle>
+    <text class="vl" x="70" y="448" style="font-size:19px">SEP 2022 — SEPARATION</text>
+    <text class="ax" x="70" y="474" style="font-size:16px">Two manufacturing agreements signed the same day.</text>
+    <circle cx="36" cy="524" r="9" class="bC"></circle>
+    <text class="vl" x="70" y="518" style="font-size:19px">Q3 2023 — S2 DEL MAR</text>
+    <text class="ax" x="70" y="544" style="font-size:16px">$15,499 at launch. Full production begins.</text>
+    <circle cx="36" cy="594" r="9" class="bG"></circle>
+    <text class="vl" x="70" y="588" style="font-size:19px">OCT 2024</text>
+    <text class="ax" x="70" y="614" style="font-size:16px">Parisian maxi-scooter MOU — disclosed in no filing.</text>
+    <circle cx="36" cy="664" r="9" class="bM"></circle>
+    <text class="vl vlm" x="70" y="658" style="font-size:19px">2026 — S4 HONCHO $4,999 · DUST ACQUIRED</text>
+    <text class="ax" x="70" y="684" style="font-size:16px">Four platforms. 923 motorcycles sold in twelve months.</text>
+  </svg>
+  <div class="spacer"></div>
+  <div class="foot"><span>Sources: LVWR 10-K FY2023 · Form 425 · 8-K 22 May 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.1c quadrant -->
+<div class="slide" id="s1-1c">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">02 / 11</div></div>
+  <h2 style="font-size:62px">A portfolio with a hole in the middle</h2>
+  <svg viewBox="0 0 900 620" aria-label="Positioning quadrant: price against peak power. LiveWire ONE and S2 sit in premium performance; the S4 Honcho sits in entry minimoto; nothing sits between $5,000 and $11,000.">
+    <rect x="80" y="60" width="780" height="480" fill="rgba(21,23,26,.02)"></rect>
+    <line class="gl" x1="80" y1="60" x2="80" y2="540"></line>
+    <line class="gl" x1="860" y1="60" x2="860" y2="540"></line>
+    <line class="gl" x1="80" y1="60" x2="860" y2="60"></line>
+    <line class="gl" x1="80" y1="540" x2="860" y2="540"></line>
+    <line class="zl" x1="470" y1="40" x2="470" y2="560"></line>
+    <line class="zl" x1="60" y1="300" x2="880" y2="300"></line>
+    <text class="ax" x="96" y="86" style="font-size:15px">VALUE PERFORMANCE</text>
+    <text class="ax" x="844" y="86" text-anchor="end" style="font-size:15px">PREMIUM PERFORMANCE</text>
+    <text class="ax" x="96" y="532" style="font-size:15px">ENTRY / MINIMOTO</text>
+    <text class="ax" x="844" y="528" text-anchor="end" style="font-size:15px">EXPOSED — PRICED ABOVE CAPABILITY</text>
+    <text class="ax" x="470" y="586" text-anchor="middle">PRICE  →   $3K &nbsp;·&nbsp; $9K &nbsp;·&nbsp; $15K</text>
+    <text class="ax" x="30" y="300" text-anchor="middle" transform="rotate(-90 30 300)">PEAK POWER  →</text>
+    <rect x="176" y="470" width="76" height="44" fill="rgba(124,129,137,.22)"></rect>
+    <text class="ax" x="266" y="497" style="font-size:14px">E-MOTO FIELD</text>
+    <circle cx="119" cy="498" r="12" class="bG"></circle>
+    <text class="vl" x="119" y="478" text-anchor="middle" style="font-size:18px">Grom</text>
+    <circle cx="210" cy="488" r="12" class="bM"></circle>
+    <text class="vl vlm" x="210" y="448" text-anchor="middle" style="font-size:18px">S4 Honcho*</text>
+    <circle cx="597" cy="387" r="12" fill="none" stroke="#A81F58" stroke-width="4"></circle>
+    <text class="vl vlm" x="597" y="368" text-anchor="middle" style="font-size:18px">Dust</text>
+    <circle cx="665" cy="173" r="12" class="bM"></circle>
+    <text class="vl vlm" x="665" y="153" text-anchor="middle" style="font-size:18px">S2 line</text>
+    <circle cx="795" cy="104" r="12" class="bM"></circle>
+    <text class="vl vlm" x="775" y="108" text-anchor="end" style="font-size:18px">LiveWire ONE</text>
+    <path d="M300 430 L560 250" stroke="#A81F58" stroke-width="3" stroke-dasharray="10 8" opacity=".5"></path>
+    <text class="ax" x="318" y="356" style="font-size:16px;fill:#A81F58">nothing here</text>
+  </svg>
+  <p style="margin-top:26px;font-size:26px" class="wide">Premium at one end, minimoto at the other, and <strong>no product between $5,000 and $11,000</strong> — which is where two-wheel volume actually lives.</p>
+  <div class="src" style="font-size:14px">*Honcho power not published; industry estimate 10&ndash;15 hp. Other figures from manufacturer specifications.</div>
+  <div class="foot"><span>LiveWire ONE 100 hp · S2 84 hp · Dust 35 hp · Grom 9.7 hp</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.2 the claim -->
+<div class="slide" id="s1-2">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">01 / 09</div></div>
+  <div class="kick">The claim</div>
+  <div class="quote">"386% growth over Q2 last year and 76% U.S. market share to date."</div>
+  <div class="src">LiveWire, Q2 2026 · Both figures accurate</div>
+  <div class="spacer"></div>
+  <h3 style="margin-bottom:0">Here's the denominator.</h3>
+  <div class="foot"><span>Ground Truth No. 01</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.3 the base -->
+<div class="slide" id="s1-3">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">02 / 09</div></div>
+  <h2>386% is measured against 55 motorcycles</h2>
+  <svg viewBox="0 0 900 380" aria-label="Q2 2025: 55 units. Q2 2026: 267 units.">
+    <line class="gl" x1="90" y1="330" x2="880" y2="330"></line>
+    <rect class="bG" x="150" y="303" width="230" height="27"></rect>
+    <rect class="bM" x="530" y="200" width="230" height="130"></rect>
+    <text class="vl" x="265" y="288" text-anchor="middle">55</text>
+    <text class="vl vlm" x="645" y="185" text-anchor="middle">267</text>
+    <text class="ax" x="265" y="360" text-anchor="middle">Q2 2025</text>
+    <text class="ax" x="645" y="360" text-anchor="middle">Q2 2026</text>
+  </svg>
+  <p style="margin-top:40px">A quarter that followed the company cutting <strong>30% of its own dealer network.</strong></p>
+  <p><strong>The comparison base is a hole it dug itself.</strong></p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-Q, Q2 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.4 plan vs actual -->
+<div class="slide" id="s1-4">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">03 / 09</div></div>
+  <h2>The plan called for 100,000 units in 2026</h2>
+  <svg viewBox="0 0 900 300" aria-label="2021 plan 100,000 units. Actual trailing twelve months 923 units, drawn to the same scale.">
+    <text class="ax" x="0" y="40">2021 PLAN FOR 2026</text>
+    <rect class="bC" x="0" y="56" width="820" height="52"></rect>
+    <text class="vl" x="835" y="92">100,000</text>
+    <text class="ax" x="0" y="180">ACTUAL — TTM TO 30 JUN 2026</text>
+    <rect x="0" y="196" width="820" height="52" fill="rgba(21,23,26,.09)"></rect>
+    <rect class="bM" x="0" y="196" width="7.6" height="52"></rect>
+    <text class="vl vlm" x="26" y="232">923</text>
+    <text class="ax" x="0" y="288">0.9% of plan — the magenta bar is drawn to scale</text>
+  </svg>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: Form 425, 14 Dec 2021 · LVWR 10-Q</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.5 the quotes -->
+<div class="slide dk" id="s1-5">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">04 / 09</div></div>
+  <div class="kick">On the record · 13 December 2021</div>
+  <p class="wide" style="font-size:26px;color:var(--dink3);margin-bottom:44px">Harley-Davidson's CFO, on the joint investor call announcing the merger:</p>
+  <div style="font-family:var(--body);font-style:italic;font-size:33px;line-height:1.45">
+    <p class="wide" style="margin-bottom:30px">"approximately 100,000 units by 2026"</p>
+    <p class="wide" style="margin-bottom:30px">"from $35 million today to almost $1.8 billion by 2026"</p>
+    <p class="wide" style="margin-bottom:0">"profitable on both an EBITDA and cash flow basis in 2026"</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="foot"><span>Form 425 · Filed with the SEC</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.6 revenue -->
+<div class="slide" id="s1-6">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">05 / 09</div></div>
+  <h2>Revenue is below where it started</h2>
+  <svg viewBox="0 0 900 400" aria-label="Consolidated revenue: 2021 $35.8M, 2022 $46.8M, 2023 $38.0M, 2024 $26.6M, 2025 $25.7M, TTM $31.3M.">
+    <line class="gl" x1="70" y1="330" x2="890" y2="330"></line>
+    <line class="gl" x1="70" y1="242" x2="890" y2="242"></line>
+    <line class="gl" x1="70" y1="154" x2="890" y2="154"></line>
+    <line class="gl" x1="70" y1="66"  x2="890" y2="66"></line>
+    <text class="ax" x="0" y="336">$0</text><text class="ax" x="0" y="248">$20M</text>
+    <text class="ax" x="0" y="160">$40M</text><text class="ax" x="0" y="72">$60M</text>
+    <rect class="bC" x="90"  y="172" width="105" height="158"></rect>
+    <rect class="bC" x="225" y="124" width="105" height="206"></rect>
+    <rect class="bC" x="360" y="163" width="105" height="167"></rect>
+    <rect class="bC" x="495" y="213" width="105" height="117"></rect>
+    <rect class="bC" x="630" y="217" width="105" height="113"></rect>
+    <rect class="bM" x="765" y="192" width="105" height="138"></rect>
+    <line x1="70" y1="172" x2="890" y2="172" stroke="#7C8189" stroke-width="3" stroke-dasharray="9 7"></line>
+    <text class="ax" x="890" y="163" text-anchor="end">2021 LEVEL — $35.8M</text>
+    <text class="vl" x="142" y="160" text-anchor="middle">35.8</text>
+    <text class="vl" x="277" y="112" text-anchor="middle">46.8</text>
+    <text class="vl" x="412" y="151" text-anchor="middle">38.0</text>
+    <text class="vl" x="547" y="201" text-anchor="middle">26.6</text>
+    <text class="vl" x="682" y="205" text-anchor="middle">25.7</text>
+    <text class="vl vlm" x="817" y="180" text-anchor="middle">31.3</text>
+    <text class="ax" x="142" y="365" text-anchor="middle">2021</text>
+    <text class="ax" x="277" y="365" text-anchor="middle">2022</text>
+    <text class="ax" x="412" y="365" text-anchor="middle">2023</text>
+    <text class="ax" x="547" y="365" text-anchor="middle">2024</text>
+    <text class="ax" x="682" y="365" text-anchor="middle">2025</text>
+    <text class="ax" x="817" y="365" text-anchor="middle">TTM</text>
+  </svg>
+  <p style="margin-top:36px" class="wide">Five years. An accumulated deficit of <strong>$337 million.</strong> The business is smaller than the day it was sold.</p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-K FY2023, FY2025 · 10-Q Q2 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.7 percentages -->
+<div class="slide dk" id="s1-7">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">06 / 09</div></div>
+  <div class="kick">Plan versus outcome</div>
+  <div class="row" style="margin-top:70px">
+    <div class="col stat m"><div class="k">Of the unit plan</div><div class="v m">0.9%</div><div class="sub">923 units against 100,000</div></div>
+    <div class="col stat m"><div class="k">Of the revenue plan</div><div class="v m">1.7%</div><div class="sub">$31.3M against $1.8B</div></div>
+  </div>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:34px">The deal valued LiveWire at <strong>$1.77 billion</strong> — described on that call as "1x estimated 2026 revenues."</p>
+  <p class="wide" style="font-size:34px;color:var(--dmag)"><strong>On actual revenue, it was 57x.</strong></p>
+  <div class="foot"><span>Ground Truth No. 01</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.8 credit -->
+<div class="slide" id="s1-8">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">07 / 09</div></div>
+  <div class="kick">Credit where it is earned</div>
+  <h2>Cost per motorcycle nearly halved in two years</h2>
+  <svg viewBox="0 0 900 250" aria-label="Cost per unit fell from $44,147 in 2024 to $23,172 in Q2 2026.">
+    <line class="gl" x1="70" y1="200" x2="890" y2="200"></line>
+    <rect class="bG" x="130" y="60" width="240" height="140"></rect>
+    <rect class="bC" x="530" y="127" width="240" height="73"></rect>
+    <text class="vl" x="250" y="45" text-anchor="middle">$44,147</text>
+    <text class="vl" x="650" y="112" text-anchor="middle">$23,172</text>
+    <text class="ax" x="250" y="230" text-anchor="middle">2024</text>
+    <text class="ax" x="650" y="230" text-anchor="middle">Q2 2026</text>
+  </svg>
+  <p style="margin-top:40px" class="wide">On headcount down 18% and R&amp;D cut from $54.1M to $23.9M. <strong>That is real engineering by people executing.</strong></p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-K FY2024, FY2025 · 10-Q Q2 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<!-- 1.9 CTA -->
+<div class="slide dk" id="s1-9">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">08 / 09</div></div>
+  <div class="spacer"></div>
+  <h2 style="font-size:60px;max-width:20ch">The percentage isn't the accomplishment. It's what you reach for when the absolute number won't carry the story.</h2>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:28px;color:var(--dink3)">Part 2: why buying motorcycles costs this company money.</p>
+  <p class="wide" style="font-size:26px;color:var(--dcyan)">Full brief — 12 sections, every figure linked to the filing.<br>contactpatch.co/groundtruth/01</p>
+  <div class="foot"><span>Former H-D product manager · Independent analyst</span><span>No position held</span></div>
+</div>
+
+<!-- ══════════════ PART 2 — THE CONTRACTS ══════════════ -->
+<div class="parthead">Part 2 — The Contracts · 8 slides</div>
+
+<div class="slide dk" id="s2-1">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">Ground Truth No. 01</div></div>
+  <div class="spacer"></div>
+  <div class="kick">Part 2 of 3</div>
+  <h1>TWO<br>AGREEMENTS,<br>ONE TRAP</h1>
+  <p class="wide" style="margin-top:44px;color:var(--dink3);font-size:32px">Why selling more motorcycles does not fix this.</p>
+  <div class="spacer"></div>
+  <div class="foot"><span>LiveWire Group · LVWR</span><span>September 2026</span></div>
+</div>
+
+<div class="slide" id="s2-2">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">01 / 08</div></div>
+  <h2>Two contract manufacturers, signed the same day</h2>
+  <svg viewBox="0 0 900 300" aria-label="LiveWire signed contract manufacturing agreements with Harley-Davidson and KYMCO on 26 September 2022.">
+    <rect x="330" y="10" width="240" height="76" fill="none" stroke="#15171A" stroke-width="3"></rect>
+    <text class="vl" x="450" y="57" text-anchor="middle" style="font-size:26px">LIVEWIRE</text>
+    <line class="tl-line" x1="450" y1="86" x2="450" y2="130"></line>
+    <line class="tl-line" x1="180" y1="130" x2="720" y2="130"></line>
+    <line class="tl-line" x1="180" y1="130" x2="180" y2="176"></line>
+    <line class="tl-line" x1="720" y1="130" x2="720" y2="176"></line>
+    <rect x="40" y="176" width="280" height="100" fill="none" stroke="#0D6F7D" stroke-width="3"></rect>
+    <text class="vl" x="180" y="216" text-anchor="middle" style="font-size:24px">HARLEY-DAVIDSON</text>
+    <text class="ax" x="180" y="248" text-anchor="middle">S1 · S2 platforms</text>
+    <rect x="580" y="176" width="280" height="100" fill="none" stroke="#A81F58" stroke-width="3"></rect>
+    <text class="vl vlm" x="720" y="216" text-anchor="middle" style="font-size:24px">KYMCO</text>
+    <text class="ax" x="720" y="248" text-anchor="middle">S4 Honcho · Parisian</text>
+  </svg>
+  <p style="margin-top:44px" class="wide"><strong>Both dated 26 September 2022.</strong> Both carry minimum annual volume commitments. Both charge a deficit fee if the volume is missed.</p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-K FY2025 · 8-K 22 May 2026 Ex. 10.2</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide" id="s2-3">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">02 / 08</div></div>
+  <h2>Where the money goes, per motorcycle</h2>
+  <svg viewBox="0 0 900 420" aria-label="Per motorcycle: revenue $13,655, COGS $23,172, gross loss $9,517, operating expense $58,049, operating loss $67,566.">
+    <line class="zl" x1="70" y1="96" x2="890" y2="96"></line>
+    <text class="ax" x="0" y="102">$0</text>
+    <rect class="bC" x="110" y="48"  width="130" height="48"></rect>
+    <rect class="bM" x="290" y="48"  width="130" height="82"></rect>
+    <rect class="bM" x="470" y="130" width="130" height="205" opacity=".92"></rect>
+    <rect class="bM" x="650" y="96"  width="130" height="239" opacity=".55"></rect>
+    <text class="vl" x="175" y="36" text-anchor="middle">+13,655</text>
+    <text class="vl vlm" x="355" y="152" text-anchor="middle">−23,172</text>
+    <text class="vl vlm" x="535" y="358" text-anchor="middle">−58,049</text>
+    <text class="vl vlm" x="715" y="358" text-anchor="middle">−67,566</text>
+    <text class="ax" x="175" y="396" text-anchor="middle">REVENUE</text>
+    <text class="ax" x="355" y="396" text-anchor="middle">COGS</text>
+    <text class="ax" x="535" y="396" text-anchor="middle">OPEX</text>
+    <text class="ax" x="715" y="396" text-anchor="middle">OP LOSS</text>
+  </svg>
+  <p style="margin-top:34px" class="wide">The motorcycle is nearly a rounding error. <strong>$58,049 of overhead per unit is the business.</strong></p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-Q Q2 2026, Electric Motorcycles segment ÷ 267 units</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s2-4">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">03 / 08</div></div>
+  <div class="kick">The part nobody reports</div>
+  <div class="big mag" style="font-size:230px">87%</div>
+  <div class="sub" style="font-size:24px;letter-spacing:.1em">of Q2's gross loss was inventory write-downs<br>— not the cost of building the motorcycle</div>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:31px">Harley builds the motorcycles. <strong>LiveWire buys them at cost-plus</strong> — Harley's cost, plus a mark-up. Then writes them down to what they can actually be sold for.</p>
+  <p class="wide" style="font-size:31px;color:var(--dmag)"><strong>The transfer price exceeds the market value.</strong></p>
+  <div class="foot"><span>Source: LVWR 10-Q Q2 2026 — $2,204K NRV adjustment</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide" id="s2-5">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">04 / 08</div></div>
+  <div class="kick">The FY2025 10-K, explaining why costs improved</div>
+  <div class="quote" style="font-size:33px">"…primarily driven by a significant decrease of the number of motorcycles purchased in 2025 as compared to 2024 resulting in lower net realizable value adjustments…"</div>
+  <div class="src">LiveWire Group, Form 10-K, filed 20 February 2026</div>
+  <div class="spacer"></div>
+  <h3 style="font-size:46px;margin-bottom:0">Margins improved because the company bought fewer motorcycles.</h3>
+  <div class="foot"><span>Ground Truth No. 01</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide" id="s2-6">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">05 / 08</div></div>
+  <h2>So don't buy them. Except.</h2>
+  <div class="row" style="margin-top:20px">
+    <div class="col stat"><div class="k">Buy the motorcycles</div><div class="v" style="font-size:60px;line-height:1.05">They are worth<br>less than<br>you paid</div><div class="sub">87% of Q2's gross loss</div></div>
+    <div class="col stat m"><div class="k">Don't buy them</div><div class="v m">$6.1M</div><div class="sub">2023 provision for excess inventory components held by H-D under the Contract Manufacturing Agreement</div></div>
+  </div>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:33px">Parts Harley had already procured to build motorcycles LiveWire didn't take. <strong>There is no third option.</strong></p>
+  <div class="foot"><span>Source: LVWR 10-K FY2024 — $6,126 thousand</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s2-7">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">06 / 08</div></div>
+  <div class="kick">Beginning calendar 2027</div>
+  <h2 style="font-size:64px;max-width:19ch">Minimum annual volume commitments, per product, with a deficit fee.</h2>
+  <p class="wide" style="font-size:31px">To Harley-Davidson — and, under the agreement amended in May 2026, <strong>to KYMCO as well.</strong></p>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:31px;color:var(--dmag)"><strong>The exposure that already cost $6.1 million once now exists in duplicate — and stops being discretionary.</strong></p>
+  <div class="foot"><span>Source: LVWR 10-K FY2025 · 8-K 22 May 2026 Ex. 10.2 §2.3</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s2-8">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">07 / 08</div></div>
+  <div class="spacer"></div>
+  <h2 style="font-size:62px;max-width:19ch">The economics were not decided by the market. They were decided by the terms.</h2>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:28px;color:var(--dink3)">Part 3: the loan agreement that settled this eight months before the quarter was reported.</p>
+  <p class="wide" style="font-size:26px;color:var(--dcyan)">contactpatch.co/groundtruth/01</p>
+  <div class="foot"><span>Former H-D product manager · Independent analyst</span><span>No position held</span></div>
+</div>
+
+<!-- ══════════════ PART 3 — THE CLOCK ══════════════ -->
+<div class="parthead">Part 3 — The Clock · 9 slides</div>
+
+<div class="slide dk" id="s3-1">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">Ground Truth No. 01</div></div>
+  <div class="spacer"></div>
+  <div class="kick">Part 3 of 3</div>
+  <h1>IT WAS<br>DECIDED IN<br>NOV 2025</h1>
+  <p class="wide" style="margin-top:44px;color:var(--dink3);font-size:32px">The quarter was reported in July 2026. The outcome was settled eight months earlier, in a loan agreement.</p>
+  <div class="spacer"></div>
+  <div class="foot"><span>LiveWire Group · LVWR</span><span>September 2026</span></div>
+</div>
+
+<div class="slide" id="s3-2">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">01 / 09</div></div>
+  <h2>Fifteen months, five filings</h2>
+  <svg viewBox="0 0 900 470" aria-label="Timeline from February 2024 to May 2026 showing Harley-Davidson's shift from parent to secured creditor.">
+    <line class="tl-line" x1="40" y1="30" x2="40" y2="440"></line>
+    <circle cx="40" cy="52"  r="11" class="bC"></circle>
+    <text class="vl" x="76" y="46">FEB 2024</text>
+    <text class="ax" x="76" y="76">$100M convertible loan. If LiveWire can't repay,</text>
+    <text class="ax" x="76" y="100">H-D converts to equity. Never drawn.</text>
+    <circle cx="40" cy="150" r="11" class="bM"></circle>
+    <text class="vl vlm" x="76" y="144">NOV 2025</text>
+    <text class="ax" x="76" y="174">Conversion feature REMOVED. Security interest over</text>
+    <text class="ax" x="76" y="198">substantially all assets added. Covenants added.</text>
+    <circle cx="40" cy="248" r="11" class="bG"></circle>
+    <text class="vl" x="76" y="242">DEC 2025</text>
+    <text class="ax" x="76" y="272">$75M drawn. Interest accrues to maturity.</text>
+    <circle cx="40" cy="322" r="11" class="bG"></circle>
+    <text class="vl" x="76" y="316">FEB 2026</text>
+    <text class="ax" x="76" y="346">"Does not plan to make additional investments."</text>
+    <circle cx="40" cy="396" r="11" class="bG"></circle>
+    <text class="vl" x="76" y="390">MAY 2026</text>
+    <text class="ax" x="76" y="420">Five-year strategy. No LiveWire target.</text>
+    <text class="ax" x="76" y="444">The word "electric" does not appear.</text>
+  </svg>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-Q · HOG 10-K FY2025 · HOG 8-K 5 May 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s3-3">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">02 / 09</div></div>
+  <div class="spacer"></div>
+  <h2 style="font-size:70px;max-width:18ch">In fifteen months, Harley-Davidson moved from parent to secured creditor.</h2>
+  <p class="wide" style="font-size:29px;color:var(--dink3)">Every step is a filed instrument with a date on it. What the sequence means is interpretation. That it occurred is not.</p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Ground Truth No. 01</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide" id="s3-4">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">03 / 09</div></div>
+  <h2>Cash, and where it went</h2>
+  <svg viewBox="0 0 900 400" aria-label="Cash: 2022 $265.2M, 2023 $167.9M, 2024 $64.4M, 2025 $82.8M, 30 June 2026 $52.9M.">
+    <line class="gl" x1="70" y1="330" x2="890" y2="330"></line>
+    <line class="gl" x1="70" y1="243" x2="890" y2="243"></line>
+    <line class="gl" x1="70" y1="156" x2="890" y2="156"></line>
+    <line class="gl" x1="70" y1="69"  x2="890" y2="69"></line>
+    <text class="ax" x="0" y="336">$0</text><text class="ax" x="0" y="249">$90M</text>
+    <text class="ax" x="0" y="162">$180M</text><text class="ax" x="0" y="75">$270M</text>
+    <rect class="bC" x="100" y="74"  width="120" height="256"></rect>
+    <rect class="bC" x="262" y="168" width="120" height="162"></rect>
+    <rect class="bC" x="424" y="268" width="120" height="62"></rect>
+    <rect class="bC" x="586" y="250" width="120" height="80"></rect>
+    <rect class="bM" x="748" y="279" width="120" height="51"></rect>
+    <text class="vl" x="160" y="62" text-anchor="middle">265.2</text>
+    <text class="vl" x="322" y="156" text-anchor="middle">167.9</text>
+    <text class="vl" x="484" y="256" text-anchor="middle">64.4</text>
+    <text class="vl" x="646" y="238" text-anchor="middle">82.8</text>
+    <text class="vl vlm" x="808" y="267" text-anchor="middle">52.9</text>
+    <text class="ax" x="160" y="362" text-anchor="middle">2022</text>
+    <text class="ax" x="322" y="362" text-anchor="middle">2023</text>
+    <text class="ax" x="484" y="362" text-anchor="middle">2024</text>
+    <text class="ax" x="646" y="362" text-anchor="middle">2025</text>
+    <text class="ax" x="808" y="362" text-anchor="middle">JUN 26</text>
+    <text class="ax" x="646" y="228" text-anchor="middle">after $75M loan</text>
+  </svg>
+  <p style="margin-top:34px" class="wide">The 2025 increase is <strong>borrowed money, not earned.</strong></p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Source: LVWR 10-K FY2023–FY2025 · 10-Q Q2 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s3-5">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">04 / 09</div></div>
+  <div class="kick">What has to be found by 15 December 2027</div>
+  <div style="margin-top:50px;font-family:var(--mono);font-size:30px;line-height:2.3">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--drule);padding-bottom:10px">Burn, six quarters<span>$89.7M</span></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--drule);padding-bottom:10px">Term loan at maturity<span>$85.0M</span></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--drule);padding-bottom:10px">Less cash on hand<span>−$52.9M</span></div>
+    <div style="display:flex;justify-content:space-between;color:var(--dmag);font-weight:600;padding-top:14px">Net to be generated<span>$121.8M</span></div>
+  </div>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:28px;color:var(--dink3)">Interest accrues at SOFR + 4%, compounding, with nothing payable until maturity. The balance grows.</p>
+  <div class="foot"><span>Source: LVWR 10-Q Q2 2026</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide" id="s3-6">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">05 / 09</div></div>
+  <h2>What that means in motorcycles</h2>
+  <svg viewBox="0 0 900 330" aria-label="LiveWire sold 923 units. The Honda Grom sells about 10,000. Clearing the December 2027 obligation needs about 135,000.">
+    <text class="ax" x="0" y="42">LIVEWIRE — TTM</text>
+    <rect class="bM" x="0" y="56" width="6" height="42"></rect>
+    <text class="vl vlm" x="24" y="88">923</text>
+    <text class="ax" x="0" y="152">HONDA GROM — BEST SELLER IN THE SEGMENT</text>
+    <rect class="bG" x="0" y="166" width="61" height="42"></rect>
+    <text class="vl" x="80" y="198">~10,000 a year, with Honda's dealer network</text>
+    <text class="ax" x="0" y="262">NEEDED TO CLEAR DECEMBER 2027</text>
+    <rect class="bC" x="0" y="276" width="820" height="42"></rect>
+    <text class="vl" x="835" y="308">135,000</text>
+  </svg>
+  <p style="margin-top:44px" class="wide">All three drawn to one scale. <strong>Twenty-one Honchos per dealer, per week, for fourteen months.</strong></p>
+  <div class="spacer"></div>
+  <div class="foot"><span>Grom volume from MIC registration data</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s3-7">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">06 / 09</div></div>
+  <div class="kick">The realistic case</div>
+  <div class="big" style="font-size:180px">2,000</div>
+  <div class="sub" style="font-size:24px;letter-spacing:.1em">S4 Honchos globally in a strong first year</div>
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col stat m"><div class="k">Covers this much of annual burn</div><div class="v m">3%</div></div>
+    <div class="col stat m"><div class="k">Covers this much of the Dec 2027 gap</div><div class="v m">1.5%</div></div>
+  </div>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:29px">Nothing below roughly <strong>40,000 units</strong> changes any conclusion.</p>
+  <div class="foot"><span>Ground Truth No. 01</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide" id="s3-8">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">07 / 09</div></div>
+  <div class="kick">What I'm watching</div>
+  <h2 style="font-size:56px">The filings that would tell you first</h2>
+  <ul>
+    <li><strong>An 8-K amending the credit agreement.</strong> Extension. The date moves, nothing else does.</li>
+    <li><strong>A share issuance to H-D.</strong> Conversion — check whether it crosses 90%.</li>
+    <li><strong>Any disposal of STACYC.</strong> The strongest single signal in the set.</li>
+    <li><strong>A Schedule 13D.</strong> There has never been one filed on this company.</li>
+  </ul>
+  <div class="spacer"></div>
+  <div class="foot"><span>Ground Truth No. 01</span><span>contactpatch.co</span></div>
+</div>
+
+<div class="slide dk" id="s3-9">
+  <div class="tophdr"><div class="mark">CONTACT&nbsp;<i>PATCH</i></div><div class="tag">08 / 09</div></div>
+  <div class="spacer"></div>
+  <h2 style="font-size:62px;max-width:19ch">None of this means LiveWire fails. It means the remaining decisions aren't LiveWire's to make.</h2>
+  <div class="spacer"></div>
+  <p class="wide" style="font-size:27px;color:var(--dink3)">Cost per unit down 47%. Operating burn down 18%. STACYC profitable. Dealer network rebuilt. The people there are executing. What's broken is structural — and it was fixed in place by the end of 2025.</p>
+  <p class="wide" style="font-size:26px;color:var(--dcyan)">Full brief — 12 sections, 260 filings, every source linked.<br>contactpatch.co/groundtruth/01</p>
+  <div class="foot"><span>Former H-D product manager · Independent analyst</span><span>No position held</span></div>
+</div>
+
+</div>
+<script>document.body.classList.add("web");</script>
+
+</body></html>
