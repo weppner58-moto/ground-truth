@@ -18,8 +18,8 @@ import asyncio, os, sys, re, io
 import img2pdf
 from playwright.async_api import async_playwright
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-LIB = os.path.join(ROOT, "tools", "lib")
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root (this file lives in tools/gt02/lib)
+LIB = os.path.join(ROOT, "tools", "lib")  # fonts live in the current lib
 ASSETS = os.path.join(ROOT, "assets")
 
 

@@ -163,11 +163,11 @@ FIG_SPORT = hbars([("Plan: +5% a year", 6600, CYAN, None, "motorcycles"),
                    ("Sportster, high", 40000, MAG, None, "")],
                   xmax=44000, val_fmt="{:,.0f}", aria="The plan needs about 6,600 incremental units a year; the Sportster historically sold 35,000 to 40,000 globally.")
 
-FIG_2027 = bars([779.1, 416.6, 386.6, 17.5, 200, 270], ["2023", "2024", "2025", "2026 guide", "2027 w/ LiveWire", "2027 w/o"],
+FIG_2027 = bars([779.1, 416.6, 386.6, 17.5, 210, 280], ["2023", "2024", "2025", "2026 guide", "2027 w/ LiveWire", "2027 w/o"],
                 colors=[CYAN, CYAN, CYAN, MAG, INK3, INK3], opacities=[None, .85, .7, None, .7, .5], ymax=820, ticks=[0, 200, 400, 600, 800],
                 tick_fmt=lambda v: f"${v:,.0f}M", val_fmt=lambda v: f"{v:,.0f}",
-                tips=["2023 — $779.1M", "2024 — $416.6M", "2025 — $386.6M (HDFS transaction year)", "2026 guidance midpoint — about $17M", "2027 if the plan lands and LiveWire still loses $70M — about $200M", "2027 if the plan lands and LiveWire is gone — about $270M"],
-                aria="Consolidated operating income: $779M 2023, $417M 2024, $387M 2025, guided about $17M midpoint for 2026, roughly $200–270M in 2027 if Back to the Bricks delivers.", label_fs=9.5)
+                tips=["2023 — $779.1M", "2024 — $416.6M", "2025 — $386.6M (HDFS transaction year)", "2026 guidance midpoint — about $17M", "2027 if the plan lands and LiveWire still loses $70M — about $210M", "2027 if the plan lands and LiveWire is gone — about $280M"],
+                aria="Consolidated operating income: $779M 2023, $417M 2024, $387M 2025, guided about $17M midpoint for 2026, roughly $210–280M in 2027 if Back to the Bricks delivers.", label_fs=9.5)
 
 # ───────────────────────────── PAGE ─────────────────────────────
 def build():
@@ -187,7 +187,7 @@ def build():
 <header class="topbar">
   <div class="wrap">
     <div class="mark">CONTACT&nbsp;<span>PATCH</span></div>
-    <div class="stamp">{ISSUE} &middot; Draft &middot; Rev. 1</div>
+    <div class="stamp">{ISSUE} &middot; Draft &middot; Rev. 2</div>
   </div>
 </header>
 
@@ -415,6 +415,7 @@ def build():
            widths=["50%", "50%"])}
 
     <p>{ev("calc")}At the 2024 run rate the foregone earnings are roughly <b class="n">$180M</b> a year. $1.25B of cash buys back about <b class="n">seven years</b> of them, before the 2029 rebuild is counted. That is not a bad trade if the cash is deployed into something that earns more than HDFS did. So far it has gone into a <b class="n">$200M</b> accelerated repurchase (November 2025) at an average of about $26.50, and a balance sheet that now holds $1.9B of cash against a business guided to breakeven.</p>
+    <p>{ev("doc")}The trade is already visible in cash. H1 2026 operating cash flow was <b class="n">$(59)M</b> against $509M a year earlier; free cash flow <b class="n">$(104)M</b> against $444M &mdash; a $548M swing the Q2 deck attributes &ldquo;in part, due to 67% reduction in HDFS operating income after sale of retail finance receivables in 2H &rsquo;25&rdquo; and to forward-flow timing. The managed retail book is $6.1B: $1.6B owned, <b class="n">$4.5B</b> off balance sheet with KKR and PIMCO. HDMC alone is net cash $933M; HDFS is net debt $(1,848)M; Harley-Davidson, Inc. is net debt $(862)M.</p>
     <p>{ev("ind")}The other thing HDFS did was floor the dealers and finance the riders in downturns when banks would not. A forward-flow partner has a contract; a captive had a reason. Whether KKR and PIMCO buy the two-thirds in 2028 at the same terms they bought it in 2025 is a question the filings cannot answer.</p>
 
     {sowhat("04",
@@ -548,13 +549,13 @@ def build():
     </div>
 
     {table(["Target", "Stated", "Against the record"],
-           [["HDMC EBITDA", "<strong>&gt; $350M in 2027</strong> &mdash; the only dated number", f"{ev('calc')}Q2 2026 HDMC adjusted EBITDA was $115M on $72M of operating income, so D&amp;A and adjustments run ~$43M a quarter, ~$170M a year. <strong>$350M of EBITDA implies roughly $180M of operating income &mdash; about a 5% margin</strong> on 2025 revenue. HDMC made $290M in 2019 and $661M in 2023. <em>Open item 2: confirm HDMC D&amp;A from the 10-K.</em>"],
+           [["HDMC EBITDA", "<strong>&gt; $350M in 2027</strong> &mdash; the only dated number", f"{ev('calc')}The Q2 2026 deck&rsquo;s reconciliation gives HDMC D&amp;A of $40M for the quarter and $81M for the half &mdash; about $160M a year (restructuring adjustments of $3M / $17M are separate). <strong>$350M of EBITDA implies roughly $190M of operating income &mdash; about a 5% margin</strong> on 2025 revenue. HDMC made $290M in 2019 and $661M in 2023."],
             ["Retail unit growth", "Mid-single-digit CAGR, &ldquo;medium term&rdquo; (Starrs: three to five years)", "~5% on 132,535 is about <strong>6,600 motorcycles a year</strong>. The 2019&ndash;2025 CAGR was <strong>&minus;8%</strong>. Retail has fallen every year since 2021."],
             ["HDMC gross margin", "25&ndash;30%", "2025: 24.2%. 2024: 28.0%. 2023: 32.3%. This is a return to 2024."],
             ["HDMC opex", "&lt; 20% of sales", "2025: 25.0% ($895M / $3,578M). Needs the $150M cost take-out <em>and</em> revenue growth."],
             ["HDMC EBITDA margin", "10&ndash;12%", "Hardwire Stage II targeted <strong>15% operating margin by 2025</strong>. Delivered: (0.8%)."],
             ["P&amp;A and Apparel/Licensing", "Mid-single-digit CAGR", "P&amp;A revenue: $652M (2024) &rarr; $614M (2025). Some 30% of eliminated SKUs being reinstated."],
-            ["Fixed cost", "&ldquo;at least $150 million&hellip; impacting 2027 and beyond versus 2025 levels&rdquo;", "&ldquo;Not including LiveWire.&rdquo; Restructuring expense so far: $15M (Q1), $3M (Q2). A March 2026 reduction in force, size undisclosed."]],
+            ["Fixed cost", "&ldquo;at least $150 million&hellip; impacting 2027 and beyond versus 2025 levels&rdquo;", "&ldquo;Not including LiveWire.&rdquo; Restructuring expense so far: $17M for H1 2026 per the Q2 deck. A March 2026 reduction in force, size undisclosed."]],
            widths=["18%", "30%", "52%"])}
 
     <div class="note">
@@ -667,16 +668,16 @@ def build():
     {table(["2027, plan delivered", ""],
            [["Worldwide retail", "~143,000 (2026 guidance midpoint plus 5%) &mdash; <strong>66% of 2019, 53% of 2014</strong>"],
             ["HDMC revenue", "~$3.8B (flat pricing; Sportster/Sprint mix dilutes ASP)"],
-            ["HDMC EBITDA / operating income", "$350M+ / ~$180M &mdash; <strong>~5% margin, below 2019&rsquo;s 6.3%</strong>"],
+            ["HDMC EBITDA / operating income", "$350M+ / ~$190M &mdash; <strong>~5% margin, below 2019&rsquo;s 6.3%</strong>"],
             ["HDFS operating income", "~$80&ndash;100M on the path to $125&ndash;150M by 2029 &mdash; <strong>a third of 2024</strong>"],
             ["LiveWire", "Unaddressed. Loss guided $70&ndash;80M for 2026; cash exhausted mid-2027; $85M owed to the parent in December"],
-            ["Consolidated operating income", "<strong>~$200M</strong> if LiveWire is still losing $70M; <strong>~$270M</strong> if it is gone"],
+            ["Consolidated operating income", "<strong>~$210M</strong> if LiveWire is still losing $70M; <strong>~$280M</strong> if it is gone"],
             ["Dealers", "~1,150, &ldquo;twice as profitable as 2025&rdquo;"],
             ["Share count", "~100M at a &ldquo;measured&rdquo; pace"]],
            widths=["32%", "68%"])}
 
     {fig(8, "Consolidated operating income, actual and implied", "$ millions &middot; 2026 at guidance midpoint; 2027 on the plan&rsquo;s own targets", FIG_2027, "calc",
-         "2023&ndash;2025 from the 10-K. 2026 is the midpoint of the guidance sum in &sect;01. 2027 assumes $180M of HDMC operating income (from the $350M EBITDA target), ~$90M of HDFS, and LiveWire either at a $70M loss or deconsolidated. Every 2027 input is the company&rsquo;s, not mine; the arithmetic is.")}
+         "2023&ndash;2025 from the 10-K. 2026 is the midpoint of the guidance sum in &sect;01. 2027 assumes ~$190M of HDMC operating income (from the $350M EBITDA target and ~$160M of D&amp;A), ~$90M of HDFS, and LiveWire either at a $70M loss or deconsolidated. Every 2027 input is the company&rsquo;s, not mine; the arithmetic is.")}
 
     <p>Even in the success case, Harley-Davidson in 2027 is a company earning about a quarter of what it earned in 2023, selling about two-thirds of the motorcycles it sold in 2019, through three-quarters of the dealers, with its finance company deliberately shrunk and its electric subsidiary either wound up or still consuming a third of the profit. <strong>That is the plan, working.</strong></p>
     <p>The plan not working looks like 2025 again: a Touring overhang, promotional spend, a negative gross margin in the fourth quarter, and a consolidated profit that depends on a non-recurring event &mdash; except that the non-recurring event has already been used.</p>
@@ -771,12 +772,10 @@ def build():
     bio = open(os.path.join(ROOT, "tools", "lib", "bio.html")).read().replace("&sect;14", "&sect;16")
     open_items = [
         ("&ldquo;Does not plan to make additional investments in LiveWire&rdquo;", "No. 01 quotes this from H-D&rsquo;s FY2025 10-K. This pass could not re-locate it in the fetched text (MD&amp;A/liquidity truncated). Confirm page and section; until then it is tagged Unverified in &sect;06."),
-        ("HDMC D&amp;A", "The $350M EBITDA &rarr; ~$180M operating income translation uses Q2 2026 adjusted EBITDA less operating income (~$43M/quarter). Pull HDMC depreciation from the 10-K segment note and restate."),
         ("Post-spin Q4 2022 LiveWire loss", "Needed to state the &ldquo;since spin&rdquo; cumulative precisely instead of bracketing $337M&ndash;$422M."),
         ("H-D ownership of LiveWire", "~88.6% is computed from share counts (181M of 204.3M); neither 10-K prints it. Confirm from the most recent LiveWire proxy."),
         ("Sprint platform, plant and price", "Hero X440 derivation and India build are trade reporting; the $6,000 vs &ldquo;under $10,000&rdquo; conflict is unresolved. Check the August 2026 dealer-meeting materials and the Q3 call."),
         ("Sportster 883 price and plant", "~$10,000 and York are trade reporting only. The 883 designation itself is Starrs&rsquo;s, on the record."),
-        ("Q2 2026 U.S. 601cc+ share", "One transcript has Root saying &ldquo;32%,&rdquo; which conflicts with Q1&rsquo;s 38% and FY2025&rsquo;s 34.5%. Check the Q2 slide deck."),
         ("HDMC vs HDFS debt split", "Inferred by instrument at 12/31/25; read the consolidating balance sheet (10-K R131)."),
         ("2025 annual meeting certified votes", "&ldquo;Over 48% withheld&rdquo; is from press reports of preliminary results; pull the Item 5.07 8-K."),
         ("Back to the Bricks &ldquo;phases&rdquo;", "One summary described reset/growth/acceleration phases; the release does not contain that language. Not cited here; do not add unless found in the deck."),
@@ -813,7 +812,7 @@ def build():
   <div class="wrap">
     <div class="eyebrow">16 &mdash; Open items &amp; corrections</div>
     <h2>What is not yet nailed down</h2>
-    <p class="lede">Rev. 1 is a working draft. These twelve items are flagged in the text where they bite and will be closed or corrected here, dated, before the brief is called final. The corrections log begins when the first one closes.</p>
+    <p class="lede">Rev. 2 is a working draft. These ten items are flagged in the text where they bite and will be closed or corrected here, dated, before the brief is called final. Two closed on reading the Q2 2026 deck; the corrections are logged below.</p>
     <div class="scroll"><table class="tbl">
       <thead><tr><th style="width:38%">Open item</th><th style="width:62%">What is needed</th></tr></thead>
       <tbody>{oi}</tbody>
@@ -821,7 +820,12 @@ def build():
     <h3 style="font-size:clamp(21px,2.6vw,28px); margin-top:46px">Corrections log</h3>
     <div class="scroll"><table class="tbl">
       <thead><tr><th style="width:46%">What was claimed</th><th style="width:54%">What the document said</th></tr></thead>
-      <tbody><tr><td colspan="2" style="color:var(--ink-3)">Rev. 1, 7 September 2026 &mdash; no entries yet. If something here is wrong, tell me; it will appear on this line with the date.</td></tr></tbody>
+      <tbody>
+        <tr><td><span style="color:var(--ink-3)">8 Sep 2026 &middot; Rev. 2</span><br>$350M of HDMC EBITDA translated to ~$180M of operating income using inferred &ldquo;D&amp;A and adjustments&rdquo; of ~$43M a quarter.</td><td>The Q2 2026 deck gives HDMC D&amp;A directly: $40M for Q2, $81M for H1, ~$160M a year. Restated to <strong>~$190M</strong>; the ~5% conclusion is unchanged; 2027 consolidated moved from ~$200&ndash;270M to ~$210&ndash;280M.</td></tr>
+        <tr><td><span style="color:var(--ink-3)">8 Sep 2026 &middot; Rev. 2</span><br>An apparent conflict on Q2 U.S. 601cc+ share (32% vs 38%) was listed as an open item.</td><td>Seasonality, not error: 34% FY2025, 38% Q1 2026, 32% Q2 2026, 34% YTD (deck slide 6). Closed.</td></tr>
+        <tr><td><span style="color:var(--ink-3)">8 Sep 2026 &middot; Rev. 2</span><br>Restructuring expense stated as $15M (Q1) + $3M (Q2).</td><td>$17M for H1 2026 per the deck.</td></tr>
+        <tr><td colspan="2" style="color:var(--ink-3)">If something here is wrong, tell me; it will appear on this list with the date.</td></tr>
+      </tbody>
     </table></div>
   </div>
 </section>
@@ -835,7 +839,7 @@ def build():
     <p>Every figure is drawn from SEC filings, company releases or call transcripts, or is arithmetic on them identified as such. Segment figures are on Harley-Davidson&rsquo;s reporting basis; LiveWire&rsquo;s own filings report slightly different segment totals ($75.5M vs $75.0M for FY2025) and are used only for LiveWire&rsquo;s cash and loan terms.</p>
     <p><strong>This brief does not assert, and no filing states, that Harley-Davidson intends to fund, acquire, divest or wind down LiveWire.</strong> The options in &sect;07 are an enumeration of what the filings permit, not a forecast. The 2027 picture in &sect;12 uses the company&rsquo;s own targets as inputs and is labelled Calculated.</p>
     <p>Product facts about the Sprint and the Sportster 883 beyond what management said on the record are trade reporting and are flagged as open items. The 883 designation is management&rsquo;s own.</p>
-    <p style="margin-top:22px">Contact Patch Advisory &middot; {ISSUE} &middot; William Weppner &middot; {DATE} &middot; Rev. 1 &middot; <a href="../01/">No. 01</a> &middot; <a href="../../">Index</a></p>
+    <p style="margin-top:22px">Contact Patch Advisory &middot; {ISSUE} &middot; William Weppner &middot; {DATE} &middot; Rev. 2 &middot; <a href="../01/">No. 01</a> &middot; <a href="../../">Index</a></p>
   </div>
 </footer>
 </body></html>''')

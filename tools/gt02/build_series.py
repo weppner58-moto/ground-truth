@@ -339,7 +339,7 @@ def build():
     P.append(slide(f'''
   <div class="kick">The targets, against the record</div>
   {tbl(["Target", "Stated", "Record"], [
-      ["HDMC EBITDA", "<strong>&gt;$350M in 2027</strong>", "≈ $180M operating income, ~5% margin. 2019: $290M. 2023: $661M."],
+      ["HDMC EBITDA", "<strong>&gt;$350M in 2027</strong>", "≈ $190M operating income, ~5% margin. 2019: $290M. 2023: $661M."],
       ["Retail growth", "Mid-single-digit CAGR", "≈ 6,600 units/yr. 2019–25 CAGR: <span class='hi'>−8%</span>"],
       ["Gross margin", "25–30%", "2025: 24.2%. 2024: 28.0%."],
       ["Opex", "&lt;20% of sales", "2025: 25.0%"],
@@ -393,10 +393,10 @@ def build():
   <div class="kick">2027, if every target lands on time</div>
   {tbl(["", "Plan delivered"], [
       ["Worldwide retail", "~143,000 · <strong>66% of 2019</strong>"],
-      ["HDMC operating income", "~$180M · <strong>~5% margin</strong>"],
+      ["HDMC operating income", "~$190M · <strong>~5% margin</strong>"],
       ["HDFS operating income", "~$80–100M · a third of 2024"],
       ["LiveWire", "Unaddressed · cash out mid-2027 · $85M due December"],
-      ["Consolidated operating income", "<strong>~$200M</strong> with LiveWire · <strong>~$270M</strong> without"],
+      ["Consolidated operating income", "<strong>~$210M</strong> with LiveWire · <strong>~$280M</strong> without"],
       ["Dealers", "~1,150, twice as profitable as 2025"]])}
   <div class="spacer"></div>
   <p class="wide" style="font-size:26px;margin:0">A quarter of 2023's earnings. Two-thirds of 2019's motorcycles. Three-quarters of the dealers. <strong>That is the plan, working.</strong></p>''',

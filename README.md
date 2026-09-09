@@ -8,7 +8,7 @@ Primary-document research on the motorcycle industry.
 - [The four-part series](groundtruth/03/series/) — 42 slides plus route cards
 - Carousel PDFs — [Part 1](assets/GroundTruth-03_Part1_The-Record.pdf) · [Part 2](assets/GroundTruth-03_Part2_Same-Sentence.pdf) · [Part 3](assets/GroundTruth-03_Part3_Too-Small-to-Say.pdf) · [Part 4](assets/GroundTruth-03_Part4_The-Sprint-and-Final-Word.pdf) · [Route card](assets/GroundTruth-03_Card_The-Route.pdf)
 
-**No. 02 — Harley-Davidson: Back to the Bricks, Down to Breakeven** (Rev. 1 draft)
+**No. 02 — Harley-Davidson: Back to the Bricks, Down to Breakeven** (Rev. 2 draft)
 
 - [The full brief](groundtruth/02/) — 16 sections in six parts, 8 figures, linked source index, open items and corrections log
 - [The four-part series](groundtruth/02/series/) — 37 slides
