@@ -139,7 +139,7 @@ def wanted_docs(form, names, all_8k):
         if low.startswith("r") and re.fullmatch(r"r\d+\.htm", low):
             continue  # XBRL viewer pages
         if form.startswith("8-K"):
-            if re.search(r"ex[-_]?99", low) or low.startswith("d") or "8k" in low or "8-k" in low:
+            if re.search(r"ex(hibit)?[-_]?99", low) or low.startswith("d") or "8k" in low or "8-k" in low:
                 keep.append(n)
         else:
             keep.append(n)
@@ -193,7 +193,7 @@ def main():
             if form.startswith("8-K"):
                 # earnings 8-K: the EX-99 exhibits (release, slides); fall back to the 8-K body
                 docs = wanted_docs(form, names, args.all_8k)
-                ex = [d for d in docs if re.search(r"ex[-_]?99", d.lower())]
+                ex = [d for d in docs if re.search(r"ex(hibit)?[-_]?99", d.lower())]
                 docs = ex or ([primary] if primary in names else docs)
             else:
                 # 10-K / 10-Q / proxy: the primary document only (no ex31/ex32/ex10 boilerplate)
