@@ -18,7 +18,7 @@ TITLE = "Harley-Davidson: Back to the Bricks, Down to Breakeven"
 ROUTE = [("Part I", "The arithmetic", "Add up the guidance: about zero. The subsidiary's loss exceeds the motor company's profit."),
          ("Part II", "The sale", "2025's profit was the finance company, sold. $180M a year traded for $1.25B once."),
          ("Part III", "The subsidiary", "$422M consolidated. A third of the profit drag from 0.6% of revenue. Cash to May 2027."),
-         ("Part IV", "The plan", "Five pillars, six targets. The 2027 number is a 5% margin — below 2019."),
+         ("Part IV", "The plan", "Five pillars, six targets. The 2027 number is a 5% margin, below 2019."),
          ("Part V", "The bet", "$1.6B of buybacks, and one motorcycle carrying the growth target: the 883."),
          ("Part VI", "The final word", "LiveWire didn't break Harley. It is what the new Harley can't afford.")]
 
@@ -70,7 +70,7 @@ def cover(part_n, part_title, h1, dek, sid):
   <h1 style="font-size:112px">{h1}</h1>
   <p class="wide" style="margin-top:36px;color:var(--dink3);font-size:30px">{dek}</p>
   <div class="spacer"></div>
-  <p class="wide" style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--dink3);margin:0">Part {part_n} — {part_title}</p>''',
+  <p class="wide" style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--dink3);margin:0">Part {part_n} · {part_title}</p>''',
   dark=True, tag="Ground Truth No. 02", sid=sid, foot_l="Harley-Davidson, Inc. · HOG", foot_r="September 2026")
 
 def route_card(on_index, sid, heading=None, dek=None):
@@ -99,7 +99,7 @@ def closer(next_line, sid, tag):
   <div class="spacer"></div>
   <h2 style="font-size:60px;max-width:16ch">{next_line}</h2>
   <div class="spacer"></div>
-  <p class="wide" style="font-size:26px;color:var(--dcyan)">Full brief — 16 sections in six parts, every figure linked to its filing, open items and corrections published.<br>{URL}</p>''',
+  <p class="wide" style="font-size:26px;color:var(--dcyan)">Full brief: 16 sections in six parts, every figure linked to its filing, open items and corrections published.<br>{URL}</p>''',
   dark=True, tag=tag, sid=sid, foot_l="Former H-D product manager · Independent analyst", foot_r="No position held")
 
 def build():
@@ -157,12 +157,12 @@ def build():
       ["U.S. retail", "125,960", "82,698", "−34%"],
       ["Shipments", "213,939", "124,477", "−42%"],
       ["HDMC operating margin", "6.3%", '<span class="hi">(0.8%)</span>', "−7.1 pts"],
-      ["U.S. 601cc+ share", "—", "34.5%", "37.9% in 2023"],
+      ["U.S. 601cc+ share", "n/a", "34.5%", "37.9% in 2023"],
       ["Dealerships worldwide", "1,569", "1,174", "−25%"],
       ["U.S. dealerships", "698", "554", "−21%"],
       ["Diluted EPS", "$2.68", "$2.78", "+4%"]], nums=(1, 2, 3))}
   <div class="spacer"></div>
-  <p class="wide" style="font-size:25px;margin:0">EPS held up. That is the buyback and the finance company — Parts 2 and 4.</p>''',
+  <p class="wide" style="font-size:25px;margin:0">EPS held up. That is the buyback and the finance company: Parts 2 and 4.</p>''',
       tag="06 / 09", sid="s1-7", foot_l="Source: HOG 10-K FY2019, FY2025 · results releases"))
     fig_hdmc = bars([289.6, 408.6, 677.1, 661.2, 277.8, -28.7], ["2019", "2021", "2022", "2023", "2024", "2025"],
                     colors=[CYAN, CYAN, CYAN, CYAN, CYAN, MAG], opacities=[.6, .7, .85, None, .85, None], ymax=720, ymin=-120,
@@ -177,14 +177,14 @@ def build():
     P.append(slide('''
   <div class="kick">Two qualifications, before anyone else makes them</div>
   <ul style="font-size:27px">
-    <li><strong>H1 2026 consolidated operating income was $99.5M</strong>, so the full-year guide implies a second-half loss. Q4 is seasonally weak — HDMC lost $260M in Q4 2025 — and management has beaten its own ranges twice this year. The guidance may be conservative.</li>
+    <li><strong>H1 2026 consolidated operating income was $99.5M</strong>, so the full-year guide implies a second-half loss. Q4 is seasonally weak (HDMC lost $260M in Q4 2025), and management has beaten its own ranges twice this year. The guidance may be conservative.</li>
     <li><strong>The sum is checked.</strong> Segments add to the consolidated line in 2025 and 2024 to the decimal. No corporate eliminations sit between them.</li>
   </ul>
   <div class="spacer"></div>
   <p class="wide" style="font-size:27px;margin:0">It is still the number they chose to publish.</p>''',
       dark=True, tag="08 / 09", sid="s1-9", foot_l="HOG 10-Q Q2 2026 · 10-K FY2025"))
-    P.append(closer("Part 2: where the 2025 profit actually came from — and why it does not happen twice.", "s1-10", "09 / 09"))
-    S.append(("Part 1 — The Arithmetic", P))
+    P.append(closer("Part 2: where the 2025 profit actually came from, and why it does not happen twice.", "s1-10", "09 / 09"))
+    S.append(("Part 1 · The Arithmetic", P))
 
     # ═══════════ PART 2 — THE SALE ═══════════
     P = []
@@ -203,7 +203,7 @@ def build():
   <div class="kick">What was sold · KKR / PIMCO · announced 30 July 2025</div>
   <ul style="font-size:28px">
     <li>About <strong>$6 billion</strong> of existing retail loan receivables, at a premium to par.</li>
-    <li><strong>9.8% of HDFS</strong> — 4.9% each to KKR and PIMCO, at an agreed $1.8B valuation.</li>
+    <li><strong>9.8% of HDFS</strong>: 4.9% each to KKR and PIMCO, at an agreed $1.8B valuation.</li>
     <li>A five-year forward-flow agreement: <strong>two-thirds of future originations</strong>, sold.</li>
     <li>A <strong>$1.0 billion dividend</strong> from HDFS up to the parent in Q4 2025.</li>
     <li>Credit-loss provision swung from a $247M expense to a <strong>$191M credit</strong> as reserves on the sold loans were released.</li>
@@ -246,8 +246,8 @@ def build():
   <p class="wide" style="font-size:28px;margin-top:30px">And why the 2026 guidance looks like a cliff. It is not a cliff. <strong>It is the ground.</strong> The $350M HDMC EBITDA target now has to carry the enterprise in a way it never had to before the sale.</p>
   <div class="spacer"></div>''',
       dark=True, tag="06 / 07", sid="s2-7", foot_l="Ground Truth No. 02 · Part 2"))
-    P.append(closer("Part 3: what LiveWire costs the parent — and the date it stops being a line item and becomes a decision.", "s2-8", "07 / 07"))
-    S.append(("Part 2 — The Sale", P))
+    P.append(closer("Part 3: what LiveWire costs the parent, and the date it stops being a line item and becomes a decision.", "s2-8", "07 / 07"))
+    S.append(("Part 2 · The Sale", P))
 
     # ═══════════ PART 3 — THE SUBSIDIARY ═══════════
     P = []
@@ -296,8 +296,8 @@ def build():
     P.append(slide(f'''
   <div class="kick">The options, as they stand on the filings · an enumeration, not a prediction</div>
   {tbl(["Option", "Cost to H-D", "Effect on H-D's P&L"], [
-      ["Fund again", "Reverses the stated position", "None — already consolidated"],
-      ["Buy the minority", "~$28M at $1.20. Severance plan already carves out an H-D acquisition", "None — already consolidated"],
+      ["Fund again", "Reverses the stated position", "None; already consolidated"],
+      ["Buy the minority", "~$28M at $1.20. Severance plan already carves out an H-D acquisition", "None; already consolidated"],
       ["Third-party raise", "Dilution to ~70%; new money sits behind H-D's lien", "Still consolidated"],
       ["Foreclose / wind down", "Write-down of the $75M note against collateral", "Losses stop"],
       ["Sell or merge", "Depends on buyer; H-D keeps the contracts", "Deconsolidation"]])}
@@ -307,7 +307,7 @@ def build():
     P.append(slide('''
   <div class="spacer"></div>
   <h2 style="font-size:58px;max-width:16ch;color:var(--mag)">Because LiveWire is already consolidated, no ownership change short of deconsolidation improves Harley-Davidson's reported operating income.</h2>
-  <p class="wide" style="font-size:27px;margin-top:30px">Buying the minority for $28M would be the cheapest corporate action in the company's recent history — and would change the operating line by exactly nothing. Back to the Bricks handles this by scoring HDMC alone.</p>
+  <p class="wide" style="font-size:27px;margin-top:30px">Buying the minority for $28M would be the cheapest corporate action in the company's recent history. It would change the operating line by exactly nothing. Back to the Bricks handles this by scoring HDMC alone.</p>
   <div class="spacer"></div>''',
       tag="06 / 08", sid="s3-7", foot_l="Calculated · Ground Truth No. 02 §07"))
     P.append(slide('''
@@ -318,7 +318,7 @@ def build():
   <p class="wide" style="font-size:26px;margin:0">No 2026 statement from Starrs or CFO Root uses "strategic alternatives," "divestiture" or "wind-down." Back to the Bricks does not mention LiveWire outside its forward-looking factors. LiveWire's 10-Q says it will pursue financing "during the third quarter of 2026." That quarter ends in three weeks.</p>''',
       dark=True, tag="07 / 08", sid="s3-8", foot_l="Source: Q4 2025 call · Back to the Bricks release · LVWR 10-Q"))
     P.append(closer("Part 4: what Back to the Bricks actually commits to, what Hardwire delivered, and the one motorcycle carrying the growth target.", "s3-9", "08 / 08"))
-    S.append(("Part 3 — The Subsidiary", P))
+    S.append(("Part 3 · The Subsidiary", P))
 
     # ═══════════ PART 4 — THE BRICKS ═══════════
     P = []
@@ -355,7 +355,7 @@ def build():
   <div class="big mag" style="font-size:150px;margin-top:36px">≈ 5%</div>
   <div class="sub" style="font-size:20px">OPERATING MARGIN · DERIVED (D&amp;A ~$170M/YR FROM Q2 2026 ADJ. EBITDA LESS OPERATING INCOME)</div>
   <div class="spacer"></div>
-  <p class="wide" style="font-size:27px;margin:0">HDMC ran a 6.3% margin in 2019 — the year Hardwire was written to fix. <strong>The new plan's target is below where the company stood before the old plan.</strong></p>''',
+  <p class="wide" style="font-size:27px;margin:0">HDMC ran a 6.3% margin in 2019, the year Hardwire was written to fix. <strong>The new plan's target is below where the company stood before the old plan.</strong></p>''',
       tag="03 / 09", sid="s4-4", foot_l="Calculated · confirm HDMC D&A from the 10-K (open item 2)"))
     P.append(slide(f'''
   <div class="kick">Hardwire, 2021–2025 · promised vs delivered</div>
@@ -413,11 +413,11 @@ def build():
     P.append(slide(f'''
   <div class="spacer"></div>
   <h2 style="font-size:66px;max-width:14ch;color:var(--dmag)">Which brick is LiveWire under?</h2>
-  <p class="wide" style="font-size:27px;margin-top:26px">Back to the Bricks has five pillars, six targets and a two-year clock. It is scored on the motor company. Harley-Davidson, Inc. is not the motor company. It is HDMC, plus a finance company sold forward, minus a subsidiary guided to lose more than HDMC makes — with a note due in the plan's own target year.</p>
+  <p class="wide" style="font-size:27px;margin-top:26px">Back to the Bricks has five pillars, six targets and a two-year clock. It is scored on the motor company. Harley-Davidson, Inc. is not the motor company. It is HDMC, plus a finance company sold forward, minus a subsidiary guided to lose more than HDMC makes, with a note due in the plan's own target year.</p>
   <div class="spacer"></div>
-  <p class="wide" style="font-size:26px;color:var(--dcyan)">Full brief — 16 sections in six parts, every source linked, open items and corrections published.<br>{URL}</p>''',
+  <p class="wide" style="font-size:26px;color:var(--dcyan)">Full brief: 16 sections in six parts, every source linked, open items and corrections published.<br>{URL}</p>''',
       dark=True, tag="09 / 09", sid="s4-10", foot_l="Former H-D product manager · Independent analyst", foot_r="No position held"))
-    S.append(("Part 4 — The Bricks", P))
+    S.append(("Part 4 · The Bricks", P))
     # stand-alone route card (no part highlighted)
     S.append(("The route", [route_card(-1, "route-card", heading="Six parts,<br>one thesis", dek="Harley-Davidson's own filings, added up: the arithmetic, the sale, the subsidiary, the plan, the bet, and the final word.")]))
 
@@ -430,7 +430,7 @@ def build():
     html = f'''<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{TITLE} — Carousels</title>
+<title>{TITLE} · Carousels</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap">
@@ -440,7 +440,7 @@ body.web .slide.card{{display:none}}
 </style></head><body>
 <div class="webhdr">
   <h4>Harley-Davidson: Back to<br>the Bricks, Down to Breakeven</h4>
-  <p>What LiveWire costs the parent, and what the plan leaves out. Ground Truth No. 02, the LinkedIn series in full — four parts, {total} slides. The full brief, with every figure linked to its filing, is <a href="../">here</a>.</p>
+  <p>What LiveWire costs the parent, and what the plan leaves out. Ground Truth No. 02, the LinkedIn series in full: four parts, {total} slides. The full brief, with every figure linked to its filing, is <a href="../">here</a>.</p>
   <p style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:18px">Contact Patch Advisory &middot; William Weppner &middot; September 2026</p>
 </div>
 <div class="wrapper">

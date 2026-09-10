@@ -51,7 +51,7 @@ def bars(values, labels, *, colors=None, opacities=None, ymax=None, ymin=0, tick
         h = max(y1 - y0, 1.5)
         col = (colors[i] if colors else MAG)
         op = f' opacity="{opacities[i]}"' if opacities and opacities[i] is not None else ""
-        tip = tips[i] if tips else f"{labels[i]} — {_fmt(v, val_fmt)}"
+        tip = tips[i] if tips else f"{labels[i]} : {_fmt(v, val_fmt)}"
         out.append(f'<rect class="bar" x="{x:.1f}" y="{y0:.1f}" width="{bw:.1f}" height="{h:.1f}" fill="{col}"{op} data-tip="{tip}"></rect>')
         vy = y0 - 7 if v >= 0 else y1 + 15
         out.append(f'<text class="vl" x="{x+bw/2:.1f}" y="{vy:.1f}" text-anchor="middle">{_fmt(v, val_fmt)}</text>')
@@ -71,7 +71,7 @@ def hbars(rows, *, xmax, width=720, row_h=38, pad_l=190, pad_r=90, val_fmt="{:,.
         w = max(plot_w * v / xmax, 1.5)
         opa = f' opacity="{op}"' if op is not None else ""
         out.append(f'<text class="ax" x="0" y="{yy+row_h*0.55:.1f}">{label}</text>')
-        out.append(f'<rect class="bar" x="{pad_l}" y="{yy+6}" width="{w:.1f}" height="{row_h-14}" fill="{col}"{opa} data-tip="{label} — {_fmt(v,val_fmt)}"></rect>')
+        out.append(f'<rect class="bar" x="{pad_l}" y="{yy+6}" width="{w:.1f}" height="{row_h-14}" fill="{col}"{opa} data-tip="{label} : {_fmt(v,val_fmt)}"></rect>')
         out.append(f'<text class="vl" x="{pad_l+w+8:.1f}" y="{yy+row_h*0.55:.1f}">{_fmt(v,val_fmt)}{(" · "+note) if note else ""}</text>')
     out.append("</svg>")
     return "\n".join(out)
@@ -107,7 +107,7 @@ def waterfall(steps, *, ymin, ymax, ticks, width=720, height=300, pad_l=64, pad_
             run = b
             txt = _fmt(d, val_fmt)
         h = max(y(bot) - y(top), 1.5)
-        out.append(f'<rect class="bar" x="{x:.1f}" y="{y(top):.1f}" width="{bw:.1f}" height="{h:.1f}" fill="{col}" data-tip="{label} — {txt}"></rect>')
+        out.append(f'<rect class="bar" x="{x:.1f}" y="{y(top):.1f}" width="{bw:.1f}" height="{h:.1f}" fill="{col}" data-tip="{label} : {txt}"></rect>')
         out.append(f'<text class="vl" x="{x+bw/2:.1f}" y="{y(top)-7:.1f}" text-anchor="middle">{txt}</text>')
         out.append(f'<text class="ax" x="{x+bw/2:.1f}" y="{height-pad_b+22}" text-anchor="middle">{label}</text>')
     out.append("</svg>")

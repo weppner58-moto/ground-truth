@@ -146,7 +146,7 @@ FIG_HDFS = bars([234.7, 248.4, 490.4, 62.5, 137.5],
                 ["2023", "2024", "2025", "2026 guide", "2029 target"],
                 colors=[CYAN, CYAN, CYAN, MAG, INK3], opacities=[.7, .85, None, None, .7],
                 ymax=520, ticks=[0, 100, 200, 300, 400, 500], tick_fmt=lambda v: f"${v:,.0f}M", val_fmt=lambda v: f"{v:,.0f}",
-                tips=["2023 — $234.7M", "2024 — $248.4M", "2025 — $490.4M (transaction year)", "2026 guidance — $55–70M, midpoint shown", "2029 target — $125–150M, midpoint shown"],
+                tips=["2023: $234.7M", "2024: $248.4M", "2025: $490.4M (transaction year)", "2026 guidance: $55–70M, midpoint shown", "2029 target: $125–150M, midpoint shown"],
                 aria="HDFS operating income: $235M 2023, $248M 2024, $490M 2025, guided $55–70M for 2026, targeted $125–150M by 2029.")
 
 FIG_LW = bars([15.0, 26.3, 19.4, 33.8], ["2023", "2024", "2025", "TTM Jun 2026"],
@@ -166,7 +166,7 @@ FIG_SPORT = hbars([("Plan: +5% a year", 6600, CYAN, None, "motorcycles"),
 FIG_2027 = bars([779.1, 416.6, 386.6, 17.5, 210, 280], ["2023", "2024", "2025", "2026 guide", "2027 w/ LiveWire", "2027 w/o"],
                 colors=[CYAN, CYAN, CYAN, MAG, INK3, INK3], opacities=[None, .85, .7, None, .7, .5], ymax=820, ticks=[0, 200, 400, 600, 800],
                 tick_fmt=lambda v: f"${v:,.0f}M", val_fmt=lambda v: f"{v:,.0f}",
-                tips=["2023 — $779.1M", "2024 — $416.6M", "2025 — $386.6M (HDFS transaction year)", "2026 guidance midpoint — about $17M", "2027 if the plan lands and LiveWire still loses $70M — about $210M", "2027 if the plan lands and LiveWire is gone — about $280M"],
+                tips=["2023: $779.1M", "2024: $416.6M", "2025: $386.6M (HDFS transaction year)", "2026 guidance midpoint: about $17M", "2027 if the plan lands and LiveWire still loses $70M: about $210M", "2027 if the plan lands and LiveWire is gone: about $280M"],
                 aria="Consolidated operating income: $779M 2023, $417M 2024, $387M 2025, guided about $17M midpoint for 2026, roughly $210–280M in 2027 if Back to the Bricks delivers.", label_fs=9.5)
 
 # ───────────────────────────── PAGE ─────────────────────────────
@@ -208,7 +208,7 @@ def build():
     </ul>
     <p class="thesis-line">The plan is scored on the motor company. <i>The income statement is not.</i></p>
     <div class="srcline">
-      Sources &mdash; HOG Form 10-K (FY2025) &middot; HOG Form 10-Q (Q2 2026) &middot; HOG Forms 8-K (Q4 2025, Q1 2026, Q2 2026 results) &middot; &ldquo;Back to the Bricks&rdquo; release (5 May 2026)<br>
+      Sources: HOG Form 10-K (FY2025) &middot; HOG Form 10-Q (Q2 2026) &middot; HOG Forms 8-K (Q4 2025, Q1 2026, Q2 2026 results) &middot; &ldquo;Back to the Bricks&rdquo; release (5 May 2026)<br>
       Hardwire release (2 Feb 2021) &middot; Hardwire Stage II investor day (10 May 2022) &middot; KKR/PIMCO partnership releases (30 Jul, 25 Aug 2025) &middot; LVWR Form 10-K (FY2025), 10-Q (Q2 2026) &middot; Ground Truth No. 01</div>
   </div>
 </section>
@@ -227,7 +227,7 @@ def build():
     <li><a href="#part1"><div class="rn">Part I</div><div class="rt">The arithmetic</div><div class="rp">Add up the guidance: about zero. The subsidiary&rsquo;s loss exceeds the motor company&rsquo;s profit.</div></a></li>
     <li><a href="#part2"><div class="rn">Part II</div><div class="rt">The sale</div><div class="rp">2025&rsquo;s profit was the finance company, sold. $180M a year of earnings traded for $1.25B once.</div></a></li>
     <li><a href="#part3"><div class="rn">Part III</div><div class="rt">The subsidiary</div><div class="rp">$422M consolidated. 0.6% of revenue, a third of the profit drag. Cash to May 2027; note due December.</div></a></li>
-    <li><a href="#part4"><div class="rn">Part IV</div><div class="rt">The plan</div><div class="rp">Five pillars, six targets. The 2027 number is a 5% margin &mdash; below the year Hardwire was written to fix.</div></a></li>
+    <li><a href="#part4"><div class="rn">Part IV</div><div class="rt">The plan</div><div class="rp">Five pillars, six targets. The 2027 number is a 5% margin, below the year Hardwire was written to fix.</div></a></li>
     <li><a href="#part5"><div class="rn">Part V</div><div class="rt">The bet</div><div class="rp">$1.6B of buybacks, and one motorcycle carrying the growth target: the 883.</div></a></li>
     <li><a href="#part6"><div class="rn">Part VI</div><div class="rt">The final word</div><div class="rp">LiveWire didn&rsquo;t break Harley. It is what the new Harley can&rsquo;t afford. The decision has a date.</div></a></li>
   </ol>
@@ -238,23 +238,23 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    <div class="eyebrow">00 &mdash; Start here</div>
+    <div class="eyebrow">00 &middot; Start here</div>
     <h2>The finding, and the trail that led to it</h2>
     <p class="lede">Ground Truth No. 01 read LiveWire&rsquo;s filings. This one reads the parent&rsquo;s, and asks what the electric bet cost, what the new plan promises, and what Harley-Davidson looks like if the plan works.</p>
 
     <p>Start with the sentence the new CEO used to bury the old strategy. Artie Starrs, 5 May 2026, introducing Back to the Bricks: <em>&ldquo;Over the last several years, we leaned heavily into Touring and Electric. Going forward, we are shifting to a more rider-centric portfolio.&rdquo;</em> Fourteen words. That is the parent company&rsquo;s verdict on Hardwire, on LiveWire and on five years of product decisions, delivered on an earnings call and never expanded on.</p>
-    <p>Then add up the guidance the same company published eleven weeks later. HDMC, the motor company: {n("$10&ndash;50 million")} of operating income. HDFS, the finance company: {n("$55&ndash;70 million")}. LiveWire: a {n("$70&ndash;80 million")} loss. Segment operating income sums to the consolidated line in Harley-Davidson&rsquo;s reporting &mdash; 2025 proves it: $(28.7)M + $490.4M + $(75.0)M = $386.6M, to the decimal. So the sum is the company&rsquo;s own forecast: <strong>Harley-Davidson, Inc. is guided to somewhere between a $15 million loss and a $50 million profit for 2026.</strong> Three years ago the number was $779 million.</p>
+    <p>Then add up the guidance the same company published eleven weeks later. HDMC, the motor company: {n("$10&ndash;50 million")} of operating income. HDFS, the finance company: {n("$55&ndash;70 million")}. LiveWire: a {n("$70&ndash;80 million")} loss. Segment operating income sums to the consolidated line in Harley-Davidson&rsquo;s reporting. 2025 proves it: $(28.7)M + $490.4M + $(75.0)M = $386.6M, to the decimal. So the sum is the company&rsquo;s own forecast: <strong>Harley-Davidson, Inc. is guided to somewhere between a $15 million loss and a $50 million profit for 2026.</strong> Three years ago the number was $779 million.</p>
     <p>That is the finding. Inside it sits the sentence this brief is built on: <strong>the electric subsidiary is guided to lose more than the motor company is guided to make.</strong> At every point in both ranges.</p>
 
     <ul class="finds">
-      <li>Open the FY2025 10-K segment note and the motor company lost {n("$28.7M")} in 2025 &mdash; the first HDMC operating loss outside the pandemic year in the modern history of the company. The whole consolidated profit came from HDFS, and HDFS&rsquo;s profit came from selling its loan book.</li>
+      <li>Open the FY2025 10-K segment note and the motor company lost {n("$28.7M")} in 2025, the first HDMC operating loss outside the pandemic year in the modern history of the company. The whole consolidated profit came from HDFS, and HDFS&rsquo;s profit came from selling its loan book.</li>
       <li>Ask what that sale did to earnings power and HDFS goes from a {n("$248M")} run rate to a {n("$55&ndash;70M")} guide. The company&rsquo;s steadiest earner was converted to cash, once.</li>
-      <li>Read LiveWire as H-D reports it and the consolidated losses run to {n("$422M")} since 2022 &mdash; a fifth of the 2025 profit drag, a third of the trailing one, from 0.6% of revenue.</li>
-      <li>Read Back to the Bricks and there is no LiveWire target, no electric anything, and a 2027 EBITDA number that translates to roughly a {n("5%")} operating margin &mdash; below where HDMC stood in 2019, the year Hardwire was written to fix.</li>
+      <li>Read LiveWire as H-D reports it and the consolidated losses run to {n("$422M")} since 2022: a fifth of the 2025 profit drag, a third of the trailing one, from 0.6% of revenue.</li>
+      <li>Read Back to the Bricks and there is no LiveWire target, no electric anything, and a 2027 EBITDA number that translates to roughly a {n("5%")} operating margin, below where HDMC stood in 2019, the year Hardwire was written to fix.</li>
       <li>Read Hardwire next to it: every quantified target missed. 15% margin promised for 2025; (0.8%) delivered.</li>
     </ul>
 
-    <p>None of that is a secret. All of it is in the filings, and almost none of it is in the coverage, which has been about Sportsters and dealer sentiment. Those matter &mdash; Part V is about them. But the arithmetic comes first.</p>
+    <p>None of that is a secret. All of it is in the filings, and almost none of it is in the coverage, which has been about Sportsters and dealer sentiment. Those matter; Part V is about them. But the arithmetic comes first.</p>
 
     <h3 style="font-size:clamp(21px,2.6vw,28px); margin-top:40px">The trail, in five documents</h3>
     <p>The order I read them in. Each one sent me to the next.</p>
@@ -279,7 +279,7 @@ def build():
       <li><strong>Why Harley-Davidson.</strong> No. 01 followed the subsidiary&rsquo;s money. It leads here: to the only company in American motorcycling whose filings carry the whole industry&rsquo;s weight, in the first year of a new CEO and a new plan.</li>
       <li><strong>Who this is for.</strong> Dealers weighing the next allocation. Suppliers sizing the York ramp. Investors deciding whether &ldquo;transition year&rdquo; is a floor. Anyone at LiveWire wondering what the parent&rsquo;s numbers say about their runway.</li>
       <li><strong>What I did.</strong> Read H-D&rsquo;s FY2025 10-K and Q2 2026 10-Q line by line, the last five years of results releases and calls, the two strategy documents, the KKR/PIMCO releases, and the governance filings from the 2025 fight. Every figure links to its source. Twelve open items are listed in &sect;16, not hidden.</li>
-      <li><strong>Who I am.</strong> Ex-Harley-Davidson product manager &mdash; Touring, CVO, Trike. Ex-Honda. Independent now. &sect;16 has the rest, and the disclosure.</li>
+      <li><strong>Who I am.</strong> Ex-Harley-Davidson product manager: Touring, CVO, Trike. Ex-Honda. Independent now. &sect;16 has the rest, and the disclosure.</li>
     </ul>
   </div>
 </section>''')
@@ -289,12 +289,12 @@ def build():
                   "The company&rsquo;s own 2026 guidance, added up, and the five-year line it sits at the bottom of.",
                   "Harley-Davidson, Inc. is guided to roughly breakeven operating income in 2026, and the subsidiary&rsquo;s guided loss is larger than the motor company&rsquo;s guided profit.",
                   "Every argument about Sportsters, dealers and tariffs happens inside that arithmetic. Growth from here is measured from a base near zero.",
-                  "Juneau Avenue", "The Milwaukee headquarters, reopened for return-to-office in March 2026. Exterior, brick.", "Harley-Davidson media / photographer credit"))
+                  "Juneau Avenue", "The Milwaukee headquarters, reopened for return-to-office in March 2026. Exterior, brick.", "Sketch: The Harley-Davidson headquarters on Juneau Avenue, Milwaukee, a long red-brick factory facade with tall windows, present day, overcast morning light. Ink and wash, 3:2, no logos."))
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("01 &mdash; The guidance")}
+    {brandrow("01 &middot; The guidance")}
     <h2>Three ranges that add up to about nothing</h2>
     <p class="lede">All three numbers come from the same release, the same day, the same table. No outside denominator, nothing to argue about. I add them; the company does not.</p>
 
@@ -321,7 +321,7 @@ def build():
 
     <div class="note">
       <div class="h">Two qualifications, stated before anyone else states them</div>
-      <p>{ev("doc")}H1 2026 consolidated operating income was <b class="n">$99.5M</b>, so the full-year guidance implies a second-half loss. Q4 is seasonally the weak quarter &mdash; HDMC lost <b class="n">$260M</b> in Q4 2025 on a gross margin of <b class="n">(8.0%)</b> &mdash; and management has beaten its own ranges twice this year. The guidance may be conservative. It is still the number they chose to publish.</p>
+      <p>{ev("doc")}H1 2026 consolidated operating income was <b class="n">$99.5M</b>, so the full-year guidance implies a second-half loss. Q4 is seasonally the weak quarter: HDMC lost <b class="n">$260M</b> in Q4 2025 on a gross margin of <b class="n">(8.0%)</b>. Management has also beaten its own ranges twice this year. The guidance may be conservative. It is still the number they chose to publish.</p>
       <p>{ev("calc")}&ldquo;Segment operating income sums to the consolidated line&rdquo; is checked against 2025 to the decimal, and against 2024 ($277.8M + $248.4M &minus; $109.6M = $416.6M). No corporate eliminations sit between the segments and the total.</p>
     </div>
 
@@ -337,7 +337,7 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("02 &mdash; The five-year line")}
+    {brandrow("02 &middot; The five-year line")}
     <h2>Half the motorcycles, three-quarters of the dealers</h2>
     <p class="lede">The company Back to the Bricks inherits, against the company Hardwire inherited, against the company of a decade ago.</p>
 
@@ -347,16 +347,16 @@ def build():
             ["U.S. retail", "171,079", "125,960", "98,468", "94,930", "<strong>82,698</strong>", "&minus;34%"],
             ["Motorcycle shipments", "270,726", "213,939", "179,984", "148,862", "<strong>124,477</strong>", "&minus;42%"],
             ["HDMC operating margin", "18.0%", "6.3%", "13.6%", "6.7%", '<span class="hi">(0.8%)</span>', "&minus;7.1 pts"],
-            ["U.S. 601cc+ share (MIC)", "&mdash;", "&mdash;", "37.9%", "37.3%", "<strong>34.5%</strong>", "&mdash;"],
-            ["Dealerships worldwide", "&mdash;", "1,569", "&mdash;", "1,224", "<strong>1,174</strong>", "&minus;25%"],
-            ["U.S. dealerships", "&mdash;", "698", "&mdash;", "570", "<strong>554</strong>", "&minus;21%"],
+            ["U.S. 601cc+ share (MIC)", "n/a", "n/a", "37.9%", "37.3%", "<strong>34.5%</strong>", "n/a"],
+            ["Dealerships worldwide", "n/a", "1,569", "n/a", "1,224", "<strong>1,174</strong>", "&minus;25%"],
+            ["U.S. dealerships", "n/a", "698", "n/a", "570", "<strong>554</strong>", "&minus;21%"],
             ["Diluted EPS", "$3.88", "$2.68", "$4.87", "$3.44", "<strong>$2.78</strong>", "+4%"]],
            widths=["28%", "12%", "12%", "12%", "12%", "12%", "12%"], cls_map={1: "num", 2: "num", 3: "num", 4: "num", 5: "num", 6: "num"})}
 
     {fig(1, "Worldwide retail motorcycle sales", "units &middot; company releases", FIG_RETAIL, "doc",
          "Retail is down <b class='n'>51%</b> from 2014 and has fallen every year since 2021. U.S. retail is down 52% over the same span; shipments 54%. The 2025 figure is the lowest in the modern reporting history of the company. Sources: FY2014, FY2019&ndash;FY2025 results releases (8-K Ex. 99.1).")}
 
-    <p>Revenue fell less than volume because price rose and because HDFS is in the consolidated line. EPS held up because of the buyback and because of what HDFS did in 2025 &mdash; both of which are Parts II and V. Strip those out and the motor company&rsquo;s trajectory is the unit line: <strong>a business that sells half the motorcycles it sold eleven years ago, through a quarter fewer stores, and in 2025 did it at a loss.</strong></p>
+    <p>Revenue fell less than volume because price rose and because HDFS is in the consolidated line. EPS held up because of the buyback and because of what HDFS did in 2025. Those are Parts II and V. Strip those out and the motor company&rsquo;s trajectory is the unit line: <strong>a business that sells half the motorcycles it sold eleven years ago, through a quarter fewer stores, and in 2025 did it at a loss.</strong></p>
 
     {fig(2, "HDMC operating income", "$ millions &middot; Motorcycles segment; LiveWire separated from 2022", FIG_HDMC, "doc",
          "2025 was the first HDMC operating loss since the pandemic year, and the first in a normal year on record. Q4 2025 gross margin was <b class='n'>(8.0%)</b>: for one quarter the company sold motorcycles for less than they cost to build. Segment definitions changed in 2022 when LiveWire was split out; 2019&ndash;2021 are the Motorcycles segment as then reported.")}
@@ -373,12 +373,12 @@ def build():
                   "Where the 2025 profit came from, and what it cost to get it.",
                   "In 2025 the motor company lost money and the subsidiary lost more. The year was profitable because the finance company sold its loan book and paid a $1 billion dividend to the parent. That does not happen twice.",
                   "HDFS earned about a quarter-billion a year before the sale and is guided to $55&ndash;70M after it. The company traded a recurring earner for a one-time cheque.",
-                  "HDFS, Plano", "Harley-Davidson Financial Services offices, Plano, Texas. Or a dealer finance desk.", "Harley-Davidson media / dealer archive"))
+                  "HDFS, Plano", "Harley-Davidson Financial Services offices, Plano, Texas. Or a dealer finance desk.", "Sketch: A dealership finance desk, a rider signing loan papers across from a finance manager, cruisers blurred on the showroom floor behind them, present day, flat fluorescent light. Ink and wash, 3:2, no logos."))
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("03 &mdash; Where the 2025 profit came from")}
+    {brandrow("03 &middot; Where the 2025 profit came from")}
     <h2>Two segments lost money. The third was sold.</h2>
     <p class="lede">Consolidated operating income of $386.6M looks like a profitable company. The segment note says which company.</p>
 
@@ -392,7 +392,7 @@ def build():
 
     {sowhat("03",
             "The 2025 profit is real and it is non-recurring. The recurring picture is a motor company at a loss and a subsidiary at a larger one.",
-            "This is why 2025 EPS was $2.78 and not something near zero &mdash; and why the 2026 guidance looks like a cliff. It is not a cliff. It is the ground.",
+            "This is why 2025 EPS was $2.78 and not something near zero, and why the 2026 guidance looks like a cliff. It is not a cliff. It is the ground.",
             "The transaction was announced 30 July 2025 by the departing CEO. The incoming one inherited the cash and the lower run rate together.")}
   </div>
 </section>''')
@@ -400,12 +400,12 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("04 &mdash; The HDFS trade")}
+    {brandrow("04 &middot; The HDFS trade")}
     <h2>$180 million a year, exchanged for $1.25 billion, once</h2>
     <p class="lede">Whether the KKR/PIMCO deal was good depends on what the cash does. Here is what was given up.</p>
 
     {fig(4, "HDFS operating income", "$ millions &middot; 2026 and 2029 shown at range midpoints", FIG_HDFS, "doc",
-         "HDFS earned $235M and $248M in the two years before the sale &mdash; <b class='n'>60%</b> of consolidated operating income in 2024. It is guided to $55&ndash;70M for 2026 and targeted at $125&ndash;150M by 2029. The 2025 spike is the transaction. Sources: FY2025 10-K; Q1 and Q2 2026 calls.")}
+         "HDFS earned $235M and $248M in the two years before the sale: <b class='n'>60%</b> of consolidated operating income in 2024. It is guided to $55&ndash;70M for 2026 and targeted at $125&ndash;150M by 2029. The 2025 spike is the transaction. Sources: FY2025 10-K; Q1 and Q2 2026 calls.")}
 
     {table(["What H-D got", "What H-D gave"],
            [["~$1.25B of &ldquo;discretionary cash&rdquo; (management&rsquo;s figure), of which $450M to debt reduction and ~$500M earmarked for shareholders", "~$180M a year of operating income at the 2024 run rate, rebuilding to perhaps half that by 2029"],
@@ -415,7 +415,7 @@ def build():
            widths=["50%", "50%"])}
 
     <p>{ev("calc")}At the 2024 run rate the foregone earnings are roughly <b class="n">$180M</b> a year. $1.25B of cash buys back about <b class="n">seven years</b> of them, before the 2029 rebuild is counted. That is not a bad trade if the cash is deployed into something that earns more than HDFS did. So far it has gone into a <b class="n">$200M</b> accelerated repurchase (November 2025) at an average of about $26.50, and a balance sheet that now holds $1.9B of cash against a business guided to breakeven.</p>
-    <p>{ev("doc")}The trade is already visible in cash. H1 2026 operating cash flow was <b class="n">$(59)M</b> against $509M a year earlier; free cash flow <b class="n">$(104)M</b> against $444M &mdash; a $548M swing the Q2 deck attributes &ldquo;in part, due to 67% reduction in HDFS operating income after sale of retail finance receivables in 2H &rsquo;25&rdquo; and to forward-flow timing. The managed retail book is $6.1B: $1.6B owned, <b class="n">$4.5B</b> off balance sheet with KKR and PIMCO. HDMC alone is net cash $933M; HDFS is net debt $(1,848)M; Harley-Davidson, Inc. is net debt $(862)M.</p>
+    <p>{ev("doc")}The trade is already visible in cash. H1 2026 operating cash flow was <b class="n">$(59)M</b> against $509M a year earlier; free cash flow <b class="n">$(104)M</b> against $444M, a $548M swing the Q2 deck attributes &ldquo;in part, due to 67% reduction in HDFS operating income after sale of retail finance receivables in 2H &rsquo;25&rdquo; and to forward-flow timing. The managed retail book is $6.1B: $1.6B owned, <b class="n">$4.5B</b> off balance sheet with KKR and PIMCO. HDMC alone is net cash $933M; HDFS is net debt $(1,848)M; Harley-Davidson, Inc. is net debt $(862)M.</p>
     <p>{ev("ind")}The other thing HDFS did was floor the dealers and finance the riders in downturns when banks would not. A forward-flow partner has a contract; a captive had a reason. Whether KKR and PIMCO buy the two-thirds in 2028 at the same terms they bought it in 2025 is a question the filings cannot answer.</p>
 
     {sowhat("04",
@@ -430,12 +430,12 @@ def build():
                   "What LiveWire costs the parent, in the parent&rsquo;s own numbers, and the date on which that stops being a line item and becomes a decision.",
                   "$422M of consolidated operating losses since 2022; a fifth of the 2025 profit drag and a third of the trailing one; from 0.6% of revenue and 2.7% of headcount. Cash runs out around May 2027. The note is due in December 2027.",
                   "Because LiveWire is consolidated, no ownership change short of deconsolidation improves Harley-Davidson&rsquo;s reported operating income. Back to the Bricks handles this by not counting it.",
-                  "S2 Del Mar on a Harley floor", "A LiveWire on a Harley-Davidson dealer floor, or the LiveWire space inside Juneau Avenue.", "Dealer archive / H-D media"))
+                  "S2 Del Mar on a Harley floor", "A LiveWire on a Harley-Davidson dealer floor, or the LiveWire space at Harley-Davidson headquarters.", "Sketch: A single electric motorcycle on a display stand at the edge of a dealer showroom, hemmed in by larger cruisers and touring bikes, present day, hard overhead spotlights. Ink and wash, 3:2, no logos."))
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("05 &mdash; What LiveWire costs")}
+    {brandrow("05 &middot; What LiveWire costs")}
     <h2>Nought point six percent of revenue. A third of the drag.</h2>
     <p class="lede">H-D consolidates LiveWire and reports it as a segment. Every dollar LiveWire loses appears in Harley-Davidson&rsquo;s operating income; only the ~11% belonging to LiveWire&rsquo;s public minority comes back out, below the line.</p>
 
@@ -447,22 +447,22 @@ def build():
            widths=["40%", "30%", "30%"], cls_map={1: "num", 2: "num"})}
 
     {fig(5, "LiveWire&rsquo;s share of the drag", "LiveWire operating loss &divide; H-D consolidated operating income", FIG_LW, "calc",
-         "Both figures from H-D&rsquo;s segment note. TTM = FY2025 &minus; H1 2025 + H1 2026 for each line. The 2025 figure is flattered by the HDFS transaction in the denominator; on a normalised HDFS the share would be far higher. Loss attributable to noncontrolling interests was $9.6M in 2025 &mdash; Harley-Davidson shareholders bear roughly <b class='n'>89%</b> of LiveWire&rsquo;s losses.")}
+         "Both figures from H-D&rsquo;s segment note. TTM = FY2025 &minus; H1 2025 + H1 2026 for each line. The 2025 figure is flattered by the HDFS transaction in the denominator; on a normalised HDFS the share would be far higher. Loss attributable to noncontrolling interests was $9.6M in 2025; Harley-Davidson shareholders bear roughly <b class='n'>89%</b> of LiveWire&rsquo;s losses.")}
 
-    <p>{ev("calc")}Cumulative LiveWire operating losses consolidated into Harley-Davidson: <b class="n">$337.0M</b> from January 2023 through June 2026, and <b class="n">$422.3M</b> including 2022 (the spin closed 27 September 2022; the stand-alone post-spin Q4 2022 figure is open item 3 in &sect;16). Against the December 2021 plan of 100,000 units and $1.8B of revenue by 2026, LiveWire delivered 923 units and $31.3M trailing &mdash; <a href="../01/">Ground Truth No. 01</a> has that story in full.</p>
+    <p>{ev("calc")}Cumulative LiveWire operating losses consolidated into Harley-Davidson: <b class="n">$337.0M</b> from January 2023 through June 2026, and <b class="n">$422.3M</b> including 2022 (the spin closed 27 September 2022; the stand-alone post-spin Q4 2022 figure is open item 3 in &sect;16). Against the December 2021 plan of 100,000 units and $1.8B of revenue by 2026, LiveWire delivered 923 units and $31.3M trailing. <a href="../01/">Ground Truth No. 01</a> has that story in full.</p>
     <p>{ev("doc")}For scale, in 2025 LiveWire was <b class="n">0.6%</b> of Harley-Davidson&rsquo;s revenue ($25.7M of $4,473M), <b class="n">2.7%</b> of its headcount (about 150 of about 5,500), and <b class="n">19%</b> of the drag on its operating income. In 2026 it is guided to be the difference between a profit and a loss.</p>
 
     {sowhat("05",
             "A $75M loss did not take Harley-Davidson from $779M to zero. But when the motor company is guided to make $10&ndash;50M, a $75M loss on 0.6% of revenue is no longer a rounding error.",
             "The plan solves this by scoring HDMC. The consolidated income statement, the share count and the dividend do not have that option.",
-            "The $150M fixed-cost target is stated as &ldquo;not including LiveWire.&rdquo; LiveWire&rsquo;s own cost cuts &mdash; real, 18% less cash used &mdash; are the only thing moving this line.")}
+            "The $150M fixed-cost target is stated as &ldquo;not including LiveWire.&rdquo; LiveWire&rsquo;s own cost cuts (real: 18% less cash used) are the only thing moving this line.")}
   </div>
 </section>''')
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("06 &mdash; The seat change")}
+    {brandrow("06 &middot; The seat change")}
     <h2>From equity backstop to senior secured creditor</h2>
     <p class="lede">H-D&rsquo;s remaining direct exposure to LiveWire is one instrument. What changed in it says what the parent intends.</p>
 
@@ -476,7 +476,7 @@ def build():
     </div>
 
     <p>{ev("inf")}Read the two together and the parent moved from prospective equity holder to senior secured creditor of its own subsidiary, twelve months before it published a strategy with no subsidiary in it. On the Q4 2025 call Starrs said: <em>&ldquo;LiveWire is now working diligently to attract its own sources of capital to continue to finance its operations and future plans.&rdquo;</em> The FY2025 10-K risk factors name &ldquo;the ability of LiveWire to obtain sufficient funding from sources other than the Company.&rdquo;</p>
-    <p>{ev("unv")}Ground Truth No. 01 quoted the FY2025 10-K as stating H-D &ldquo;does not plan to make additional investments in LiveWire beyond the amount outstanding under the Term Loan.&rdquo; This revision could not re-locate the sentence in the fetched text of the filing (the MD&amp;A liquidity section was truncated in retrieval). It is carried here as unverified until the page and paragraph are confirmed &mdash; open item 1, &sect;16. The Q4 call language above is the verified equivalent.</p>
+    <p>{ev("unv")}Ground Truth No. 01 quoted the FY2025 10-K as stating H-D &ldquo;does not plan to make additional investments in LiveWire beyond the amount outstanding under the Term Loan.&rdquo; This revision could not re-locate the sentence in the fetched text of the filing (the MD&amp;A liquidity section was truncated in retrieval). It is carried here as unverified until the page and paragraph are confirmed (open item 1, &sect;16). The Q4 call language above is the verified equivalent.</p>
 
     {sowhat("06",
             "A convertible loan says: if this fails, we own it. A secured loan says: if this fails, we get paid first.",
@@ -488,7 +488,7 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("07 &mdash; The clock")}
+    {brandrow("07 &middot; The clock")}
     <h2>Cash to May 2027. A note due in December. A plan scored on 2027.</h2>
     <p class="lede">LiveWire&rsquo;s own 10-Q supplies the runway. H-D&rsquo;s filings supply the constraint. The calendar supplies the collision.</p>
 
@@ -505,13 +505,13 @@ def build():
       </div>
     </div>
 
-    <p>{ev("calc")}Straight-line the H1 2026 burn and LiveWire&rsquo;s cash reaches zero around <b class="n">May 2027</b>. The note is due seven months later. Back to the Bricks&rsquo; only dated target &mdash; $350M of HDMC EBITDA &mdash; is for 2027. Harley-Davidson will make its LiveWire decision in the same year it has promised to prove the new strategy works, and it has not said what the decision is.</p>
+    <p>{ev("calc")}Straight-line the H1 2026 burn and LiveWire&rsquo;s cash reaches zero around <b class="n">May 2027</b>. The note is due seven months later. Back to the Bricks&rsquo; only dated target, $350M of HDMC EBITDA, is for 2027. Harley-Davidson will make its LiveWire decision in the same year it has promised to prove the new strategy works, and it has not said what the decision is.</p>
 
     <h3 style="font-size:clamp(21px,2.6vw,28px)">The options, as they stand on the filings</h3>
     <p>This is an enumeration, not a prediction. H-D has stated no intention to fund, acquire, divest or wind down LiveWire, and none is asserted here.</p>
     {table(["Option", "What it costs H-D", "What it does to H-D&rsquo;s P&amp;L"],
-           [["<strong>Fund LiveWire again</strong>", "Reverses the stated position; cash", "Nothing &mdash; the losses are already consolidated"],
-            ["<strong>Buy out the minority</strong> (~23.3M public shares)", "~$28M at $1.20. The 4 Aug 2026 severance amendment already carves an H-D acquisition out of &ldquo;change in control&rdquo;", "Nothing &mdash; already consolidated. Removes public-company cost and the NCI line"],
+           [["<strong>Fund LiveWire again</strong>", "Reverses the stated position; cash", "Nothing; the losses are already consolidated"],
+            ["<strong>Buy out the minority</strong> (~23.3M public shares)", "~$28M at $1.20. The 4 Aug 2026 severance amendment already carves an H-D acquisition out of &ldquo;change in control&rdquo;", "Nothing; already consolidated. Removes public-company cost and the NCI line"],
             ["<strong>Let LiveWire raise from third parties</strong>", "Dilution below ~89%. At $1.20 a $60M raise is ~50M shares, taking H-D to ~70%. New money sits behind H-D&rsquo;s lien", "Still consolidated above 50%"],
             ["<strong>Let it fail / foreclose</strong>", "Write-down of the $75M note against the collateral; wind-down costs; the contracts in No. 01 unwind", "Losses stop. Deconsolidation gain or loss"],
             ["<strong>Sell or merge it</strong>", "Depends on the buyer. H-D keeps the manufacturing and services agreements either way", "Deconsolidation"]],
@@ -521,7 +521,7 @@ def build():
 
     {sowhat("07",
             "The decision has a date, and it is inside the plan&rsquo;s window.",
-            "Back to the Bricks does not mention it. The Q1 and Q2 2026 calls treated LiveWire operationally &mdash; Honcho, Dust, cash used. No 2026 statement from Starrs or Root uses &ldquo;strategic alternatives,&rdquo; &ldquo;divestiture&rdquo; or &ldquo;wind-down.&rdquo;",
+            "Back to the Bricks does not mention it. The Q1 and Q2 2026 calls treated LiveWire operationally: Honcho, Dust, cash used. No 2026 statement from Starrs or Root uses &ldquo;strategic alternatives,&rdquo; &ldquo;divestiture&rdquo; or &ldquo;wind-down.&rdquo;",
             "LiveWire&rsquo;s 10-Q says it will pursue financing &ldquo;during the third quarter of 2026.&rdquo; That quarter ends in three weeks.")}
   </div>
 </section>''')
@@ -529,14 +529,14 @@ def build():
     # ───── PART IV
     H.append(part("part4", "Part IV", "The plan",
                   "What Back to the Bricks actually commits to, and what the plan it replaces committed to.",
-                  "Five pillars and six targets, all HDMC. The 2027 EBITDA number translates to roughly a 5% operating margin &mdash; below 2019. Hardwire promised 15% by 2025 and delivered (0.8%).",
+                  "Five pillars and six targets, all HDMC. The 2027 EBITDA number translates to roughly a 5% operating margin, below 2019. Hardwire promised 15% by 2025 and delivered (0.8%).",
                   "A stabilisation plan with a growth target attached is a reasonable thing to publish after 2025. Calling it ambitious is not.",
-                  "Back to the Bricks", "The 5 May 2026 webcast title slide, or Starrs at a dealer meeting.", "Harley-Davidson IR / press"))
+                  "Back to the Bricks", "The 5 May 2026 webcast title slide, or Starrs at a dealer meeting.", "Sketch: A chief executive at a lectern addressing a hall of motorcycle dealers, a wide blank screen behind him, 2026 corporate meeting, cool stage lighting. Ink and wash, 3:2, no logos."))
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("08 &mdash; Back to the Bricks")}
+    {brandrow("08 &middot; Back to the Bricks")}
     <h2>Five pillars, six targets, and what is not in it</h2>
     <p class="lede">The release is short. I quote the pillars in full because the paraphrases in circulation are more ambitious than the document.</p>
 
@@ -549,7 +549,7 @@ def build():
     </div>
 
     {table(["Target", "Stated", "Against the record"],
-           [["HDMC EBITDA", "<strong>&gt; $350M in 2027</strong> &mdash; the only dated number", f"{ev('calc')}The Q2 2026 deck&rsquo;s reconciliation gives HDMC D&amp;A of $40M for the quarter and $81M for the half &mdash; about $160M a year (restructuring adjustments of $3M / $17M are separate). <strong>$350M of EBITDA implies roughly $190M of operating income &mdash; about a 5% margin</strong> on 2025 revenue. HDMC made $290M in 2019 and $661M in 2023."],
+           [["HDMC EBITDA", "<strong>&gt; $350M in 2027</strong>, the only dated number", f"{ev('calc')}The Q2 2026 deck&rsquo;s reconciliation gives HDMC D&amp;A of $40M for the quarter and $81M for the half, about $160M a year (restructuring adjustments of $3M / $17M are separate). <strong>$350M of EBITDA implies roughly $190M of operating income, about a 5% margin</strong> on 2025 revenue. HDMC made $290M in 2019 and $661M in 2023."],
             ["Retail unit growth", "Mid-single-digit CAGR, &ldquo;medium term&rdquo; (Starrs: three to five years)", "~5% on 132,535 is about <strong>6,600 motorcycles a year</strong>. The 2019&ndash;2025 CAGR was <strong>&minus;8%</strong>. Retail has fallen every year since 2021."],
             ["HDMC gross margin", "25&ndash;30%", "2025: 24.2%. 2024: 28.0%. 2023: 32.3%. This is a return to 2024."],
             ["HDMC opex", "&lt; 20% of sales", "2025: 25.0% ($895M / $3,578M). Needs the $150M cost take-out <em>and</em> revenue growth."],
@@ -560,7 +560,7 @@ def build():
 
     <div class="note">
       <div class="h">What is not in it</div>
-      <p>No revenue target in dollars. No EPS target. No free-cash-flow number. No HDFS target beyond the separately stated 2029 range. No volume for Sportster or Sprint. No capital-return commitment &mdash; Starrs, February 2026: &ldquo;we expect to be measured in our approach to share repurchases.&rdquo; <strong>No LiveWire target. The word &ldquo;electric&rdquo; does not appear.</strong> LiveWire is in the forward-looking factors only: &ldquo;the demand for and consumer willingness to adopt two- and three-wheeled electric vehicles,&rdquo; and the ability to &ldquo;realize the desired business benefits from LiveWire operating as a separate public company.&rdquo;</p>
+      <p>No revenue target in dollars. No EPS target. No free-cash-flow number. No HDFS target beyond the separately stated 2029 range. No volume for Sportster or Sprint. No capital-return commitment. Starrs, February 2026: &ldquo;we expect to be measured in our approach to share repurchases.&rdquo; <strong>No LiveWire target. The word &ldquo;electric&rdquo; does not appear.</strong> LiveWire is in the forward-looking factors only: &ldquo;the demand for and consumer willingness to adopt two- and three-wheeled electric vehicles,&rdquo; and the ability to &ldquo;realize the desired business benefits from LiveWire operating as a separate public company.&rdquo;</p>
     </div>
 
     <p class="pull">The 2027 target is below where the company stood the year before the strategy it replaces was written.</p>
@@ -575,12 +575,12 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("09 &mdash; Hardwire, scored")}
+    {brandrow("09 &middot; Hardwire, scored")}
     <h2>Every quantified target missed, most by the full amount</h2>
     <p class="lede">Back to the Bricks replaces Hardwire (announced 2 February 2021; Stage II targets set 10 May 2022). The company set this benchmark for itself. I use it as written.</p>
 
     {table(["Hardwire commitment", "Target", "Delivered, FY2025"],
-           [["HDMC revenue growth", "&ldquo;+5% to +7% CAGR 2021&ndash;2025&rdquo; &rarr; ~$5.5&ndash;5.9B", '<span class="hi">$3,578M</span> &mdash; down 21% from 2021'],
+           [["HDMC revenue growth", "&ldquo;+5% to +7% CAGR 2021&ndash;2025&rdquo; &rarr; ~$5.5&ndash;5.9B", '<span class="hi">$3,578M</span>, down 21% from 2021'],
             ["HDMC operating margin", "<strong>&ldquo;15% by 2025&rdquo;</strong>", '<span class="hi">(0.8%)</span>'],
             ["Diluted EPS", "&ldquo;low double-digit growth&rdquo;", "$4.19 (2021) &rarr; <strong>$2.78</strong>"],
             ["HDFS operating income", "&ldquo;double-digit growth&rdquo; (2021); +3&ndash;5% CAGR (2022)", "$490M via a one-time sale; 2026 guided $55&ndash;70M"],
@@ -590,7 +590,7 @@ def build():
             ["<strong>&ldquo;Lead in Electric&rdquo;</strong>", "&ldquo;Electric motorcycles are important to Harley-Davidson&rsquo;s future&rdquo;; separate division; 100,000 LiveWire units a year from 2026", '<span class="hi">923 units TTM. $422M of consolidated losses.</span> &ldquo;We leaned heavily into&hellip; Electric.&rdquo;']],
            widths=["22%", "36%", "42%"])}
 
-    <p>{ev("doc")}The one structural Hardwire commitment that was executed &mdash; separating LiveWire into a public company &mdash; is the one that produced the $422M. The shareholder record of the rest is the 2025 annual meeting: <b class="n">over 48%</b> of votes cast were withheld from Zeitz, and over 40% from the presiding director and one other, on H Partners&rsquo; campaign. The board committed that all three would leave before the 2026 meeting; all three did. Starrs was appointed 4 August 2025 from Topgolf, before that Pizza Hut. At the 2026 meeting the withhold vote against him was 1.5%. <em>(Open item 9: the 2025 tallies are from press reports of preliminary results; pull the Item 5.07 8-K.)</em></p>
+    <p>{ev("doc")}The one structural Hardwire commitment that was executed, separating LiveWire into a public company, is the one that produced the $422M. The shareholder record of the rest is the 2025 annual meeting: <b class="n">over 48%</b> of votes cast were withheld from Zeitz, and over 40% from the presiding director and one other, on H Partners&rsquo; campaign. The board committed that all three would leave before the 2026 meeting; all three did. Starrs was appointed 4 August 2025 from Topgolf, before that Pizza Hut. At the 2026 meeting the withhold vote against him was 1.5%. <em>(Open item 9: the 2025 tallies are from press reports of preliminary results; pull the Item 5.07 8-K.)</em></p>
 
     {sowhat("09",
             "The company&rsquo;s last five-year plan missed every number it published. The new one publishes fewer numbers.",
@@ -604,12 +604,12 @@ def build():
                   "What the capital did, and the one motorcycle the growth target is riding on.",
                   "$1.63B of buybacks at an average of $31 for a stock at $28. A mid-single-digit growth target that needs about 6,600 units a year, and a Sportster that once sold 35,000&ndash;40,000.",
                   "The plan has one volume lever. It was discontinued four years ago because it did not make money. Starrs says the cost is now right. Nothing else in the lineup has that kind of volume in it.",
-                  "Sportster 883", "An Evolution-engined 883 &mdash; Iron 883 or a customised example. The bike the plan is betting on.", "Owner / dealer archive"))
+                  "Sportster 883", "An Evolution-engined 883: Iron 883 or a customised example. The bike the plan is betting on.", "Sketch: An air-cooled Sportster 883 with a peanut tank and low bars, parked at a kerb on a city street, late 2010s, low evening sun. Ink and wash, 3:2, no logos."))
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("10 &mdash; Capital returned")}
+    {brandrow("10 &middot; Capital returned")}
     <h2>$1.6 billion of buybacks, and the stock where it started</h2>
     <p class="lede">The share count fell 25%. The price did not follow. What the company paid, against what the shares are worth.</p>
 
@@ -634,7 +634,7 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("11 &mdash; The Sportster arithmetic")}
+    {brandrow("11 &middot; The Sportster arithmetic")}
     <h2>One motorcycle carries the growth target</h2>
     <p class="lede">Two bikes and a return. Here is why the second one matters more than everything else in the announced lineup combined.</p>
 
@@ -647,29 +647,29 @@ def build():
     {fig(7, "What the growth target needs, against what the Sportster used to sell", "motorcycles per year", FIG_SPORT, "calc",
          "A mid-single-digit CAGR on 132,535 units is about <b class='n'>6,600</b> incremental motorcycles a year. Starrs on the Q1 call: the Sportster market &ldquo;as recently as five, six years ago&hellip; was 35,000&ndash;40,000+ on a global basis&rdquo; (the transcript renders it with a dollar sign; it is units). A Sportster that recovers a third of that delivers two years of the plan&rsquo;s entire growth target on its own.")}
 
-    <p>{ev("ind")}Nothing else in the announced lineup has that kind of volume in it. Twenty &ldquo;new models and trims&rdquo; over three years, per the strategy slides, are mostly Touring and Softail variants and price-point trims &mdash; Street Bob $14,999, Low Rider S $18,999, Road Glide Solo $25,999. Those defend share; they do not add 6,600 units a year. The Sportster does, if it works.</p>
-    <p>{ev("doc")}And the risk was stated on the call by Raymond James: <em>&ldquo;there&rsquo;s a reason why Sportster was discontinued, right? It was hard to make money.&rdquo;</em> Starrs: <em>&ldquo;We have the cost at a place that we&rsquo;re extremely comfortable against the expected MSRP.&rdquo;</em> Used values, per Starrs, are &ldquo;at or above original MSRP&rdquo; &mdash; a real demand signal. So the plan&rsquo;s growth is, in practice, a bet that a motorcycle discontinued because it could not make money can come back at a price where it does, into a market a third smaller than when it left, through a dealer network 21% smaller. Not an unreasonable bet. But one bet, and the plan does not have a second.</p>
+    <p>{ev("ind")}Nothing else in the announced lineup has that kind of volume in it. Twenty &ldquo;new models and trims&rdquo; over three years, per the strategy slides, are mostly Touring and Softail variants and price-point trims: Street Bob $14,999, Low Rider S $18,999, Road Glide Solo $25,999. Those defend share; they do not add 6,600 units a year. The Sportster does, if it works.</p>
+    <p>{ev("doc")}And the risk was stated on the call by Raymond James: <em>&ldquo;there&rsquo;s a reason why Sportster was discontinued, right? It was hard to make money.&rdquo;</em> Starrs: <em>&ldquo;We have the cost at a place that we&rsquo;re extremely comfortable against the expected MSRP.&rdquo;</em> Used values, per Starrs, are &ldquo;at or above original MSRP&rdquo;; that is a real demand signal. So the plan&rsquo;s growth is, in practice, a bet that a motorcycle discontinued because it could not make money can come back at a price where it does, into a market a third smaller than when it left, through a dealer network 21% smaller. Not an unreasonable bet. But one bet, and the plan does not have a second.</p>
     <p>{ev("doc")}Europe is where it is most needed. EMEA retail fell 11% in 2025 and 9% in Q2 2026; share moved &ldquo;from 4% to 3%.&rdquo; Starrs: &ldquo;We are not satisfied with our performance there.&rdquo;</p>
 
     {sowhat("11",
             "Back to the Bricks has one volume lever, and it is the 883.",
-            "That lever is also the answer to Hardwire&rsquo;s abandonment of the entry rider &mdash; and to the question LiveWire was created to answer. The company&rsquo;s accessible bike is a $10,000 air-cooled twin, not an electric.",
-            "The 883&rsquo;s first full year is 2027 &mdash; the same year as the EBITDA target and the LiveWire note. Everything lands at once.")}
+            "That lever is also the answer to Hardwire&rsquo;s abandonment of the entry rider, and to the question LiveWire was created to answer. The company&rsquo;s accessible bike is a $10,000 air-cooled twin, not an electric.",
+            "The 883&rsquo;s first full year is 2027, the same year as the EBITDA target and the LiveWire note. Everything lands at once.")}
   </div>
 </section>''')
 
     H.append(f'''
 <section>
   <div class="wrap">
-    {brandrow("12 &mdash; 2027, if it works")}
+    {brandrow("12 &middot; 2027, if it works")}
     <h2>Take every target at face value</h2>
     <p class="lede">Assume Back to the Bricks lands exactly as written and on time. This is the company it describes.</p>
 
     {table(["2027, plan delivered", ""],
-           [["Worldwide retail", "~143,000 (2026 guidance midpoint plus 5%) &mdash; <strong>66% of 2019, 53% of 2014</strong>"],
+           [["Worldwide retail", "~143,000 (2026 guidance midpoint plus 5%): <strong>66% of 2019, 53% of 2014</strong>"],
             ["HDMC revenue", "~$3.8B (flat pricing; Sportster/Sprint mix dilutes ASP)"],
-            ["HDMC EBITDA / operating income", "$350M+ / ~$190M &mdash; <strong>~5% margin, below 2019&rsquo;s 6.3%</strong>"],
-            ["HDFS operating income", "~$80&ndash;100M on the path to $125&ndash;150M by 2029 &mdash; <strong>a third of 2024</strong>"],
+            ["HDMC EBITDA / operating income", "$350M+ / ~$190M: <strong>~5% margin, below 2019&rsquo;s 6.3%</strong>"],
+            ["HDFS operating income", "~$80&ndash;100M on the path to $125&ndash;150M by 2029: <strong>a third of 2024</strong>"],
             ["LiveWire", "Unaddressed. Loss guided $70&ndash;80M for 2026; cash exhausted mid-2027; $85M owed to the parent in December"],
             ["Consolidated operating income", "<strong>~$210M</strong> if LiveWire is still losing $70M; <strong>~$280M</strong> if it is gone"],
             ["Dealers", "~1,150, &ldquo;twice as profitable as 2025&rdquo;"],
@@ -680,7 +680,7 @@ def build():
          "2023&ndash;2025 from the 10-K. 2026 is the midpoint of the guidance sum in &sect;01. 2027 assumes ~$190M of HDMC operating income (from the $350M EBITDA target and ~$160M of D&amp;A), ~$90M of HDFS, and LiveWire either at a $70M loss or deconsolidated. Every 2027 input is the company&rsquo;s, not mine; the arithmetic is.")}
 
     <p>Even in the success case, Harley-Davidson in 2027 is a company earning about a quarter of what it earned in 2023, selling about two-thirds of the motorcycles it sold in 2019, through three-quarters of the dealers, with its finance company deliberately shrunk and its electric subsidiary either wound up or still consuming a third of the profit. <strong>That is the plan, working.</strong></p>
-    <p>The plan not working looks like 2025 again: a Touring overhang, promotional spend, a negative gross margin in the fourth quarter, and a consolidated profit that depends on a non-recurring event &mdash; except that the non-recurring event has already been used.</p>
+    <p>The plan not working looks like 2025 again: a Touring overhang, promotional spend, a negative gross margin in the fourth quarter, and a consolidated profit that depends on a non-recurring event. Except that the non-recurring event has already been used.</p>
 
     {sowhat("12",
             "The upside case is a smaller, slightly profitable Harley-Davidson. The downside case is 2025 without the HDFS sale to cover it.",
@@ -694,17 +694,17 @@ def build():
                   "Three things that are true at once, and the question the plan leaves open.",
                   "LiveWire did not break Harley-Davidson. LiveWire is exactly what the new Harley-Davidson cannot afford. And the decision about it has a date inside the plan&rsquo;s own window.",
                   "Anyone telling you the electric bet sank Harley is choosing the flattering villain. Anyone telling you it does not matter is not adding up the guidance.",
-                  "The bricks", "Juneau Avenue brickwork, close. Or a York assembly line.", "H-D media"))
+                  "The bricks", "Headquarters brickwork, close. Or a York assembly line.", "Sketch: A motorcycle assembly line in York, Pennsylvania, workers lowering an engine into a frame on a moving conveyor, present day, high skylight factory light. Ink and wash, 3:2, no logos."))
 
     H.append(f'''
 <section class="final-sec">
   <div class="wrap">
-    {brandrow("13 &mdash; Analysis, not reporting")}
+    {brandrow("13 &middot; Analysis, not reporting")}
     <h2>Which brick is LiveWire under?</h2>
     <p class="lede">Sections 01&ndash;12 are sourced. This one is judgment, and says so.</p>
 
     <div class="kn">
-      <div class="kn-row"><div class="kn-l">{ev("inf")}One</div><div class="kn-t"><strong>LiveWire is not what broke Harley-Davidson.</strong> A $75M annual loss does not take a company from $779M of operating income to breakeven. The Touring overhang, a 12% retail decline in 2025, $67M of tariffs, a negative-gross-margin quarter and the deliberate shrinking of HDFS did that. The electric bet is the flattering villain &mdash; it lets everyone else off.</div></div>
+      <div class="kn-row"><div class="kn-l">{ev("inf")}One</div><div class="kn-t"><strong>LiveWire is not what broke Harley-Davidson.</strong> A $75M annual loss does not take a company from $779M of operating income to breakeven. The Touring overhang, a 12% retail decline in 2025, $67M of tariffs, a negative-gross-margin quarter and the deliberate shrinking of HDFS did that. The electric bet is the flattering villain: it lets everyone else off.</div></div>
       <div class="kn-row"><div class="kn-l">{ev("calc")}Two</div><div class="kn-t"><strong>LiveWire is exactly what the new plan cannot afford.</strong> When the motor company is guided to make $10&ndash;50M, a $70&ndash;80M loss on 0.6% of revenue is the difference between a profitable year and a losing one. The plan solves this by not counting it. The income statement does not have that option.</div></div>
       <div class="kn-row"><div class="kn-l">{ev("doc")}Three</div><div class="kn-t"><strong>The decision has a date.</strong> LiveWire&rsquo;s cash lasts to roughly May 2027 at the current burn. Its note to the parent is due 15 December 2027. Back to the Bricks&rsquo; one dated target is 2027. Harley-Davidson will make its LiveWire decision in the year it has promised to prove the new strategy works, and it has not yet said what the decision is.</div></div>
     </div>
@@ -713,7 +713,7 @@ def build():
       <div class="h">The final word</div>
       <h3>Back to the Bricks has five pillars, six targets and a two-year clock.</h3>
       <p>The plan is a reasonable one. Stabilise the motor company, fix the dealers, bring back the bike people actually ask for, take $150M of cost out, and get to a 5% margin by 2027. After 2025, that is not timid; it is honest. But it is scored on HDMC, and Harley-Davidson, Inc. is not HDMC. It is HDMC plus a finance company that has been sold forward, minus a subsidiary that is guided to lose more than the motor company is guided to make, with a note coming due in the plan&rsquo;s own target year.</p>
-      <p><strong>No. 01 asked: congrats on what. This one asks something simpler. Which brick is LiveWire under &mdash; and who is going to lift it?</strong></p>
+      <p><strong>No. 01 asked: congrats on what. This one asks something simpler. Which brick is LiveWire under, and who is going to lift it?</strong></p>
     </div>
   </div>
 </section>''')
@@ -722,29 +722,29 @@ def build():
     src_rows = [
         ("Form 10-K, FY2025", "Harley-Davidson, Inc.", "26 Feb 2026", "Segment note (HDMC/LiveWire/HDFS); MIC share; dealer counts; debt; repurchases; LiveWire risk factors; HDFS transaction accounting", "https://www.sec.gov/Archives/edgar/data/793952/000079395226000011/0000793952-26-000011-index.html", "0000793952-26-000011"),
         ("Form 10-Q, Q2 2026", "Harley-Davidson, Inc.", "5 Aug 2026", "Q2 and H1 segment results; cash; debt; repurchases; noncontrolling interest", "https://www.sec.gov/Archives/edgar/data/793952/000079395226000061/0000793952-26-000061-index.htm", "0000793952-26-000061"),
-        ("Form 8-K &mdash; Q2 2026 results", "Harley-Davidson, Inc.", "23 Jul 2026", "Ex. 99.1. Raised 2026 guidance: HDMC $10&ndash;50M, HDFS $55&ndash;70M, LiveWire $(70&ndash;80)M; retail; dealer inventory", "https://www.sec.gov/Archives/edgar/data/793952/000079395226000058/a8kq22026exhibit991v2.htm", "0000793952-26-000058"),
-        ("Form 8-K &mdash; Q1 2026 results", "Harley-Davidson, Inc.", "5 May 2026", "Ex. 99.1. Q1 results; original 2026 guidance reaffirmed; Back to the Bricks introduced", "https://www.sec.gov/Archives/edgar/data/793952/000079395226000029/a8kq12026exhibit991.htm", "0000793952-26-000029"),
+        ("Form 8-K: Q2 2026 results", "Harley-Davidson, Inc.", "23 Jul 2026", "Ex. 99.1. Raised 2026 guidance: HDMC $10&ndash;50M, HDFS $55&ndash;70M, LiveWire $(70&ndash;80)M; retail; dealer inventory", "https://www.sec.gov/Archives/edgar/data/793952/000079395226000058/a8kq22026exhibit991v2.htm", "0000793952-26-000058"),
+        ("Form 8-K: Q1 2026 results", "Harley-Davidson, Inc.", "5 May 2026", "Ex. 99.1. Q1 results; original 2026 guidance reaffirmed; Back to the Bricks introduced", "https://www.sec.gov/Archives/edgar/data/793952/000079395226000029/a8kq12026exhibit991.htm", "0000793952-26-000029"),
         ("&ldquo;Back to the Bricks&rdquo; release", "Harley-Davidson, Inc.", "5 May 2026", "Five pillars verbatim; $350M 2027 HDMC EBITDA; medium-term targets; forward-looking factors naming LiveWire and Sportster", "https://investor.harley-davidson.com/news/news-details/2026/Harley-Davidson-Announces-Back-to-the-Bricks-Strategic-Plan-to-Restore-Performance-and-Deliver-Profitable-Growth/default.aspx", "Investor site"),
         ("Q4/FY2025 results and 2026 outlook", "Harley-Davidson, Inc.", "10 Feb 2026", "FY2025 results; original 2026 guidance; HDFS &ldquo;record-high earnings, driven by the HDFS transaction&rdquo;; $1B HDFS dividend", "https://investor.harley-davidson.com/news/news-details/2026/Harley-Davidson-Delivers-Fourth-Quarter-and-Full-Year-Financial-Results-and-2026-Outlook/default.aspx", "Investor site"),
         ("Q4 2025 earnings call", "Harley-Davidson, Inc.", "10 Feb 2026", "Starrs on LiveWire &ldquo;working diligently to attract its own sources of capital&rdquo;; Root on tariffs ($67M 2025) and the HDFS sale", "https://www.fool.com/earnings/call-transcripts/2026/02/10/harley-davidson-hog-q4-2025-earnings-transcript/", "Transcript"),
         ("Q1 2026 earnings call", "Harley-Davidson, Inc.", "5 May 2026", "&ldquo;Leaned heavily into Touring and Electric&rdquo;; Sportster 883 and the 35,000&ndash;40,000 figure; Raymond James on Sportster economics; $150M cost target", "https://www.fool.com/earnings/call-transcripts/2026/05/05/harley-davidson-hog-q1-2026-earnings-transcript/", "Transcript"),
         ("Q2 2026 earnings call", "Harley-Davidson, Inc.", "23 Jul 2026", "Raised guidance; &ldquo;dealer profitability to double in 2026&rdquo;; Sprint end-2026, Sportster 883 in 2027; EMEA share; LiveWire operational update", "https://www.benzinga.com/news/26/07/60642023/transcript-harley-davidson-q2-2026-earnings-conference-call", "Transcript"),
         ("KKR / PIMCO strategic partnership", "Harley-Davidson, Inc.", "30 Jul 2025", "Deal structure: $5B+ receivables, 9.8% of HDFS, forward flow; &ldquo;~$1.25 billion discretionary cash&rdquo;; $450M debt, ~$500M to shareholders", "https://investor.harley-davidson.com/news/news-details/2025/Harley-Davidson-Announces-Strategic-Partnership-with-KKR-and-PIMCO/default.aspx", "Investor site"),
-        ("KKR / PIMCO &mdash; residual interests sale", "Harley-Davidson, Inc.", "25 Aug 2025", "Step one completed; ~$2B VIEs and $1.8B of debt removed; &gt;$230M proceeds; $1.8B HDFS valuation", "https://investor.harley-davidson.com/news/news-details/2025/Harley-Davidson-Achieves-Milestone-in-Strategic-Partnership-with-KKR-and-PIMCO-with-Completion-of-Sale-of-Residual-Interests-in-Securitized-Consumer-Loan-Receivables/default.aspx", "Investor site"),
+        ("KKR / PIMCO: residual interests sale", "Harley-Davidson, Inc.", "25 Aug 2025", "Step one completed; ~$2B VIEs and $1.8B of debt removed; &gt;$230M proceeds; $1.8B HDFS valuation", "https://investor.harley-davidson.com/news/news-details/2025/Harley-Davidson-Achieves-Milestone-in-Strategic-Partnership-with-KKR-and-PIMCO-with-Completion-of-Sale-of-Residual-Interests-in-Securitized-Consumer-Loan-Receivables/default.aspx", "Investor site"),
         ("Hardwire strategic plan", "Harley-Davidson, Inc.", "2 Feb 2021", "Six priorities including &ldquo;Lead in Electric&rdquo;; 2021&ndash;25 targets: MSD revenue growth, margin improvement, low-double-digit EPS growth", "https://investor.harley-davidson.com/news/news-details/2021/Harley-Davidson-Unveils-The-Hardwire-Five-Year-Strategic-Plan-Targets-Profitable-Growth-And-Brand-Desirability/default.aspx", "Investor site"),
-        ("Hardwire Stage II &mdash; investor day", "Harley-Davidson, Inc.", "10 May 2022", "&ldquo;HDMC Operating Margin: 15% by 2025&rdquo;; +5&ndash;7% revenue CAGR; $400M cost productivity", "https://investor.harley-davidson.com/news/news-details/2022/Harley-Davidson-2022-Investor-Day-Update-Hardwire-Stage-II/default.aspx", "Investor site"),
-        ("Form 8-K &mdash; CEO appointment", "Harley-Davidson, Inc.", "4 Aug 2025", "Starrs appointed effective 1 Oct 2025; compensation terms; Zeitz transition", "https://www.sec.gov/Archives/edgar/data/793952/000079395225000166/hog-20250730.htm", "0000793952-25-000166"),
-        ("Form 8-K Ex. 17.1 / 17.2 &mdash; Dourdeville letters", "Harley-Davidson, Inc.", "Apr 2025", "Director resignation; TSR under current leadership; call for Zeitz, Linebarger and Levinson to resign", "https://sec.gov/Archives/edgar/data/793952/000079395225000085/dourdevillelettertoharle.htm", "0000793952-25-000085"),
-        ("H Partners &mdash; withhold campaign and result", "H Partners Management", "16 Apr / 14 May 2025", "Campaign against three directors; &ldquo;nearly 50% of overall shares voted withhold&rdquo;; board commitments", "https://www.businesswire.com/news/home/20250514503704/en/", "Business Wire"),
-        ("Form 8-K &mdash; 2026 annual meeting", "Harley-Davidson, Inc.", "21 May 2026", "Certified director votes; Starrs 70.0M for / 1.1M withheld", "https://www.stocktitan.net/sec-filings/HOG/8-k-harley-davidson-inc-reports-material-event-4b5e29845596.html", "Item 5.07"),
+        ("Hardwire Stage II: investor day", "Harley-Davidson, Inc.", "10 May 2022", "&ldquo;HDMC Operating Margin: 15% by 2025&rdquo;; +5&ndash;7% revenue CAGR; $400M cost productivity", "https://investor.harley-davidson.com/news/news-details/2022/Harley-Davidson-2022-Investor-Day-Update-Hardwire-Stage-II/default.aspx", "Investor site"),
+        ("Form 8-K: CEO appointment", "Harley-Davidson, Inc.", "4 Aug 2025", "Starrs appointed effective 1 Oct 2025; compensation terms; Zeitz transition", "https://www.sec.gov/Archives/edgar/data/793952/000079395225000166/hog-20250730.htm", "0000793952-25-000166"),
+        ("Form 8-K Ex. 17.1 / 17.2: Dourdeville letters", "Harley-Davidson, Inc.", "Apr 2025", "Director resignation; TSR under current leadership; call for Zeitz, Linebarger and Levinson to resign", "https://sec.gov/Archives/edgar/data/793952/000079395225000085/dourdevillelettertoharle.htm", "0000793952-25-000085"),
+        ("H Partners: withhold campaign and result", "H Partners Management", "16 Apr / 14 May 2025", "Campaign against three directors; &ldquo;nearly 50% of overall shares voted withhold&rdquo;; board commitments", "https://www.businesswire.com/news/home/20250514503704/en/", "Business Wire"),
+        ("Form 8-K: 2026 annual meeting", "Harley-Davidson, Inc.", "21 May 2026", "Certified director votes; Starrs 70.0M for / 1.1M withheld", "https://www.stocktitan.net/sec-filings/HOG/8-k-harley-davidson-inc-reports-material-event-4b5e29845596.html", "Item 5.07"),
         ("Form 10-K, FY2019", "Harley-Davidson, Inc.", "Feb 2020", "2019 dealer counts (698 U.S.; 1,569 worldwide); headcount", "https://www.sec.gov/Archives/edgar/data/793952/000079395220000008/hog10-k12x31x2019.htm", "0000793952-20-000008"),
         ("Results releases FY2014, FY2019&ndash;FY2023", "Harley-Davidson, Inc.", "2015&ndash;2024", "Trend table: retail, shipments, Motorcycles segment operating income, revenue", "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000793952&type=8-K", "EDGAR 8-K index"),
         ("Form 10-K, FY2025", "LiveWire Group, Inc.", "Feb 2026", "Term loan terms (A&amp;R Nov 2025; drawn 15 Dec 2025; due 15 Dec 2027; SOFR + 4%; secured); shares outstanding; cash", "https://www.sec.gov/Archives/edgar/data/1898795/000189879526000028/0001898795-26-000028-index.htm", "0001898795-26-000028"),
         ("Form 10-Q, Q2 2026", "LiveWire Group, Inc.", "5 Aug 2026", "Cash $52.9M; H1 burn; going-concern-adjacent language; Item 5 severance amendment carving out an H-D acquisition", "https://www.sec.gov/Archives/edgar/data/1898795/000189879526000085/0001898795-26-000085-index.htm", "0001898795-26-000085"),
-        ("Form 8-K Ex. 10.1 &mdash; Convertible Delayed Draw Term Loan", "LiveWire Group, Inc.", "14 Feb 2024", "Original $100M convertible instrument, for comparison with the Nov 2025 restatement", "https://www.sec.gov/Archives/edgar/data/1898795/000189879524000037/executedconvertibleloana.htm", "0001898795-24-000037"),
+        ("Form 8-K Ex. 10.1: Convertible Delayed Draw Term Loan", "LiveWire Group, Inc.", "14 Feb 2024", "Original $100M convertible instrument, for comparison with the Nov 2025 restatement", "https://www.sec.gov/Archives/edgar/data/1898795/000189879524000037/executedconvertibleloana.htm", "0001898795-24-000037"),
         ("Rev Max production returns to York", "Harley-Davidson, Inc.", "10 Jun 2026", "Pan America, Sportster S, Nightster production from Thailand to York/Menomonee Falls; &ldquo;over 100,000 motorcycles at York in 2027&rdquo;", "https://ultimatemotorcycling.com/2026/06/10/harley-davidson-bringing-revolution-max-production-back-to-u-s/", "Company statement via trade press"),
-        ("Reuters &mdash; Back to the Bricks", "Reuters", "5 May 2026", "Starrs: Sprint &ldquo;approximately $6,000&rdquo;", "https://www.globalbankingandfinance.com/harley-davidson-bets-affordable-models-dealer-network-latest/", "Secondary"),
-        ("Motorcycle.com &mdash; Sprint pricing; Sportster 883; plan slides", "Motorcycle.com", "5&ndash;7 May 2026", "Sub-$6,000 language dropped; ~$10,000 883; 20 models/trims; price-point trims", "https://www.motorcycle.com/bikes/features/harley-davidson-announces-back-to-the-bricks-business-plan-44664700", "Secondary"),
+        ("Reuters: Back to the Bricks", "Reuters", "5 May 2026", "Starrs: Sprint &ldquo;approximately $6,000&rdquo;", "https://www.globalbankingandfinance.com/harley-davidson-bets-affordable-models-dealer-network-latest/", "Secondary"),
+        ("Motorcycle.com: Sprint pricing; Sportster 883; plan slides", "Motorcycle.com", "5&ndash;7 May 2026", "Sub-$6,000 language dropped; ~$10,000 883; 20 models/trims; price-point trims", "https://www.motorcycle.com/bikes/features/harley-davidson-announces-back-to-the-bricks-business-plan-44664700", "Secondary"),
         ("Ground Truth No. 01", "Contact Patch Advisory", "Sep 2026", "LiveWire operating detail, contracts, the loan, the 2021 plan of record", "../01/", "This site"),
     ]
     rows_html = []
@@ -758,7 +758,7 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    <div class="eyebrow">14 &mdash; Sources</div>
+    <div class="eyebrow">14 &middot; Sources</div>
     <h2>Every document, linked</h2>
     <p class="lede">Each row opens the filing or release. Where a row is a transcript or trade report rather than a filing, it is labelled, and the brief uses it only for quotations and for the three product facts flagged as open items.</p>
     <div class="scroll"><table class="tbl">
@@ -786,7 +786,7 @@ def build():
     H.append(f'''
 <section>
   <div class="wrap">
-    <span id="method"></span><div class="eyebrow">15 &mdash; Method &amp; standing</div>
+    <span id="method"></span><div class="eyebrow">15 &middot; Method &amp; standing</div>
     <h2>Who wrote this, and how</h2>
     {bio}
     <div class="duo" style="margin-top:30px">
@@ -810,7 +810,7 @@ def build():
 </section>
 <section>
   <div class="wrap">
-    <div class="eyebrow">16 &mdash; Open items &amp; corrections</div>
+    <div class="eyebrow">16 &middot; Open items &amp; corrections</div>
     <h2>What is not yet nailed down</h2>
     <p class="lede">Rev. 2 is a working draft. These ten items are flagged in the text where they bite and will be closed or corrected here, dated, before the brief is called final. Two closed on reading the Q2 2026 deck; the corrections are logged below.</p>
     <div class="scroll"><table class="tbl">
