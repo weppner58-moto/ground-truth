@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "gt02", "lib"))  # No. 02 chart/r
 from charts import bars, hbars, waterfall, MAG, CYAN, INK3
 
 CSS = open(os.path.join(ROOT, "tools", "lib", "series.css")).read()
-OUT = os.path.join(ROOT, "groundtruth", "02", "series", "index.html")
-URL = "weppner58-moto.github.io/ground-truth/groundtruth/02"
+OUT = os.path.join(ROOT, "site", "groundtruth", "02", "series", "index.html")
+URL = "contactpatchadvisory.com/groundtruth/02"
 TITLE = "Harley-Davidson: Back to the Bricks, Down to Breakeven"
 
 ROUTE = [("Part I", "The arithmetic", "Add up the guidance: about zero. The subsidiary's loss exceeds the motor company's profit."),

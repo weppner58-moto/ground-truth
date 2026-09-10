@@ -1,0 +1,45 @@
+/* ================= NEWS INDEX ================= */
+.post-list{ margin-top:clamp(30px,4vw,44px); border-top:1px solid var(--rule-2); }
+.post-item{ display:grid; grid-template-columns:150px minmax(0,1fr); gap:clamp(16px,3vw,36px); padding:24px 0; border-bottom:1px solid var(--rule); }
+.post-date{ font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; color:var(--ink-3); }
+.post-tag{ display:block; margin-top:8px; font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--magenta); }
+.post-item h3{ font-family:var(--f-disp); text-transform:uppercase; font-weight:800; font-size:clamp(22px,2.8vw,30px); line-height:.98; letter-spacing:.01em; margin:0 0 9px; }
+.post-item h3 a{ color:var(--ink); }
+.post-item h3 a:hover{ color:var(--cyan); text-decoration:none; }
+.post-item p{ margin:0 0 12px; font-size:15px; color:var(--ink-2); }
+.readmore{ font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--cyan); }
+
+/* ================= ARTICLE ================= */
+.article{ padding:clamp(46px,6vw,76px) 0 clamp(52px,7vw,90px); }
+.article-head{ max-width:760px; }
+.article-meta{ display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; color:var(--ink-3); margin-bottom:22px; }
+.article-meta b{ color:var(--magenta); font-weight:600; }
+.article h1{ font-family:var(--f-disp); font-weight:800; text-transform:uppercase; line-height:.92; letter-spacing:.005em; font-size:clamp(34px,5.6vw,62px); margin:0 0 20px; text-wrap:balance; }
+.standfirst{ font-size:clamp(17px,2.1vw,20px); line-height:1.55; color:var(--ink-2); font-weight:300; max-width:60ch; margin:0; }
+.article-body{ max-width:660px; margin-top:clamp(32px,4vw,46px); }
+.article-body h2{ font-family:var(--f-disp); text-transform:uppercase; font-weight:800; font-size:clamp(22px,2.8vw,30px); line-height:1; letter-spacing:.01em; margin:38px 0 14px; }
+.article-body h3{ font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); margin:30px 0 10px; font-weight:600; }
+.article-body p{ margin:0 0 17px; font-size:16.5px; line-height:1.68; color:var(--ink-2); max-width:none; }
+.article-body p strong,.article-body li strong{ color:var(--ink); font-weight:600; }
+.article-body ul{ list-style:none; margin:0 0 20px; padding:0; }
+.article-body li{ position:relative; padding:8px 0 8px 20px; border-top:1px solid var(--rule); font-size:15.5px; line-height:1.55; color:var(--ink-2); }
+.article-body li::before{ content:""; position:absolute; left:0; top:17px; width:9px; height:1px; background:var(--cyan); }
+.pull{ border-left:2px solid var(--magenta); padding:4px 0 4px 18px; margin:26px 0; font-size:17px; line-height:1.55; color:var(--ink); font-weight:300; }
+.article-body table{ width:100%; border-collapse:collapse; font-size:14.5px; margin:0 0 22px; }
+.article-body th,.article-body td{ text-align:left; padding:9px 14px 9px 0; border-bottom:1px solid var(--rule); vertical-align:top; }
+.article-body thead th{ font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:500; border-bottom:1px solid var(--rule-2); }
+.tablewrap{ overflow-x:auto; }
+.disclaim{ margin-top:38px; padding-top:18px; border-top:1px solid var(--rule-2); font-size:13px; line-height:1.6; color:var(--ink-3); }
+.srcs{ margin-top:26px; }
+.srcs .k{ font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:9px; }
+.srcs li{ border:none; padding:4px 0 4px 20px; font-size:14px; }
+.article-foot{ margin-top:clamp(34px,4vw,50px); padding-top:26px; border-top:1px solid var(--rule-2); max-width:660px; }
+
+@media (max-width:640px){ .post-item{ grid-template-columns:1fr; gap:8px; } }
+
+/* ---------- photo fallbacks ----------
+   If a background image fails to decode for any reason, these keep the
+   section reading as a deliberate dark plate rather than an empty box. */
+.hero-photo,.contact-photo{ background-color:#0B0C0E; }
+.band{ background-color:#14171A; }
+.portrait img{ background:#101215; min-height:120px; }

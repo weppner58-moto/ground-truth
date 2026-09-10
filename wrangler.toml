@@ -1,0 +1,5 @@
+# Cloudflare Pages project configuration. Bindings (GT_LIST, GATE_SECRET, ADMIN_TOKEN, TURNSTILE_*, NOTIFY*)
+# are set in the Pages project settings; see README "Deploying".
+name = "contactpatchadvisory"
+pages_build_output_dir = "site"
+compatibility_date = "2026-09-01"

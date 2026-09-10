@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from charts import bars, hbars, sbars, waterfall, MAG, CYAN, INK3  # noqa: E402
 
 LIB = ROOT / "tools" / "lib"
-OUT = ROOT / "groundtruth" / "03" / "index.html"
+OUT = ROOT / "site" / "groundtruth" / "03" / "index.html"
 NN, REV, DATE = "03", "Rev. 1", "September 2026"
 TITLE = "Harley-Davidson: Outside In"
 PARTS = ["Part I", "Part II", "Part III", "Part IV", "Part V", "Part VI"]

@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from charts import bars, hbars, sbars, svg_theme, MAG, CYAN, INK3  # noqa: E402
 
 LIB = ROOT / "tools" / "lib"
-OUT = ROOT / "groundtruth" / "03" / "series" / "index.html"
-URL = "weppner58-moto.github.io/ground-truth/groundtruth/03/"
+OUT = ROOT / "site" / "groundtruth" / "03" / "series" / "index.html"
+URL = "contactpatchadvisory.com/groundtruth/03/"
 CREDIT = "Contact Patch Advisory"
 ISSUE = "Ground Truth No. 03"
 

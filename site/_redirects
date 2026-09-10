@@ -1,0 +1,8 @@
+# Short links used in LinkedIn posts
+/01   /groundtruth/01/   301
+/02   /groundtruth/02/   301
+/03   /groundtruth/03/   301
+/04   /groundtruth/04/   301
+/gt   /groundtruth/      301
+# Links published while the series lived on GitHub Pages
+/ground-truth/*   /groundtruth/:splat   301

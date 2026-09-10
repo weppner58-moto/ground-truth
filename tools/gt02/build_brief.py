@@ -10,11 +10,11 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "gt02", "lib"))  # No. 02 chart/r
 from charts import bars, hbars, waterfall, MAG, CYAN, INK3
 
 CSS = open(os.path.join(ROOT, "tools", "lib", "brief.css")).read()
-OUT = os.path.join(ROOT, "groundtruth", "02", "index.html")
+OUT = os.path.join(ROOT, "site", "groundtruth", "02", "index.html")
 
 ISSUE = "Ground Truth No. 02"
 DATE = "September 2026"
-SITE = "https://weppner58-moto.github.io/ground-truth/groundtruth/02/"
+SITE = "https://contactpatchadvisory.com/groundtruth/02/"
 
 def n(x):  # highlighted number
     return f'<b class="n">{x}</b>'

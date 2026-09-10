@@ -22,7 +22,7 @@ def main():
     names = dict(p.split(":", 1) for p in parts)
     out = ROOT / "build" / f"slides-{nn}"
     out.mkdir(parents=True, exist_ok=True)
-    assets = ROOT / "assets"
+    assets = ROOT / "site" / "groundtruth" / "assets"
     assets.mkdir(exist_ok=True)
 
     html = html_path.read_text()
