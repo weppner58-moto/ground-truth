@@ -367,7 +367,7 @@ def build():
                   "Buell: ~$125M to shut, sixteen years after the first stake. MV Agusta: $105.1M in, $268.4M of losses in twenty-four months, sold back for a euro with &euro;20M of Harley cash inside.",
                   "1996: &ldquo;concentrate on its core motorcycle business.&rdquo; 2009 and 2010: &ldquo;focus &hellip; on the Harley-Davidson brand.&rdquo; The words repeat because the decision does: a second brand that competes with Harley-Davidson for engineering dollars does not survive the next CEO.",
                   "East Troy, October 2009", "The last Buell on the line. Production ended at the end of the month; employment on December 18.",
-                  "A single sportbike at the end of an otherwise empty assembly line, fluorescent light, workers&rsquo; jackets on hooks, Wisconsin winter through the loading door. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges, 3:2, no logos."))
+                  "A single sportbike at the end of an otherwise empty assembly line, fluorescent light, workers&rsquo; jackets on hooks, Wisconsin winter through the loading door. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
 
     H.append(section(brandrow("02 &middot; Buell") + f"""
     <h2>Sixteen years, one paragraph, $125 million</h2>
@@ -423,7 +423,7 @@ def build():
                   "Alta: one sentence in one press release, no amount in any filing, bounded by Alta&rsquo;s own Form D at $5.65M, gone in six months. StaCyc: $14.9M, earn-out paid in full, 21,633 units in 2025 to LiveWire&rsquo;s 653.",
                   "Together they show what Harley actually wanted from electric. Not a motorcycle company. A battery it could learn from, and a $649 product that puts a family on a dealer floor.",
                   "Brisbane, California, 2018", "Alta Motors&rsquo; Redshift on a Harley dealer floor, one of 44 that carried it. Six months later the building was empty.",
-                  "A small electric dirt bike on a polished dealership floor between two large cruisers, price tag hanging, morning light through showroom glass. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges, 3:2, no logos."))
+                  "A small electric dirt bike on a polished dealership floor between two large cruisers, price tag hanging, morning light through showroom glass. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
 
     fd_rows = [
         ("7 Mar 2016", "$7.0M convertible notes", ("$1.77M", "num"), ("18", "num"), "Marc Fenigstein, CEO"),
@@ -504,7 +504,7 @@ def build():
                   "The Milwaukee-Eight and the Revolution Max got built and kept. The Street, the one time Harley built its own small bike in its own plants, lost money, closed the Indian plant, and handed the segment to Hero.",
                   "Harley develops from within when the product carries the full brand at the full price. Below that line it has never once succeeded on its own, and it stopped trying in 2020.",
                   "Bawal, Haryana, 2014", "The Street 750 line at Harley&rsquo;s own Indian plant. Closed September 2020; one month later the Hero agreements were signed.",
-                  "A liquid-cooled middleweight cruiser being assembled in a bright modern Indian plant, workers in blue, monsoon sky outside. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges, 3:2, no logos."))
+                  "A liquid-cooled middleweight cruiser being assembled in a bright modern Indian plant, workers in blue, monsoon sky outside. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
     H.append(section(brandrow("06 &middot; Built in-house") + f"""
     <h2>Two engines kept. One small bike lost money and left.</h2>
     <p class="lede">The table has three things Harley built rather than bought in the last fifteen years. Two are still the engines of its highest-priced lines. The third is the reason the Sprint is a Hero.</p>
@@ -520,7 +520,7 @@ def build():
                   "The first Sprint was built in Varese by a company Harley half-owned. The new one runs a 440 single Hero co-developed and builds in Neemrana for a &#8377;2.29 lakh motorcycle. Where the Sprint is built and what it costs are undecided.",
                   "Those two facts are the test of the rule. Hero-built means the rule held and the plan&rsquo;s &ldquo;existing platforms&rdquo; include a licensee&rsquo;s. York-built means it is not a $6,000 motorcycle, and Street says what happens next.",
                   "Neemrana, Rajasthan, 2023", "The X440 on Hero&rsquo;s line at the Garden Factory. Co-developed at Hero&rsquo;s CIT, priced at &#8377;2,29,000. The Sprint&rsquo;s engine.",
-                  "A 440cc single-cylinder roadster, oil-cooled engine exposed, on a stand in a clean Indian factory with trees visible through open bays. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges, 3:2, no logos.", img="neemrana.jpg"))
+                  "A 440cc single-cylinder roadster, oil-cooled engine exposed, on a stand in a clean Indian factory with trees visible through open bays. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="neemrana.jpg"))
     H.append(section(brandrow("07 &middot; Aermacchi to Hero") + f"""
     <h2>Same hole, somebody else&rsquo;s engine</h2>
     <p class="lede">The first Harley-Davidson Sprint was an Aermacchi. Harley bought half of the Varese motorcycle division in 1960, for about a quarter of a million dollars by the accounts that survive, because the 125cc Hummer left a gap between it and the big twins that Japan was about to fill.</p>
@@ -553,7 +553,7 @@ def build():
                   "Each CEO&rsquo;s outside moves are the next CEO&rsquo;s focus story. LiveWire is eleven months into a CEO who did not start it, with the sentence already said and the cheapest unwind in the table.",
                   "The parent never wanted the electric motorcycle. It wanted the floor traffic. Read that way, the whole record is one decision.",
                   "Juneau Avenue", "The headquarters, where every one of these decisions was signed. The building has room for one brand.",
-                  "A red-brick industrial headquarters block on a Milwaukee street at dusk, one lit window, wet pavement. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges, 3:2, no signage."))
+                  "A red-brick industrial headquarters block on a Milwaukee street at dusk, one lit window, wet pavement. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no signage."))
     ceo_rows = [
         ("Richard Teerlink", "&ndash;1997", "Eaglemark 49% and 100%; Buell 49%", "Holiday Rambler"),
         ("Jeffrey Bleustein", "1997&ndash;2005", "Buell to ~100%", "none"),
