@@ -106,7 +106,7 @@ def build():
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Harley-Davidson: Outside In — the series</title>
+<title>Harley-Davidson: Outside In, the series</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap">
@@ -114,7 +114,7 @@ def build():
 </head><body class="web">
 <div class="webhdr">
   <h4>Harley-Davidson:<br>Outside In</h4>
-  <p>Sixty-six years of buying what it could build. Ground Truth No. 03, the LinkedIn series in full — four parts, in the order the brief reads: the record, the same sentence, too small to say, the Sprint and the final word. Every figure is drawn from an SEC filing, a company release or a full call transcript, except where marked. The complete brief, with each source linked to the document, is <a href="../">here</a>.</p>
+  <p>Sixty-six years of buying what it could build. Ground Truth No. 03, the LinkedIn series in full: four parts, in the order the brief reads, the record, the same sentence, too small to say, the Sprint and the final word. Every figure is drawn from an SEC filing, a company release or a full call transcript, except where marked. The complete brief, with each source linked to the document, is <a href="../">here</a>.</p>
   <p style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:18px">Contact Patch Advisory &middot; William Weppner &middot; September 2026</p>
 </div>
 <div class="wrapper">
@@ -123,7 +123,7 @@ def build():
     # ═══════════ PART 1 — THE RECORD (10 slides) ═══════════
     P = 1
     N = 9
-    S.append("<div class='parthead'>Part 1 — The Record · 10 slides</div>\n")
+    S.append("<div class='parthead'>Part 1 · The Record · 10 slides</div>\n")
     S.append(slide("s1-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 1 of 4</div>
@@ -143,7 +143,7 @@ def build():
     S.append(slide("s1-3", f"""
   <h2 style='font-size:66px'>A company leaning on the platforms it already has is opening the plan with one it does not own.</h2>
   <p class='wide' style='font-size:30px;margin-top:20px'>That is not new. It is the sixty-sixth year of it.</p>
-  <p class='wide' style='font-size:30px'>So I went back through the record — not the press record, the filed one — for every time Harley-Davidson reached outside the building. What did it pay? What did it get? How did it end?</p>
+  <p class='wide' style='font-size:30px'>So I went back through the record, the filed one rather than the press one, for every time Harley-Davidson went outside for a product. What did it pay? What did it get? How did it end?</p>
   <div class='spacer'></div>
   {foot(ISSUE)}""", tag=f"02 / {N:02d}"))
     rows = [("1960", "Aermacchi", ("~$250K", "num"), "Sold 1978"), ("1986", "Holiday Rambler", ("~$155M", "num"), "Sold 1996"),
@@ -201,7 +201,7 @@ def build():
     S.append(slide("s1-9", f"""
   <div class='kick'>The thesis</div>
   <div class='verdict'>Harley doesn’t want electric. <i>It wants floor traffic.</i></div>
-  <p class='wide' style='font-size:29px;margin-top:34px'>Harley builds when the product carries the full brand at the full price. Everything below the big twin — a small bike, a balance bike, a battery, a loan book — gets bought, licensed or partnered. Kept when it feeds the dealer. Dropped when it competes with the badge.</p>
+  <p class='wide' style='font-size:29px;margin-top:34px'>Harley builds when the product carries the full brand at the full price. Everything below the big twin (a small bike, a balance bike, a battery, a loan book) gets bought, licensed or partnered. Kept when it feeds the dealer. Dropped when it competes with the badge.</p>
   <div class='spacer'></div>
   <p class='wide' style='font-size:26px;color:var(--ink3);margin:0'>Read the whole record with that sentence in hand and it stops looking like a series of mistakes.</p>
   {foot(ISSUE)}""", tag=f"08 / {N:02d}"))
@@ -216,7 +216,7 @@ def build():
 
     # ═══════════ PART 2 — SAME SENTENCE (10 slides) ═══════════
     N = 9
-    S.append("<div class='parthead'>Part 2 — Same Sentence · 10 slides</div>\n")
+    S.append("<div class='parthead'>Part 2 · Same Sentence · 10 slides</div>\n")
     S.append(slide("s2-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 2 of 4</div>
@@ -271,9 +271,9 @@ def build():
   <div class='kick'>The sale · 6 August 2010 · the 10-K says “nominal consideration”</div>
   <h2 style='font-size:60px'>The agreement says what nominal means.</h2>
   <ul class='tl'>
-    <li><b>The shares</b><span>All 120,000 shares of MV Agusta Motor S.p.A. — “for a consideration of Euro 1 (one).”</span></li>
+    <li><b>The shares</b><span>All 120,000 shares of MV Agusta Motor S.p.A., “for a consideration of Euro 1 (one).”</span></li>
     <li><b>The U.S. company</b><span>MV Agusta USA LLC, for US$1.</span></li>
-    <li><b>The receivable</b><span>€103,789,617.60 Harley had lent its own subsidiary — for €1.</span></li>
+    <li><b>The receivable</b><span>€103,789,617.60 Harley had lent its own subsidiary. Sold for €1.</span></li>
     <li><b>Cash left inside</b><span>A capital increase of €20,000,000, paid into escrow.</span></li>
     <li><b>The earn-out</b><span>Castiglioni’s 2016 payment “finally and irrevocably waived.”</span></li>
   </ul>
@@ -296,11 +296,11 @@ def build():
   <div class='src'>H-D release · MV Agusta sale</div>
   <div class='spacer'></div>
   <h3 style='margin-bottom:14px'>1996: “core motorcycle business.”<br>2009, 2010: “the Harley-Davidson brand.”</h3>
-  <p class='wide' style='font-size:29px;margin:0'>The words repeat because the decision does. A brand that competes with the bar and shield for engineering dollars does not survive the next CEO.</p>
+  <p class='wide' style='font-size:29px;margin:0'>The words repeat because the decision does. A second brand that competes with Harley-Davidson for engineering dollars does not survive the next CEO.</p>
   {foot(ISSUE)}""", tag=f"07 / {N:02d}"))
     S.append(slide("s2-9", f"""
   <h2 style='font-size:64px'>MV is the one time Harley bought big.</h2>
-  <p class='wide' style='font-size:31px'>It lost 2.55 times the purchase price in twenty-four months and handed the factory back to the family it bought it from — the same Castiglionis who took Aermacchi off Harley’s hands in 1978.</p>
+  <p class='wide' style='font-size:31px'>It lost 2.55 times the purchase price in twenty-four months and handed the factory back to the family it bought it from. The same Castiglionis took Aermacchi off Harley’s hands in 1978.</p>
   <p class='wide' style='font-size:31px'><strong>The company learned the lesson. Every outside move since has been sized to be forgettable.</strong></p>
   <div class='spacer'></div>
   <p class='wide' style='font-size:26px;color:var(--dink3);margin:0'>Next: the two that were too small to disclose.</p>
@@ -316,7 +316,7 @@ def build():
 
     # ═══════════ PART 3 — TOO SMALL TO SAY (11 slides) ═══════════
     N = 10
-    S.append("<div class='parthead'>Part 3 — Too Small to Say · 11 slides</div>\n")
+    S.append("<div class='parthead'>Part 3 · Too Small to Say · 11 slides</div>\n")
     S.append(slide("s3-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 3 of 4</div>
@@ -397,7 +397,7 @@ def build():
     S.append(slide("s3-9", f"""
   <h2 style='font-size:62px'>2025: thirty-three StaCycs for every LiveWire motorcycle</h2>
   {svg_theme(units, True)}
-  <p class='wide' style='font-size:26px;margin-top:24px;color:var(--dink3)'>Revenue: $6.1M motorcycles, <strong style='color:var(--dink)'>$19.6M StaCyc — 76% of LiveWire’s product revenue</strong>, from a $14.9M purchase of a company that makes $649 balance bikes for three-year-olds.</p>
+  <p class='wide' style='font-size:26px;margin-top:24px;color:var(--dink3)'>Revenue: $6.1M motorcycles, <strong style='color:var(--dink)'>$19.6M StaCyc, 76% of LiveWire’s product revenue</strong>, from a $14.9M purchase of a company that makes $649 balance bikes for three-year-olds.</p>
   <div class='spacer'></div>
   {foot('Source: LVWR FY2025 results, 10 Feb 2026')}""", dark=True, tag=f"08 / {N:02d}"))
     S.append(slide("s3-10", f"""
@@ -421,7 +421,7 @@ def build():
 
     # ═══════════ PART 4 — THE SPRINT AND THE FINAL WORD (11 slides) ═══════════
     N = 10
-    S.append("<div class='parthead'>Part 4 — The Sprint and the Final Word · 11 slides</div>\n")
+    S.append("<div class='parthead'>Part 4 · The Sprint and the Final Word · 11 slides</div>\n")
     S.append(slide("s4-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 4 of 4</div>
@@ -447,14 +447,14 @@ def build():
   {foot(ISSUE)}""", dark=True, tag=f"02 / {N:02d}"))
     S.append(slide("s4-4", f"""
   <h2 style='font-size:62px'>The first Harley-Davidson Sprint was an Aermacchi.</h2>
-  <p class='wide' style='font-size:29px'>1960: Harley bought half of the Varese motorcycle division — about a quarter of a million dollars, by the accounts that survive — because the 125cc Hummer left a hole between it and the big twins that Japan was about to fill.</p>
+  <p class='wide' style='font-size:29px'>1960: Harley bought half of the Varese motorcycle division, for about a quarter of a million dollars by the accounts that survive, because the 125cc Hummer left a gap between it and the big twins that Japan was about to fill.</p>
   <p class='wide' style='font-size:29px'>It sold the Sprint for fourteen years, won three 250cc world titles with Walter Villa, and in 1978 sold the factory to the Castiglionis. <strong>The same family it bought MV Agusta from thirty years later, and sold it back to for a euro.</strong></p>
   <div class='spacer'></div>
   {foot('Aermacchi dates and prices: secondary sources · see open items')}""", tag=f"03 / {N:02d}"))
     S.append(slide("s4-5", f"""
   <div class='kick'>Sixty-six years on · the Sprint returns · on a Hero engine</div>
   <ul class='tl'>
-    <li><b>Jul 2023</b><span>Hero launches the X440. Engine “co-developed by Hero MotoCorp and Harley-Davidson,” built at Neemrana. ₹2,29,000 — about $2,760.</span></li>
+    <li><b>Jul 2023</b><span>Hero launches the X440. Engine “co-developed by Hero MotoCorp and Harley-Davidson,” built at Neemrana. ₹2,29,000, about $2,760.</span></li>
     <li><b>Jul 2025</b><span>Zeitz: the Sprint has “been in development since 2021,” “targeting an entry price below $6,000,” and will be “profitable.”</span></li>
     <li><b>May 2026</b><span>Starrs: “we’re finalizing the specific production plans.” Trade reporting: target now “less than $10,000,” plant undecided.</span></li>
     <li><b>Jun 2026</b><span>Hero’s CEO: “it can take it from Hero to sell elsewhere; that decision rests with Harley.”</span></li>
@@ -478,7 +478,7 @@ def build():
   <div class='spacer'></div>
   <p class='wide' style='font-size:29px'>Air-cooled, ~$10,000, York, per trade reporting. The first air-cooled twin program since the Evolution. <strong>A Sportster built in York that makes money at $10,000 would be the first time since 1960 that Harley filled the hole with its own motorcycle.</strong></p>
   {foot('Source: Q1 2026 call · Motorcycle.com 5 May 2026 (unverified)')}""", dark=True, tag=f"06 / {N:02d}"))
-    ceo = [("Bleustein", "1997–2005", "Buell to ~100%", "—"), ("Ziemer", "2005–09", "MV Agusta", "—"), ("Wandell", "2009–15", "—", ("Buell · MV Agusta", "hi")),
+    ceo = [("Bleustein", "1997–2005", "Buell to ~100%", "none"), ("Ziemer", "2005–09", "MV Agusta", "none"), ("Wandell", "2009–15", "none", ("Buell · MV Agusta", "hi")),
            ("Levatich", "2015–20", "Alta · StaCyc · QJ · Thailand", "Alta"), ("Zeitz", "2020–25", "Hero · LiveWire SPAC · HDFS sale", ("India · Street · Sportster", "hi")),
            ("Starrs", "2025–", "Sprint · 883 · Dust", "Rev Max home · “Electric”")]
     S.append(slide("s4-8", f"""
@@ -490,14 +490,14 @@ def build():
     S.append(slide("s4-9", f"""
   <div class='kick'>Analysis, not reporting</div>
   <h2 style='font-size:58px'>The two pieces of LiveWire with a future are the two that were never electric motorcycles.</h2>
-  <p class='wide' style='font-size:28px'><strong>StaCyc</strong>: a dealer-traffic product with a margin and five years of hitting volume targets. <strong>Dust</strong>: an option on off-road electric that cost $375,000 in cash — the Alta structure, done inside a subsidiary this time.</p>
+  <p class='wide' style='font-size:28px'><strong>StaCyc</strong>: a dealer-traffic product with a margin and five years of hitting volume targets. <strong>Dust</strong>: an option on off-road electric that cost $375,000 in cash. The Alta structure, done inside a subsidiary this time.</p>
   <p class='wide' style='font-size:28px'>If LiveWire is sold, merged or wound down, watch whether those two come back into the motor company. <strong>That would be the tell.</strong></p>
   <div class='spacer'></div>
   {foot('Inferred · no filing states any such intention')}""", dark=True, tag=f"08 / {N:02d}"))
     S.append(slide("s4-10", f"""
   <div class='kick'>The final word</div>
   <div class='verdict'>Harley doesn’t want electric. <i>It wants floor traffic.</i></div>
-  <p class='wide' style='font-size:28px;margin-top:30px'>The Milwaukee-Eight and the Rev Max got built because a $25,000 motorcycle pays for an engine program. A 440 single, a balance bike, a battery and a loan book do not, and every one was bought, licensed or partnered — kept when it feeds the dealer, dropped when it competes with the badge.</p>
+  <p class='wide' style='font-size:28px;margin-top:30px'>The Milwaukee-Eight and the Rev Max got built because a $25,000 motorcycle pays for an engine program. A 440 single, a balance bike, a battery and a loan book do not, and every one was bought, licensed or partnered. Kept when it feeds the dealer, dropped when it competes with the badge.</p>
   <p class='wide' style='font-size:28px'>StaCyc is the one part of the electric decade Harley has never had to write down. <strong>It is the one that was never an electric motorcycle.</strong></p>
   <div class='spacer'></div>
   {foot(ISSUE)}""", tag=f"09 / {N:02d}"))

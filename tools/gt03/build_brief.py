@@ -68,7 +68,7 @@ def here(i):
     return f"<div class='here'>{spans}</div>"
 
 
-def part(i, title, dek, point, why, img_title, img_desc):
+def part(i, title, dek, point, why, img_title, img_desc, sketch):
     return f"""
 <div class="wrap part" id="part{i+1}">
   <div class="brandrow">{here(i)}{brand()}</div>
@@ -82,7 +82,7 @@ def part(i, title, dek, point, why, img_title, img_desc):
         <div><b>Why it matters</b><span>{why}</span></div>
       </div>
     </div>
-    <div class="part-img"><div class="phx"><span class="tag">Image to source</span><div class="t">{img_title}</div><div class="d">{img_desc}</div><div class="s">Personal archive or licensed &middot; no press images</div></div></div>
+    <div class="part-img"><div class="phx"><span class="tag">Image to source</span><div class="t">{img_title}</div><div class="d">{img_desc}</div><div class="s">Sketch: {sketch}</div></div></div>
   </div>
 </div>
 """
@@ -179,8 +179,8 @@ def herofig():
         o.append(f"<text class='vl' x='{x:.0f}' y='{ly}' text-anchor='{anchor}' style='font-size:14px;fill:{col};font-weight:600'>{name}</text>")
         o.append(f"<text class='ax' x='{x:.0f}' y='{ly+16}' text-anchor='{anchor}'>{end}</text>")
     o.append("<g transform='translate(80,500)'>")
-    o.append(f"<rect x='0' y='-8' width='12' height='12' fill='{MAG}'></rect><text class='ax' x='20' y='2'>BOUGHT A BRAND — SOLD OR SHUT</text>")
-    o.append(f"<rect x='250' y='-8' width='12' height='12' fill='{CYAN}'></rect><text class='ax' x='270' y='2'>BOUGHT A CHANNEL OR A COMPONENT — KEPT</text>")
+    o.append(f"<rect x='0' y='-8' width='12' height='12' fill='{MAG}'></rect><text class='ax' x='20' y='2'>BOUGHT A BRAND: SOLD OR SHUT</text>")
+    o.append(f"<rect x='250' y='-8' width='12' height='12' fill='{CYAN}'></rect><text class='ax' x='270' y='2'>BOUGHT A CHANNEL OR A COMPONENT: KEPT</text>")
     o.append(f"<rect x='580' y='-8' width='12' height='12' fill='{INK3}'></rect><text class='ax' x='600' y='2'>BUILT IN-HOUSE</text>")
     o.append("</g>")
     o.append("<line x1='80' y1='516' x2='1140' y2='516' stroke='var(--magenta)' stroke-width='2'></line>")
@@ -234,11 +234,11 @@ def build():
     <ul class="thesis">
       <li><b>What they said</b><span>May 2026, the new plan: &ldquo;leveraging existing powertrain, existing platforms&rdquo; and &ldquo;executing better with the platforms we already have rather than introducing entirely new ones.&rdquo; The first new bike is the Sprint, on a {n('440cc')} single Hero MotoCorp builds in Rajasthan.</span></li>
       <li><b>What it is</b><span>The sixty-sixth year of the same move. Every brand Harley ever bought was sold or shut, with the same sentence. MV Agusta: {n('$105.1M')} in, {n('$268.4M')} lost, sold back for {n('&euro;1')}. Alta: a stake too small to disclose, gone in six months. StaCyc: {n('$14.9M')}, and it outsells LiveWire {n('33 to 1')}.</span></li>
-      <li><b>What decided it</b><span>Harley builds when the product carries the full brand at the full price. Everything below the big twin &mdash; a small bike, a balance bike, a battery, a loan book &mdash; gets bought, licensed or partnered, kept when it feeds the dealer and dropped when it competes with the badge.</span></li>
+      <li><b>What decided it</b><span>Harley builds when the product carries the full brand at the full price. Everything below the big twin (a small bike, a balance bike, a battery, a loan book) gets bought, licensed or partnered. It stays when it feeds the dealer. It goes when it competes with the badge.</span></li>
     </ul>
     <p class="thesis-line">Harley doesn&rsquo;t want electric. <i>It wants floor traffic.</i></p>
     <div class="srcline">
-      Sources &mdash; HOG Forms 10-K (FY1994, FY1996, FY2009, FY2010, FY2011, FY2018, FY2019, FY2020, FY2025) &middot; 10-Q (Q3 2008, Q3 2009, Q1 2018, Q3 2018, Q1 2019) &middot; 8-K (11 Jul 2008, 15 Oct 2009, 9 Aug 2010 incl. Ex. 2.1, 24 Sep 2020, 13 Dec 2021)<br>
+      Sources: HOG Forms 10-K (FY1994, FY1996, FY2009, FY2010, FY2011, FY2018, FY2019, FY2020, FY2025) &middot; 10-Q (Q3 2008, Q3 2009, Q1 2018, Q3 2018, Q1 2019) &middot; 8-K (11 Jul 2008, 15 Oct 2009, 9 Aug 2010 incl. Ex. 2.1, 24 Sep 2020, 13 Dec 2021)<br>
       Faster Faster, Inc. Forms D (2016&ndash;2018) &middot; LVWR 8-K (30 Sep 2022; 22 May 2026) and 10-K (FY2022) &middot; LiveWire FY2025 and Q2 2026 results &middot; Hero MotoCorp X440 release (3 Jul 2023) &middot; H-D call transcripts Q1 2019, Q3 2021, Q2 2025, Q1 2026, Q2 2026
     </div>
   </div>
@@ -269,7 +269,7 @@ def build():
 
     # ── §00 start here
     H.append(section(f"""
-    <div class="eyebrow">00 &mdash; Start here</div>
+    <div class="eyebrow">00 &middot; Start here</div>
     <h2>The finding, and the trail that led to it</h2>
     <p class="lede">Harley-Davidson has spent sixty-six years buying, licensing and partnering its way into every segment below the big twin, and building from within only when the product carries the full brand at the full price. Here is how three old filings led me to that sentence.</p>
     <p>Start with what they said. May 5, 2026, the Q1 call, the new CEO explaining the plan: &ldquo;By using and leveraging existing powertrain, existing platforms, we can have a much broader assortment of motorcycles to present.&rdquo; The first new motorcycle under that plan is the Sprint. Its engine is a {n('440cc')} single that Hero MotoCorp co-developed with Harley and builds in Neemrana for the X440, a {n('&#8377;2.29 lakh')} motorcycle. On the same call: &ldquo;we&rsquo;re finalizing the specific production plans.&rdquo; A company that says it will lean on the platforms it already has is opening the plan with one it does not own.</p>
@@ -290,7 +290,7 @@ def build():
       <li><div><div class="doc">{link(SEC + '793952/000119312510037160/R9.xml', 'Form 10-K FY2009 &middot; MV Agusta note &rarr;')}</div><div class="what"><b>$115.4M.</b> The impairment, fourteen months after closing. Consideration &euro;68.3M, goodwill $85.8M, IPR&amp;D of $20.1M written off at once. The Buell decision, taken the same week, is in the 10-Q beside it.</div></div></li>
       <li><div><div class="doc">{link(SEC + '793952/000119312510183610/dex21.htm', 'Sale and Purchase Agreement &middot; Ex. 2.1 to 8-K, 9 Aug 2010 &rarr;')}</div><div class="what"><b>&euro;1.</b> &sect;2.1.1(a): the MV Agusta shares &ldquo;for a consideration of Euro 1 (one).&rdquo; &sect;7.1.1: a capital increase of &euro;20,000,000. &sect;7.2.2(a): the earn-out &ldquo;finally and irrevocably waived.&rdquo; The 10-K says &ldquo;nominal consideration.&rdquo; This is what nominal means.</div></div></li>
       <li><div><div class="doc">{link(SEC + '1620298/000162029818000001/primary_doc.xml', 'Faster Faster, Inc. &middot; Form D/A &middot; 5 Feb 2018 &rarr;')}</div><div class="what"><b>$20,843,998.</b> Alta&rsquo;s round, closed by amendment four weeks before Harley&rsquo;s announcement. Six investors and $5.65M added since July. Harley&rsquo;s own filings never give a number; this is the ceiling.</div></div></li>
-      <li><div><div class="doc">{link(SEC + '793952/000079395219000021/hog-03312019x10q.htm', 'Form 10-Q Q1 2019 &middot; goodwill note &rarr;')}</div><div class="what"><b>$14.9 million.</b> StaCyc: $7.0M of cash, $9.5M of goodwill, and a reason &mdash; &ldquo;building the next generation of riders.&rdquo; Then LiveWire&rsquo;s FY2025 release: 21,633 of them, against 653 motorcycles.</div></div></li>
+      <li><div><div class="doc">{link(SEC + '793952/000079395219000021/hog-03312019x10q.htm', 'Form 10-Q Q1 2019 &middot; goodwill note &rarr;')}</div><div class="what"><b>$14.9 million.</b> StaCyc: $7.0M of cash, $9.5M of goodwill, and a stated reason: &ldquo;building the next generation of riders.&rdquo; Then LiveWire&rsquo;s FY2025 release: 21,633 of them, against 653 motorcycles.</div></div></li>
     </ol>
 
     <h3 style="font-size:clamp(21px,2.6vw,28px); margin-top:40px">Four instruments</h3>
@@ -303,18 +303,19 @@ def build():
     </div>
 
     <ul class="finds" style="margin-top:30px">
-      <li><b>Why.</b> Back to the Bricks is scored on HDMC alone and opens with a licensee&rsquo;s motorcycle. Whether the Sprint and the 883 get built inside the building, at a price where the building makes money, is the whole test of the plan. The record says what usually happens.</li>
+      <li><b>Why.</b> Back to the Bricks is scored on HDMC alone and opens with a licensee&rsquo;s motorcycle. Whether the Sprint and the 883 get built in Harley&rsquo;s own plants, at a price where Harley makes money, is the whole test of the plan. The record says what usually happens.</li>
       <li><b>Who for.</b> Anyone deciding whether the Sprint is a product or a channel program; anyone holding HOG into a 2027 that contains the 883, a Sprint, and a LiveWire decision; and the people at Juneau Avenue who already know this and cannot say it.</li>
       <li><b>What I did.</b> Read the acquisition, impairment and discontinued-operations notes for every outside move since 1993, the sale agreement for MV, Alta&rsquo;s Form D chain, and LiveWire&rsquo;s carve-out statements for StaCyc. Derived figures are arithmetic on filed numbers, shown in the captions. Secondary sources are used only where flagged.</li>
-      <li><b>Who I am.</b> I ran product at Harley-Davidson &mdash; Touring, CVO, Trike. I have sat in the meeting where a small-bike program gets its cost target. &sect;13.</li>
+      <li><b>Who I am.</b> I ran product at Harley-Davidson: Touring, CVO, Trike. I have sat in the meeting where a small-bike program gets its cost target. &sect;13.</li>
     </ul>
     """))
 
     # ═════════ PART I — THE RECORD ═════════
     H.append(part(0, "The record", "Every time Harley-Davidson reached outside the building, 1960 to 2026, from the filings.",
-                  "Sixteen moves. Every purchased brand is gone. Every purchased channel or component &mdash; the finance company, the balance bikes, the licences, the assembly lines &mdash; is still here.",
+                  "Sixteen moves. Every purchased brand is gone. Every purchased channel or component is still here: the finance company, the balance bikes, the licences, the assembly lines.",
                   "The pattern is the argument. Once you see what stayed and what went, the Sprint, the 883 and LiveWire stop being three decisions and become one.",
-                  "Varese, 1961", "An Aermacchi-built Harley-Davidson Sprint on the line at Schiranna. The first time Harley filled the hole below the big twin with somebody else&rsquo;s motorcycle."))
+                  "Varese, 1961", "An Aermacchi-built Harley-Davidson Sprint on the line at Schiranna. The first time Harley filled the gap below the big twin with somebody else&rsquo;s motorcycle.",
+                  "1961 Aermacchi Harley-Davidson Sprint 250, single-cylinder, horizontal engine, on a factory assembly line in Varese, Italy. Ink and wash, period photo feel, 3:2, no logos."))
 
     rows = [
         ("1960", "50% of Aermacchi&rsquo;s motorcycle division, Varese", "Out", ("~$250K", "num"), "The original <b>Harley-Davidson Sprint</b>, 250/350 singles. Full ownership early 1970s. Sold to the Castiglionis (Cagiva) 1978"),
@@ -322,7 +323,7 @@ def build():
         ("1993", "49% of Eaglemark Financial Services; the rest Nov 1995", "Out", ("$10M + ~$45M", "num"), "Became <span class='hi'>HDFS</span>. $248M of operating income in 2024. 9.8% sold to KKR/PIMCO at ~1.75&times; book, 2025"),
         ("1993", "49% of Buell; substantially all of the rest Feb 1998", "Out", ("~$500K; 1998 n/d", "num"), "Shut Oct 2009. Announced exit cost <span class='hi'>~$125M</span>. &ldquo;Focus both our effort and our investment on the Harley-Davidson brand&rdquo;"),
         ("2008", "MV Agusta + Cagiva", "Out", ("&euro;68.3M ($105.1M)", "num"), "Sold back to Castiglioni 6 Aug 2010 for <span class='hi'>&euro;1</span> + $1 + &euro;1, with &euro;20.0M of H-D cash contributed. Net loss from discontinued ops <span class='hi'>$268.4M</span> in 24 months"),
-        ("2013", "Street 500/750, Revolution X, Bawal (India)", "<b>In</b>", ("n/d", "num"), "&ldquo;First all-new platform in 13 years.&rdquo; India manufacturing exited Sept 2020, ~$75M restructuring. &ldquo;Unprofitable&rdquo; &mdash; CFO, Q3 2021"),
+        ("2013", "Street 500/750, Revolution X, Bawal (India)", "<b>In</b>", ("n/d", "num"), "&ldquo;First all-new platform in 13 years.&rdquo; India manufacturing exited Sept 2020, ~$75M restructuring. &ldquo;Unprofitable,&rdquo; per the CFO, Q3 2021"),
         ("2016", "Milwaukee-Eight", "<b>In</b>", ("n/d", "num"), "Still the Big Twin"),
         ("2017", "Rayong, Thailand plant", "In, offshore", ("n/d", "num"), "Rev Max models for the U.S. moved there 2024; returning to York and Menomonee Falls before 2027"),
         ("2018", "Equity in Alta Motors (Faster Faster, Inc.) + co-development", "Out", ("<span class='hi'>never stated</span>", "num"), "H-D out by August; Alta closed 17 Oct 2018; BRP bought the IP. H-D&rsquo;s own Silicon Valley EV R&amp;D facility announced 5 Sep 2018"),
@@ -334,34 +335,35 @@ def build():
         ("2025", "HDFS: 4.9% each to KKR and PIMCO; &gt;$5B of receivables; two-thirds forward flow", "Out, capital", ("~$1.25B in", "num"), "HDFS operating income guided from $490M to $55&ndash;70M (No. 02 &sect;2)"),
         ("2026", "Dust Motorcycles, Inc., via LiveWire", "Out", ("$375K cash + stock", "num"), "Pre-revenue; product &ldquo;2H 2026&rdquo;; earn-outs to $11.25M"),
         ("2026", "S4 Honcho, produced by KYMCO", "Out, contract mfg", ("$4,999 / $5,499", "num"), "KYMCO exclusive for five years on the maxi-scooter and &ldquo;any future products on which the parties may agree&rdquo;"),
-        ("2026&ndash;27", "Sprint (Hero 440 single); Sportster 883", "<b>In?</b>", ("&mdash;", "num"), "Sprint production &ldquo;being finalized&rdquo;; sub-$6,000 (Jul 2025) now &ldquo;less than $10,000&rdquo; (trade). The 883: first air-cooled twin program since the Evolution"),
+        ("2026&ndash;27", "Sprint (Hero 440 single); Sportster 883", "<b>In?</b>", ("", "num"), "Sprint production &ldquo;being finalized&rdquo;; sub-$6,000 (Jul 2025) now &ldquo;less than $10,000&rdquo; (trade). The 883: first air-cooled twin program since the Evolution"),
     ]
     lost = hbars([268.4, 125, 75, 422], ["MV Agusta", "Buell", "India / Street", "LiveWire"], fills=[MAG, MAG, INK3, MAG],
                  fmt=lambda v: f"${v:,.0f}M", sublabels=["2008–10, filed", "2009, estimate", "2020, estimate", "2022–Q2 2026, filed"],
                  label="What the outside moves cost to unwind: MV Agusta $268M filed, Buell $125M estimated, India $75M estimated, LiveWire $422M consolidated.", tips=["Net loss from discontinued operations 2008–2010, FY2010 10-K", "Announced exit cost, Q3 2009 10-Q Note 19", "Restructuring for actions approved Sept 2020, 8-K", "Consolidated LiveWire operating losses, No. 02 §3"])
-    H.append(section(brandrow("01 &mdash; The record") + f"""
+    H.append(section(brandrow("01 &middot; The record") + f"""
     <h2>Sixteen moves, one table</h2>
     <p class="lede">Every figure is from a filing or a company release unless marked ~, which means a secondary source and an open item. &ldquo;n/d&rdquo; means the company never disclosed it. Read the last column first.</p>
     {tbl(['Year', 'Move', 'In / out', 'Cost, as filed', 'How it ended'], rows, ['7%', '27%', '10%', '14%', '42%'])}
-    <p>Two patterns fall out before any analysis. <strong>Every outside purchase that carried its own brand &mdash; Holiday Rambler, Buell, MV Agusta, Aermacchi &mdash; was sold or shut, three of the four within two years of a CEO change, with the same sentence.</strong> Every outside move that carried no badge into a Harley segment &mdash; Eaglemark&rsquo;s balance sheet, StaCyc&rsquo;s balance bikes, Hero&rsquo;s engine, Qianjiang&rsquo;s twin, KYMCO&rsquo;s assembly line, KKR&rsquo;s capital &mdash; has been kept, quietly, because it feeds the dealer without competing with the bar and shield.</p>
+    <p>Two patterns fall out before any analysis. <strong>Every outside purchase that carried its own brand was sold or shut: Holiday Rambler, Buell, MV Agusta, Aermacchi. Three of the four went within two years of a CEO change, with the same sentence.</strong> Every outside move that carried no badge into a Harley segment has been kept, quietly: Eaglemark&rsquo;s balance sheet, StaCyc&rsquo;s balance bikes, Hero&rsquo;s engine, Qianjiang&rsquo;s twin, KYMCO&rsquo;s assembly line, KKR&rsquo;s capital. They feed the dealer without competing with the Harley-Davidson brand.</p>
     {fig('01', 'What the outside moves cost to unwind', '$ millions &middot; filed where available', lost, 'calc', 'MV Agusta is the filed net loss from discontinued operations, 2008&ndash;2010. Buell and India are the company&rsquo;s announced estimates; neither was ever reconciled in a later filing. LiveWire is the consolidated operating loss from the spin through Q2 2026, from No. 02. Alta is missing from this chart because there is no number to put on it.')}
-    {sowhat('01', 'Harley-Davidson has reached outside the building sixteen times in sixty-six years. The brands are gone. The channels and components stayed.', 'What survives a CEO change at Harley is whatever makes money on somebody else&rsquo;s product on a Harley dealer&rsquo;s floor.', 'The Sprint is a Hero engine, the Honcho is a KYMCO build, Dust is an option. Read the table and you know which column each is in.')}
+    {sowhat('01', 'Harley-Davidson has gone outside for a product sixteen times in sixty-six years. The brands are gone. The channels and components stayed.', 'What survives a CEO change at Harley is whatever makes money on somebody else&rsquo;s product on a Harley dealer&rsquo;s floor.', 'The Sprint is a Hero engine, the Honcho is a KYMCO build, Dust is an option. Read the table and you know which column each is in.')}
     """))
 
     # ═════════ PART II — SAME SENTENCE ═════════
     H.append(part(1, "Same sentence", "Buell and MV Agusta: what the two biggest purchases cost, and the words used both times.",
                   "Buell: ~$125M to shut, sixteen years after the first stake. MV Agusta: $105.1M in, $268.4M of losses in twenty-four months, sold back for a euro with &euro;20M of Harley cash inside.",
-                  "1996: &ldquo;concentrate on its core motorcycle business.&rdquo; 2009 and 2010: &ldquo;focus &hellip; on the Harley-Davidson brand.&rdquo; The words repeat because the decision does: a brand that competes with the bar and shield for engineering dollars does not survive the next CEO.",
-                  "East Troy, October 2009", "The last Buell on the line. Production ended at the end of the month; employment on December 18."))
+                  "1996: &ldquo;concentrate on its core motorcycle business.&rdquo; 2009 and 2010: &ldquo;focus &hellip; on the Harley-Davidson brand.&rdquo; The words repeat because the decision does: a second brand that competes with Harley-Davidson for engineering dollars does not survive the next CEO.",
+                  "East Troy, October 2009", "The last Buell on the line. Production ended at the end of the month; employment on December 18.",
+                  "A single sportbike at the end of an otherwise empty assembly line, fluorescent light, workers&rsquo; jackets on hooks, Wisconsin winter through the loading door. Ink and wash, 3:2, no logos."))
 
-    H.append(section(brandrow("02 &mdash; Buell") + f"""
+    H.append(section(brandrow("02 &middot; Buell") + f"""
     <h2>Sixteen years, one paragraph, $125 million</h2>
     <p class="lede">Harley took 49% of Buell in 1993 for about half a million dollars, and &ldquo;substantially all of the remaining shares&rdquo; in February 1998. Eleven years after that, a new CEO wrote it down in one board meeting.</p>
-    <p>Buell shipped {n('13,119')} motorcycles in 2008 and {n('9,572')} in 2009, on revenue of {n('$123.1M')} and {n('$46.5M')} &mdash; the 2009 number after Q4 came in at negative $4.0M as dealers returned inventory. On October 14, 2009 the board &ldquo;committed to the discontinuation of its Buell product line.&rdquo; The subsequent-events note in the Q3 2009 10-Q put the cost at approximately {n('$125 million')}: $115M in 2009 and $10M in 2010; sales incentives, inventory write-downs and operating costs ~$70M; fixed-asset impairments ~$14M; one-time termination benefits ~$9M; contractual obligations ~$32M; about 60% of it cash. Roughly 80 hourly and 100 salaried positions, employment ending December 18.</p>
+    <p>Buell shipped {n('13,119')} motorcycles in 2008 and {n('9,572')} in 2009, on revenue of {n('$123.1M')} and {n('$46.5M')}. The 2009 number is after a Q4 of negative $4.0M, when dealers returned inventory. On October 14, 2009 the board &ldquo;committed to the discontinuation of its Buell product line.&rdquo; The subsequent-events note in the Q3 2009 10-Q put the cost at approximately {n('$125 million')}: $115M in 2009 and $10M in 2010; sales incentives, inventory write-downs and operating costs ~$70M; fixed-asset impairments ~$14M; one-time termination benefits ~$9M; contractual obligations ~$32M; about 60% of it cash. Roughly 80 hourly and 100 salaried positions, employment ending December 18.</p>
     {note('Keith Wandell, five months into the job &middot; 15 October 2009',
           '&ldquo;The fact is we must focus both our effort and our investment on the Harley-Davidson brand, as we believe this provides an optimal path to sustained, meaningful, long-term growth.&rdquo;',
           '&ldquo;We believe we can create a bright long-term future for our stakeholders through a single-minded focus on the Harley-Davidson brand.&rdquo;',
-          '&ldquo;Buell and MV Agusta are great companies, with proud brands, high-quality exciting products and passionate enthusiasm for the motorcycle business.&rdquo; &mdash; ' + link(SEC + '793952/000119312509208172/dex991.htm', '8-K Ex. 99.1, 15 Oct 2009'), tag='doc')}
+          '&ldquo;Buell and MV Agusta are great companies, with proud brands, high-quality exciting products and passionate enthusiasm for the motorcycle business.&rdquo; ' + link(SEC + '793952/000119312509208172/dex991.htm', '8-K Ex. 99.1, 15 Oct 2009'), tag='doc')}
     <p>The realized Buell cost was never reported on its own. It went into the 2009 restructuring plan, which expensed {n('$220.9M')} in 2009 and {n('$119.1M')} in 2010, and the FY2010 10-K closes the file in one sentence: &ldquo;The Company ceased production of Buell motorcycles at the end of October 2009.&rdquo; Buell&rsquo;s own statement said it had built &ldquo;more than 135,000 motorcycles&rdquo; since 1983. Erik Buell, eighteen months later: &ldquo;They didn&rsquo;t shut down Buell because they were mean.&rdquo; He was right. They shut it because it was a second brand in a building that has room for one.</p>
     {sowhat('02', 'Buell cost about $125M to close and was never reconciled. It was the first purchased brand a new CEO killed inside a year.', 'The sentence Wandell used is the one the company has used for every brand exit since 1996. It is not a Buell sentence. It is a Harley sentence.', 'LiveWire has a new CEO who did not start it, and the sentence has already been said: &ldquo;we leaned heavily into Touring and Electric.&rdquo;')}
     """))
@@ -377,23 +379,23 @@ def build():
         ("2009", ("$56.7M", "num"), ("$(165.4)M", "num"), ("<span class='hi'>$(125.8)M</span>", "num")),
         ("2010 (to 6 Aug)", ("$48.6M", "num"), ("$(131.0)M", "num"), ("<span class='hi'>$(113.1)M</span>", "num")),
         ("<b>Total, 24 months</b>", ("$121.2M", "num"), ("$(328.4)M", "num"), ("<span class='hi'><b>$(268.4)M</b></span>", "num")),
-        ("2011: tax reserves reversed on IRS agreement", ("&mdash;", "num"), ("$(0.4)M", "num"), ("+$51.0M", "num")),
+        ("2011: tax reserves reversed on IRS agreement", ("", "num"), ("$(0.4)M", "num"), ("+$51.0M", "num")),
         ("<b>Net</b>", ("", "num"), ("", "num"), ("<b>$(217.4)M</b>", "num")),
     ]
-    H.append(section(brandrow("03 &mdash; MV Agusta") + f"""
+    H.append(section(brandrow("03 &middot; MV Agusta") + f"""
     <h2>$105 million in. $268 million out. Sold for a euro.</h2>
     <p class="lede">Announced July 11, 2008 under Jim Ziemer, closed August 8, committed for sale October 2009, gone August 6, 2010. The whole thing fits inside one Harley-Davidson CEO transition, and the filings record every dollar of it.</p>
     <p>The announcement: &ldquo;total consideration of approximately 70 million euros ($109 million), which includes the satisfaction of existing bank debt for approximately 45 million euros ($70 million),&rdquo; plus a contingent payment to Claudio Castiglioni in 2016. Ziemer: &ldquo;Motorcycles are the heart, soul and passion of Harley-Davidson, Buell and MV Agusta.&rdquo; The final allocation in the FY2009 10-K: consideration {n('&euro;68.3M ($105.1M)')}, of which &euro;47.5M ($73.2M) retired bank debt; net assets acquired {n('$95.6M')}; goodwill {n('$85.8M')}; intangibles $52.8M, of which {n('$20.1M')} was in-process research and development &ldquo;written off subsequent to the acquisition.&rdquo; A fifth of the purchase price, expensed on arrival.</p>
-    {fig('02', 'MV Agusta: what went in, what was written off, what was lost', '$ millions &middot; FY2009, FY2010 and FY2011 10-Ks', mvw, 'calc', 'The first bar is what Harley paid. The next three are the filed write-offs: $20.1M of IPR&amp;D on arrival; $115.4M in 2009 (goodwill $85.5M, fixed assets $19.8M, intangibles $10.1M); $111.8M in 2010 (receivables $32.3M, inventory $25.2M, fixed assets $26.9M, intangibles $15.8M, other). The last two are the filed net loss from discontinued operations &mdash; $29.5M + $125.8M + $113.1M = $268.4M &mdash; and the same figure after the $51.0M tax-reserve reversal of Q4 2011. Impairments alone were $227.2M pre-tax, more than double the purchase price.')}
+    {fig('02', 'MV Agusta: what went in, what was written off, what was lost', '$ millions &middot; FY2009, FY2010 and FY2011 10-Ks', mvw, 'calc', 'The first bar is what Harley paid. The next three are the filed write-offs: $20.1M of IPR&amp;D on arrival; $115.4M in 2009 (goodwill $85.5M, fixed assets $19.8M, intangibles $10.1M); $111.8M in 2010 (receivables $32.3M, inventory $25.2M, fixed assets $26.9M, intangibles $15.8M, other). The last two are the filed net loss from discontinued operations ($29.5M + $125.8M + $113.1M = $268.4M) and the same figure after the $51.0M tax-reserve reversal of Q4 2011. Impairments alone were $227.2M pre-tax, more than double the purchase price.')}
     {tbl(['Discontinued operations, as filed', 'Revenue', 'Loss before tax', 'Net loss'], mv_rows, ['40%', '20%', '20%', '20%'])}
-    <p>On $105.1M of consideration that is {n('2.55 times')} the purchase price lost, or {n('$11.2M')} a month for every month Harley owned the company. The impairments alone &mdash; $115.4M in 2009 and $111.8M in 2010 &mdash; are {n('$227.2M')} pre-tax, more than double what was paid.</p>
+    <p>On $105.1M of consideration that is {n('2.55 times')} the purchase price lost, or {n('$11.2M')} a month for every month Harley owned the company. The impairments alone, $115.4M in 2009 and $111.8M in 2010, come to {n('$227.2M')} pre-tax. More than double what was paid.</p>
 
     <h3 style="font-size:clamp(21px,2.6vw,28px); margin-top:46px">The sale, and the &euro;1 / &euro;2 / &euro;3 question</h3>
     <p>The FY2010 10-K says only that &ldquo;the Company received nominal consideration in return for the transfer of MV and related assets.&rdquo; The Sale and Purchase Agreement, filed as Exhibit 2.1 to the 8-K of August 9, 2010, is where the number lives.</p>
     <div class="kn">
-      <div class="kn-row"><div class="kn-l">{ev('doc')}The shares</div><div class="kn-t">&sect;2.1.1(a): H-D Varese Holding transfers &ldquo;all rights, title and interest &hellip; in the MV Agusta Shares&rdquo; &mdash; all 120,000 ordinary shares, the entire capital of MV Agusta Motor S.p.A. &mdash; &ldquo;for a consideration of Euro 1 (one).&rdquo;</div></div>
+      <div class="kn-row"><div class="kn-l">{ev('doc')}The shares</div><div class="kn-t">&sect;2.1.1(a): H-D Varese Holding transfers &ldquo;all rights, title and interest &hellip; in the MV Agusta Shares&rdquo; (all 120,000 ordinary shares, the entire capital of MV Agusta Motor S.p.A.) &ldquo;for a consideration of Euro 1 (one).&rdquo;</div></div>
       <div class="kn-row"><div class="kn-l">{ev('doc')}The U.S. company</div><div class="kn-t">The membership interests in MV Agusta USA LLC, for US$1.</div></div>
-      <div class="kn-row"><div class="kn-l">{ev('doc')}The receivable</div><div class="kn-t">An intercompany receivable of &euro;103,789,617.60 &mdash; the money Harley had lent its own subsidiary &mdash; for &euro;1.</div></div>
+      <div class="kn-row"><div class="kn-l">{ev('doc')}The receivable</div><div class="kn-t">An intercompany receivable of &euro;103,789,617.60, the money Harley had lent its own subsidiary, for &euro;1.</div></div>
       <div class="kn-row"><div class="kn-l">{ev('doc')}The cash left inside</div><div class="kn-t">&sect;7.1.1: a capital increase of &ldquo;Euro 20,000,000 (twenty million)&rdquo; less sums already received, paid into escrow. The 8-K: &ldquo;the Company contributed 20 million Euros to MV as operating capital.&rdquo;</div></div>
       <div class="kn-row"><div class="kn-l">{ev('doc')}The earn-out</div><div class="kn-t">&sect;7.2.2(a): Castiglioni&rsquo;s right to the 2016 earn-out &ldquo;will be finally and irrevocably waived and dismissed with prejudice.&rdquo;</div></div>
       <div class="kn-row"><div class="kn-l">{ev('calc')}Therefore</div><div class="kn-t">&ldquo;&euro;1&rdquo; is the share price. &ldquo;&euro;3&rdquo; is the press adding the three nominal payments. &ldquo;&euro;2&rdquo; counts only the euros. All three are right. The 10-K&rsquo;s &ldquo;immaterial loss on the date of sale&rdquo; is also right: by August 2010 there was nothing left to lose.</div></div>
@@ -407,7 +409,8 @@ def build():
     H.append(part(2, "Too small to say", "Alta, which Harley never put a number on, and StaCyc, the one purchase that has hit every target it was given.",
                   "Alta: one sentence in one press release, no amount in any filing, bounded by Alta&rsquo;s own Form D at $5.65M, gone in six months. StaCyc: $14.9M, earn-out paid in full, 21,633 units in 2025 to LiveWire&rsquo;s 653.",
                   "Together they show what Harley actually wanted from electric. Not a motorcycle company. A battery it could learn from, and a $649 product that puts a family on a dealer floor.",
-                  "Brisbane, California, 2018", "Alta Motors&rsquo; Redshift on a Harley dealer floor, one of 44 that carried it. Six months later the building was empty."))
+                  "Brisbane, California, 2018", "Alta Motors&rsquo; Redshift on a Harley dealer floor, one of 44 that carried it. Six months later the building was empty.",
+                  "A small electric dirt bike on a polished dealership floor between two large cruisers, price tag hanging, morning light through showroom glass. Ink and wash, 3:2, no logos."))
 
     fd_rows = [
         ("7 Mar 2016", "$7.0M convertible notes", ("$1.77M", "num"), ("18", "num"), "Marc Fenigstein, CEO"),
@@ -420,7 +423,7 @@ def build():
                 fmt=lambda v: ("+" if v > 0 else "\u2212") + f"${abs(v):.1f}M",
                 label="Investment income: plus $1.1M in Q3 2017; minus $1.1M in Q3 2018; minus $1.7M in Q4 2018.", vb=(720, 260),
                 tips=["Q3 2017: +$1,083K", "Q3 2018: −$1,106K", "Q4 2018: −$1,679K"])
-    H.append(section(brandrow("04 &mdash; Alta Motors") + f"""
+    H.append(section(brandrow("04 &middot; Alta Motors") + f"""
     <h2>One sentence, no number, six months</h2>
     <p class="lede">March 1, 2018: &ldquo;Harley-Davidson Invests In Alta Motors; Companies Will Collaborate On Future Electric Motorcycle Product Development.&rdquo; Search every filing Harley made in 2018 and 2019 for what it paid, and this is what you find.</p>
     <p>Matt Levatich, in the release: &ldquo;Alta has demonstrated innovation and expertise in EV and their objectives align closely with ours. We each have strengths and capabilities that will be mutually beneficial as we work together to develop cutting-edge electric motorcycles.&rdquo; No amount. No percentage. The Q1 2018 earnings release, filed as an 8-K exhibit on April 24, is the only Harley-Davidson SEC filing that has ever contained the word &ldquo;Alta&rdquo;: <em>&ldquo;Invested in a collaborative agreement with Alta Motors, an innovator in lightweight electric vehicles, supporting Harley-Davidson&rsquo;s commitment to lead in the electrification of the sport of motorcycling.&rdquo;</em></p>
@@ -429,14 +432,14 @@ def build():
     <h3 style="font-size:clamp(21px,2.6vw,28px); margin-top:46px">Alta&rsquo;s own paperwork bounds it</h3>
     <p>Alta Motors was the trade name. The company was <strong>Faster Faster, Inc.</strong>, Brisbane, California, CIK 1620298, and it filed a Form D for every round it raised.</p>
     {tbl(['Filed', 'Offering', 'Sold', 'Investors', 'Signed by'], fd_rows, ['14%', '38%', '12%', '10%', '26%'])}
-    <p>The round Harley joined was closed by amendment on February 2, 2018, four weeks before the announcement. Between the July 2017 notice and the February 2018 amendment the round grew by {n('$5.65M')} and {n('six')} investors. No Form D reports an equity sale after that. If Harley&rsquo;s money is in that round &mdash; and there is nowhere else in the record for it to be &mdash; the check was inside $5.65M. {ev('inf')} Harley has never stated the figure.</p>
+    <p>The round Harley joined was closed by amendment on February 2, 2018, four weeks before the announcement. Between the July 2017 notice and the February 2018 amendment the round grew by {n('$5.65M')} and {n('six')} investors. No Form D reports an equity sale after that. If Harley&rsquo;s money is in that round, and there is nowhere else in the record for it to be, the check was inside $5.65M. {ev('inf')} Harley has never stated the figure.</p>
     <ul class="tl">
       <li><b>2 Feb 2018</b><span>Alta closes its equity round at $20,843,998 (Form D/A, filed 5 Feb).</span></li>
       <li><b>1 Mar 2018</b><span>Harley announces the investment and co-development. &ldquo;We intend to be the world leader in the electrification of motorcycles.&rdquo;</span></li>
       <li><b>30 Jul 2018</b><span>&ldquo;More Roads to Harley-Davidson&rdquo;: LiveWire in 2019, &ldquo;additional models through 2022,&rdquo; $450&ndash;550M of operating investment. Alta is not mentioned.</span></li>
       <li><b>27 Jul 2018</b><span>Alta begins selling a $5.0M bridge note; $2.45M placed with four investors (Form D, filed 13 Aug).</span></li>
       <li><b>29 Aug 2018</b><span>Asphalt &amp; Rubber, sourced: Harley &ldquo;has all but removed itself from its joint motorcycle project with Alta.&rdquo; No company statement. {ev('unv')}</span></li>
-      <li class="h"><b>5 Sep 2018</b><span>Harley announces &ldquo;a new advanced technology R&amp;D facility in Silicon Valley&rdquo; &mdash; about 25 staff, &ldquo;battery, power electronics, and e-machine design and development.&rdquo; Alta&rsquo;s specialty, one exit away from Alta&rsquo;s building.</span></li>
+      <li class="h"><b>5 Sep 2018</b><span>Harley announces &ldquo;a new advanced technology R&amp;D facility in Silicon Valley&rdquo;: about 25 staff, &ldquo;battery, power electronics, and e-machine design and development.&rdquo; Alta&rsquo;s specialty, one exit away from Alta&rsquo;s building.</span></li>
       <li><b>17 Oct 2018</b><span>Alta ceases operations. Harley to TechCrunch: &ldquo;Our collaborative efforts with Alta Motors were productive and we were pleased with the development work we partnered on.&rdquo;</span></li>
       <li><b>20 Feb 2019</b><span>BRP buys &ldquo;certain intellectual property, patents and some limited physical assets&rdquo; and says it has &ldquo;no interest in restarting operations of Alta Motors.&rdquo;</span></li>
     </ul>
@@ -456,10 +459,10 @@ def build():
         ("Earn-out, fair value at close", ("$4.98M", "num"), "Maximum $6.537M, &ldquo;based on the achievement of sales volume targets&rdquo; over three twelve-month periods from June 2019"),
         ("Paid 2020", ("$2.18M", "num"), "First performance period met"),
         ("Paid 2021", ("$2.18M", "num"), "Second period met"),
-        ("Paid 24 Jun 2022", ("$2.18M", "num"), "&ldquo;the final earnout payment&rdquo; &mdash; third period met"),
+        ("Paid 24 Jun 2022", ("$2.18M", "num"), "&ldquo;the final earnout payment.&rdquo; Third period met"),
         ("<b>Total paid</b>", ("<b>$6.54M</b>", "num"), "Effectively the maximum. Every volume milestone hit"),
     ]
-    H.append(section(brandrow("05 &mdash; StaCyc") + f"""
+    H.append(section(brandrow("05 &middot; StaCyc") + f"""
     <h2>$14.9 million, and it outsells LiveWire 33 to 1</h2>
     <p class="lede">The Q1 2019 10-Q: &ldquo;On March 4, 2019, the Company purchased certain assets and liabilities of StaCyc, Inc. for total consideration of $14.9 million including cash paid at acquisition of $7.0 million.&rdquo; The stated reason was not electrification. It was the next customer.</p>
     <p>Harley&rsquo;s filing never explains the other $7.9M. LiveWire&rsquo;s carve-out financials, filed when the SPAC closed, do: a contingent earn-out with a fair value of {n('$4.98M')} at acquisition and a maximum of $6.537M, paid {n('$2.18M')} in each of 2020, 2021 and 2022. StaCyc hit every volume target it was given.</p>
@@ -485,10 +488,11 @@ def build():
 
     # ═════════ PART IV — WHAT IT BUILDS ═════════
     H.append(part(3, "What it builds", "Three in-house programs, two outcomes, and the rule that falls out of them.",
-                  "The Milwaukee-Eight and the Revolution Max got built and kept. The Street &mdash; the one time Harley built its own small bike in its own plants &mdash; lost money, closed the Indian plant, and handed the segment to Hero.",
+                  "The Milwaukee-Eight and the Revolution Max got built and kept. The Street, the one time Harley built its own small bike in its own plants, lost money, closed the Indian plant, and handed the segment to Hero.",
                   "Harley develops from within when the product carries the full brand at the full price. Below that line it has never once succeeded on its own, and it stopped trying in 2020.",
-                  "Bawal, Haryana, 2014", "The Street 750 line at Harley&rsquo;s own Indian plant. Closed September 2020; one month later the Hero agreements were signed."))
-    H.append(section(brandrow("06 &mdash; Built in-house") + f"""
+                  "Bawal, Haryana, 2014", "The Street 750 line at Harley&rsquo;s own Indian plant. Closed September 2020; one month later the Hero agreements were signed.",
+                  "A liquid-cooled middleweight cruiser being assembled in a bright modern Indian plant, workers in blue, monsoon sky outside. Ink and wash, 3:2, no logos."))
+    H.append(section(brandrow("06 &middot; Built in-house") + f"""
     <h2>Two engines kept. One small bike lost money and left.</h2>
     <p class="lede">The table has three things Harley built rather than bought in the last fifteen years. Two are still the engines of its highest-priced lines. The third is the reason the Sprint is a Hero.</p>
     <p><strong>Street 500/750, 2013.</strong> &ldquo;The first all-new platform from Harley-Davidson in 13 years,&rdquo; liquid-cooled Revolution X, for &ldquo;young adults in cities around the world,&rdquo; built in Kansas City for North America and in Bawal, India, for everywhere else. On September 24, 2020 Harley filed an 8-K &ldquo;discontinuing its sales and manufacturing operations in India&rdquo;: about 70 employees, &ldquo;approximately {n('$75 million')}&rdquo; of restructuring expense for the actions approved that month, of which &ldquo;contract termination and other costs of approximately $67 million.&rdquo; One month later it signed the Hero agreements. The verdict came from the CFO, Gina Goetter, on the Q3 2021 call: &ldquo;the decision to exit the unprofitable Street and Legacy Sportster bikes.&rdquo;</p>
@@ -502,12 +506,13 @@ def build():
     H.append(part(4, "The Sprint rhyme", "1960, an Aermacchi. 2026, a Hero. The same hole below the big twin, and somebody else&rsquo;s engine in it both times.",
                   "The first Sprint was built in Varese by a company Harley half-owned. The new one runs a 440 single Hero co-developed and builds in Neemrana for a &#8377;2.29 lakh motorcycle. Where the Sprint is built and what it costs are undecided.",
                   "Those two facts are the test of the rule. Hero-built means the rule held and the plan&rsquo;s &ldquo;existing platforms&rdquo; include a licensee&rsquo;s. York-built means it is not a $6,000 motorcycle, and Street says what happens next.",
-                  "Neemrana, Rajasthan, 2023", "The X440 on Hero&rsquo;s line at the Garden Factory. Co-developed at Hero&rsquo;s CIT, priced at &#8377;2,29,000. The Sprint&rsquo;s engine."))
-    H.append(section(brandrow("07 &mdash; Aermacchi to Hero") + f"""
+                  "Neemrana, Rajasthan, 2023", "The X440 on Hero&rsquo;s line at the Garden Factory. Co-developed at Hero&rsquo;s CIT, priced at &#8377;2,29,000. The Sprint&rsquo;s engine.",
+                  "A 440cc single-cylinder roadster, oil-cooled engine exposed, on a stand in a clean Indian factory with trees visible through open bays. Ink and wash, 3:2, no logos."))
+    H.append(section(brandrow("07 &middot; Aermacchi to Hero") + f"""
     <h2>Same hole, somebody else&rsquo;s engine</h2>
-    <p class="lede">The first Harley-Davidson Sprint was an Aermacchi. Harley bought half of the Varese motorcycle division in 1960 &mdash; about a quarter of a million dollars, by the accounts that survive &mdash; because the 125cc Hummer left a hole between it and the big twins that Japan was about to fill.</p>
-    <p>It sold the Sprint for fourteen years, won three 250cc world championships (1974&ndash;76) and a 350 title with Walter Villa on Aermacchi-built Harleys, and then in 1978 AMF sold the factory and the rights to the Castiglioni brothers &mdash; the same family it bought MV Agusta from thirty years later and sold it back to for a euro. {ev('unv')} Prices and dates for Aermacchi are secondary-sourced; open item 3.</p>
-    <p>Sixty-six years on the Sprint returns, into the same hole, on somebody else&rsquo;s engine. Hero&rsquo;s July 3, 2023 release: the X440&rsquo;s 440cc single was &ldquo;co-developed by Hero MotoCorp and Harley-Davidson at the Hero Center for Innovation and Technology,&rdquo; built at the &ldquo;Garden Factory at Neemrana, Rajasthan,&rdquo; and priced from {n('&#8377;2,29,000')} &mdash; about {n('$2,760')}. Trade reporting puts X440 sales at 8,974 units in the nine months to December 2024. {ev('unv')}</p>
+    <p class="lede">The first Harley-Davidson Sprint was an Aermacchi. Harley bought half of the Varese motorcycle division in 1960, for about a quarter of a million dollars by the accounts that survive, because the 125cc Hummer left a gap between it and the big twins that Japan was about to fill.</p>
+    <p>It sold the Sprint for fourteen years, won three 250cc world championships (1974&ndash;76) and a 350 title with Walter Villa on Aermacchi-built Harleys, and then in 1978 AMF sold the factory and the rights to the Castiglioni brothers. Thirty years later Harley bought MV Agusta from the same family, and sold it back to them for a euro. {ev('unv')} Prices and dates for Aermacchi are secondary-sourced; open item 3.</p>
+    <p>Sixty-six years on the Sprint returns, into the same hole, on somebody else&rsquo;s engine. Hero&rsquo;s July 3, 2023 release: the X440&rsquo;s 440cc single was &ldquo;co-developed by Hero MotoCorp and Harley-Davidson at the Hero Center for Innovation and Technology,&rdquo; built at the &ldquo;Garden Factory at Neemrana, Rajasthan,&rdquo; and priced from {n('&#8377;2,29,000')}, about {n('$2,760')}. Trade reporting puts X440 sales at 8,974 units in the nine months to December 2024. {ev('unv')}</p>
     <ul class="tl">
       <li><b>Jul 2025</b><span>Zeitz, Q2 call: the Sprint has &ldquo;been in development since 2021,&rdquo; is &ldquo;targeting an entry price below $6,000,&rdquo; and will be &ldquo;not only highly accessible, but also profitable.&rdquo;</span></li>
       <li><b>Nov 2025</b><span>Starrs, Q3 call: &ldquo;a bike that&rsquo;s lighter and easier to maneuver &hellip; a bike that&rsquo;s more affordable.&rdquo;</span></li>
@@ -516,13 +521,13 @@ def build():
       <li><b>Jul 2026</b><span>Starrs, Q2 call: &ldquo;we expect to ship Sprint end of this year.&rdquo; No price, no plant, no mention of Hero.</span></li>
     </ul>
     <p>Nobody at Harley has said where the Sprint will be built or what it will cost. Both facts are the test. If the Sprint ships from Neemrana at a Hero cost base, the rule held and the &ldquo;existing platforms&rdquo; in Starrs&rsquo;s plan include one that belongs to a licensee in Rajasthan. If it ships from York at a York cost base, it will not be a $6,000 motorcycle, and the Street&rsquo;s history says what happens next.</p>
-    {sowhat('07', 'The company has been trying to fill the space below the big twin with somebody else&rsquo;s motorcycle since Eisenhower. It has never once filled it with its own.', 'The Sprint is a channel product for a dealer network with 554 U.S. stores and half the retail volume it had in 2014. It will be called &ldquo;accessible&rdquo; and never core.', 'The two facts that decide it &mdash; plant and MSRP &mdash; are both due before the end of 2026. Watch the Q3 call.')}
+    {sowhat('07', 'The company has been trying to fill the space below the big twin with somebody else&rsquo;s motorcycle since Eisenhower. It has never once filled it with its own.', 'The Sprint is a channel product for a dealer network with 554 U.S. stores and half the retail volume it had in 2014. It will be called &ldquo;accessible&rdquo; and never core.', 'The two facts that decide it, plant and MSRP, are both due before the end of 2026. Watch the Q3 call.')}
     """))
 
-    H.append(section(brandrow("08 &mdash; The 883") + f"""
+    H.append(section(brandrow("08 &middot; The 883") + f"""
     <h2>The other half of the test</h2>
     <p class="lede">&ldquo;Our iconic Harley-Davidson Sportster will be returning in 2027.&rdquo; Air-cooled, &ldquo;middleweight,&rdquo; &ldquo;accessible starting price point,&rdquo; &ldquo;the most requested motorcycle from both our riders and our dealers.&rdquo;</p>
-    <p>Starrs, May 2026: &ldquo;we have the cost at a place where we are comfortable against the expected MSRP.&rdquo; Trade reporting: an 883cc air-cooled twin, about $10,000, built in York. {ev('unv')} It is the first air-cooled twin program since the Evolution and, if the reporting holds, the first time in the record that the space below the big twin is being filled from inside the building at a price where the building has never made money. Raymond James, on the same call: &ldquo;there&rsquo;s a reason why Sportster was discontinued, right? It was hard to make money.&rdquo;</p>
+    <p>Starrs, May 2026: &ldquo;we have the cost at a place where we are comfortable against the expected MSRP.&rdquo; Trade reporting: an 883cc air-cooled twin, about $10,000, built in York. {ev('unv')} It is the first air-cooled twin program since the Evolution and, if the reporting holds, the first time in the record that the space below the big twin is being filled from Harley&rsquo;s own plant, at a price where Harley has never made money. Raymond James, on the same call: &ldquo;there&rsquo;s a reason why Sportster was discontinued, right? It was hard to make money.&rdquo;</p>
     <div class="duo">
       <div class="card"><div class="k">If the 883 is built in York and makes money at ~$10,000</div><div class="big cy">Rule breaks</div><p>The plan has a second lever, and Starrs is the first CEO in the record to fill the hole from inside.</p></div>
       <div class="card mag"><div class="k">If the Sprint is Hero-built and the 883 slips or moves</div><div class="big mag">Rule holds</div><p>Back to the Bricks is a Touring and Softail plan with a licensee&rsquo;s motorcycle at the bottom, and the undecided Sprint plant was the tell.</p></div>
@@ -534,37 +539,38 @@ def build():
     H.append(part(5, "The final word", "Seven CEOs, one cycle, and what every purchase was actually for.",
                   "Each CEO&rsquo;s outside moves are the next CEO&rsquo;s focus story. LiveWire is eleven months into a CEO who did not start it, with the sentence already said and the cheapest unwind in the table.",
                   "The parent never wanted the electric motorcycle. It wanted the floor traffic. Read that way, the whole record is one decision.",
-                  "Juneau Avenue", "The headquarters, where every one of these decisions was signed. The building has room for one brand."))
+                  "Juneau Avenue", "The headquarters, where every one of these decisions was signed. The building has room for one brand.",
+                  "A red-brick industrial headquarters block on a Milwaukee street at dusk, one lit window, wet pavement. Ink and wash, 3:2, no signage."))
     ceo_rows = [
         ("Richard Teerlink", "&ndash;1997", "Eaglemark 49% and 100%; Buell 49%", "Holiday Rambler"),
-        ("Jeffrey Bleustein", "1997&ndash;2005", "Buell to ~100%", "&mdash;"),
-        ("James Ziemer", "2005&ndash;2009", "MV Agusta", "&mdash;"),
-        ("Keith Wandell", "2009&ndash;2015", "&mdash;", "<span class='hi'>Buell; MV Agusta</span>"),
+        ("Jeffrey Bleustein", "1997&ndash;2005", "Buell to ~100%", "none"),
+        ("James Ziemer", "2005&ndash;2009", "MV Agusta", "none"),
+        ("Keith Wandell", "2009&ndash;2015", "none", "<span class='hi'>Buell; MV Agusta</span>"),
         ("Matt Levatich", "2015&ndash;2020", "Thailand plant; Alta; StaCyc; Qianjiang; Silicon Valley R&amp;D; LiveWire as a brand", "Alta"),
         ("Jochen Zeitz", "2020&ndash;2025", "Hero licence; LiveWire SPAC; KYMCO; HDFS to KKR/PIMCO", "<span class='hi'>India manufacturing; Street; Sportster; Bronx</span>; Rev Max to Thailand"),
         ("Artie Starrs", "Oct 2025&ndash;", "Sprint; Sportster 883 return; Dust (via LiveWire)", "Rev Max back from Thailand; &ldquo;leaned heavily into Touring and Electric&rdquo;"),
     ]
-    H.append(section(brandrow("09 &mdash; The cycle") + f"""
+    H.append(section(brandrow("09 &middot; The cycle") + f"""
     <h2>Each CEO&rsquo;s purchases are the next CEO&rsquo;s focus story</h2>
     <p class="lede">Bleustein bought Buell; Wandell shut it. Ziemer bought MV; Wandell sold it. Levatich bought Alta, StaCyc, the QJ deal and the Thailand plant; Zeitz kept the two that fill dealer floors and reversed the one that built motorcycles offshore. Zeitz spun LiveWire and sold the finance company; Starrs brought Rev Max home and brought back a motorcycle discontinued four years earlier.</p>
     {tbl(['CEO', 'Tenure', 'Bought or started', 'Sold, shut or reversed'], ceo_rows, ['18%', '12%', '38%', '32%'])}
-    <p>Buell lasted sixteen years in the family and eleven months into a new CEO. MV lasted fourteen months into one. LiveWire is eleven months into Starrs. That is not a strategy; it is a cycle, and the table is its record.</p>
+    <p>Buell lasted sixteen years under Harley ownership and eleven months into a new CEO. MV lasted fourteen months into one. LiveWire is eleven months into Starrs. That is not a strategy; it is a cycle, and the table is its record.</p>
     {sowhat('09', 'Seven CEOs, and the outside moves reset every five to seven years, with the same sentence.', 'What survives the reset is whatever makes money on somebody else&rsquo;s product on a dealer&rsquo;s floor: HDFS, StaCyc, the licences.', 'The next reset is LiveWire&rsquo;s, and it has a date: cash to about May 2027, the $75M note due December 15, 2027.')}
     """))
 
-    H.append(section(brandrow("10 &mdash; Analysis, not reporting") + f"""
+    H.append(section(brandrow("10 &middot; Analysis, not reporting") + f"""
     <h2>What it was for</h2>
     <p class="lede">Everything above this line is filed. This section is judgment, and says so.</p>
     <div class="kn">
       <div class="kn-row"><div class="kn-l">{ev('inf')}LiveWire</div><div class="kn-t">It is following the Buell and MV Agusta script, and the script has four lines. A CEO who did not start it. The focus sentence, already written: &ldquo;Over the last several years, we leaned heavily into Touring and Electric. Going forward, we are shifting to a more rider-centric portfolio.&rdquo; A cheap unwind: the public minority is roughly $28M at recent prices, the assets are pledged to Harley under the $75M secured note, and Harley &ldquo;does not plan to make additional investments&rdquo; (No. 02 &sect;3). And a date: cash to about May 2027, the note due December 15, 2027. Buell cost $125M to shut. MV cost $268M. LiveWire&rsquo;s losses are already consolidated; the unwind costs Harley a write-down on a note it holds against collateral it built. It is the cheapest exit in the table.</div></div>
-      <div class="kn-row"><div class="kn-l">{ev('inf')}StaCyc and Dust</div><div class="kn-t">The two pieces of LiveWire with a future are the two that were never electric motorcycles. StaCyc is a dealer-traffic product with a margin and a five-year record of hitting volume targets. Dust is an option on off-road electric that cost $375,000 in cash and $3.5M all-in before earn-outs &mdash; the Alta structure, done inside a subsidiary this time so the write-off, if it comes, lands in a segment Harley has already told investors to look past. If LiveWire is sold, merged or wound down, watch whether these two are carved back into the motor company. That would be the tell.</div></div>
+      <div class="kn-row"><div class="kn-l">{ev('inf')}StaCyc and Dust</div><div class="kn-t">The two pieces of LiveWire with a future are the two that were never electric motorcycles. StaCyc is a dealer-traffic product with a margin and a five-year record of hitting volume targets. Dust is an option on off-road electric that cost $375,000 in cash and $3.5M all-in before earn-outs. It is the Alta structure, done inside a subsidiary this time, so the write-off, if it comes, lands in a segment Harley has already told investors to look past. If LiveWire is sold, merged or wound down, watch whether these two are carved back into the motor company. That would be the tell.</div></div>
       <div class="kn-row"><div class="kn-l">{ev('ind')}The Sprint</div><div class="kn-t">Hero-built or Hero-engined; a channel product for a dealer network with 554 U.S. stores and half the retail it had in 2014; described as &ldquo;accessible&rdquo; and never as core; kept as long as it does not carry a Harley badge into a Harley segment. Volume will matter more than margin because the margin is Hero&rsquo;s.</div></div>
       <div class="kn-row"><div class="kn-l">{ev('ind')}The 883</div><div class="kn-t">The one that decides whether Starrs is different. Build location and MSRP are the two facts that matter; both were open items in No. 02 and both are still open.</div></div>
     </div>
     <div class="final">
       <div class="h">{ev('inf')}The final word &middot; Harley-Davidson</div>
       <h3>Harley doesn&rsquo;t want electric. It wants floor traffic.</h3>
-      <p>The Milwaukee-Eight and the Revolution Max got built because a Touring bike and a Pan America carry a $25,000 price that pays for an engine program. A 440 single, a balance bike, a battery and a consumer loan book do not, and every one of them was bought, licensed or partnered &mdash; kept when it feeds the dealer, dropped when it competes with the badge.</p>
+      <p>The Milwaukee-Eight and the Revolution Max got built because a Touring bike and a Pan America carry a $25,000 price that pays for an engine program. A 440 single, a balance bike, a battery and a consumer loan book do not, and every one of them was bought, licensed or partnered. Kept when it feeds the dealer. Dropped when it competes with the badge.</p>
       <p>Read the electric decade that way and it stops looking like a series of mistakes. Alta was a battery lesson bought for a sum too small to disclose. LiveWire was an option on a category, sold to the public so the losses would sit somewhere else until consolidation brought them home. StaCyc was the only part of it Harley ever wanted for its own sake: a <b class="n">$649</b> product that puts a family on a dealer floor and brings them back in ten years for a Sportster. <strong>It is the one part of the electric decade the company has never had to write down, and it is the one that was never an electric motorcycle.</strong></p>
       <p>I ran product at Harley. I know the meeting where a program gets its cost target, and I know which programs never get one because the answer is already known. The Sprint got one in 2021 and is still &ldquo;finalizing production plans&rdquo; in 2026. That is the answer.</p>
       <p>Ground Truth No. 02 ended by asking which brick LiveWire is under. This one ends with the question underneath that. <strong>The record says Harley keeps what fills the dealer floor and sells what competes with the badge. Which of those is the Sprint?</strong></p>
@@ -639,7 +645,7 @@ def build():
         ("Curbside Classic; Classic Bike Hub; Motorcycle Classics; Rider &middot; Aermacchi", "various", (link("https://www.curbsideclassic.com/blog/two-wheelers/harley-davidson-sprint-the-spaghetti-hoglet/", "Open &rarr;"), "num")),
     ]
     H.append(section(f"""
-    <div class="eyebrow">11 &mdash; Sources</div>
+    <div class="eyebrow">11 &middot; Sources</div>
     <h2>Every document, linked</h2>
     <p class="lede">Each row in the first table opens the filing on EDGAR. The second is company releases and full call transcripts. The third is secondary, and nothing rests on it that is not marked Unverified in the text.</p>
     {tbl(['Document', 'Filed', 'What it supports', 'Link'], src_rows, ['24%', '11%', '45%', '20%'])}
@@ -651,7 +657,7 @@ def build():
 
     # ═════════ METHOD & STANDING ═════════
     open_rows = [
-        ("1", "Alta investment amount", "Not in any H-D filing (full-text search, 2018&ndash;2019). The bound in &sect;04 is inferred from Faster Faster, Inc.&rsquo;s Form D chain. The FY2018 10-K MD&amp;A paragraph on investment income was not retrieved &mdash; the one place an unnamed write-off might be described."),
+        ("1", "Alta investment amount", "Not in any H-D filing (full-text search, 2018&ndash;2019). The bound in &sect;04 is inferred from Faster Faster, Inc.&rsquo;s Form D chain. The FY2018 10-K MD&amp;A paragraph on investment income was not retrieved. It is the one place an unnamed write-off might be described."),
         ("2", "&ldquo;Alta Motors&rdquo; in LiveWire&rsquo;s 10-Ks", "LiveWire&rsquo;s FY2024 and FY2025 10-Ks contain the string (EDGAR full-text hit); location not retrieved, probably an officer biography."),
         ("3", "Aermacchi", "1960 price (~$250K), 1978 sale price, Sprint volumes and the year of full ownership (1972&ndash;74) are secondary only."),
         ("4", "Holiday Rambler purchase price", "$155M is trade press (Family RVing, 2003); the 1986 annual report is not on EDGAR."),
@@ -663,7 +669,7 @@ def build():
         ("10", "Realized India exit charge", "$75M is the estimate for actions approved September 2020; FY2020 restructuring was $130.0M for all 2020 actions and does not break India out."),
     ]
     corr_rows = [
-        ("MV Agusta: &ldquo;~$163M of losses in 24 months.&rdquo;", "That is the 8-K&rsquo;s &ldquo;prior write-downs of $162.6 million, net of tax&rdquo; &mdash; impairments only. The filed net loss from discontinued operations is <strong>$268.4M</strong> (2008&ndash;10), $217.4M after the Q4 2011 tax reversal."),
+        ("MV Agusta: &ldquo;~$163M of losses in 24 months.&rdquo;", "That is the 8-K&rsquo;s &ldquo;prior write-downs of $162.6 million, net of tax,&rdquo; which is impairments only. The filed net loss from discontinued operations is <strong>$268.4M</strong> (2008&ndash;10), $217.4M after the Q4 2011 tax reversal."),
         ("MV sale: &ldquo;&euro;1 with &euro;20M of H-D cash inside.&rdquo;", "Right but incomplete: three nominal payments (&euro;1 shares, $1 U.S. LLC, &euro;1 for a &euro;103.8M receivable), &euro;20.0M into escrow, earn-out waived."),
         ("StaCyc 2025 units: 21,141.", "<strong>21,633</strong> (LiveWire FY2025 release). Ratio to motorcycles 32 &rarr; 33."),
         ("HDFS: &ldquo;9.8% to KKR/PIMCO, ~$6B book sold.&rdquo;", "4.9% each to KKR and PIMCO (9.8% collectively, FY2025 10-K) and &ldquo;over $5 billion&rdquo; of receivables (30 Jul 2025 release)."),
@@ -677,7 +683,7 @@ def build():
         ("Aermacchi full ownership 1974.", "Sources split 1972/1973/1974; stated as &ldquo;early 1970s.&rdquo;"),
     ]
     H.append(section(f"""
-    <span id="method"></span><div class="eyebrow">12 &mdash; Method &amp; standing</div>
+    <span id="method"></span><div class="eyebrow">12 &middot; Method &amp; standing</div>
     <h2>Who wrote this, and how</h2>
     {bio}
     <div class="duo" style="margin-top:30px">
@@ -685,7 +691,7 @@ def build():
         <div class="k">Method</div>
         <p style="font-size:15px; color:var(--ink)"><strong>Primary documents first.</strong> Every dollar figure on MV Agusta, Buell, StaCyc, Eaglemark, India, Dust and LiveWire is from a filing, linked in &sect;11. Alta&rsquo;s bound is from Alta&rsquo;s own Form D chain, and is marked as an inference.</p>
         <p><strong>Derived figures are labelled.</strong> Loss-to-consideration multiples, loss per month, units per unit, revenue per unit and the Form D increment are arithmetic on filed numbers; the script is in the repo at <code>tools/gt03/calc.py</code>.</p>
-        <p><strong>Fact and opinion are separated.</strong> &sect;&sect;01&ndash;09 are sourced. &sect;10 is judgment and says so. Where a reading rests on my time in the industry &mdash; the York cost base, the planning-office calculation &mdash; it is tagged Industry context.</p>
+        <p><strong>Fact and opinion are separated.</strong> &sect;&sect;01&ndash;09 are sourced. &sect;10 is judgment and says so. Where a reading rests on my time in the industry (the York cost base, the planning-office calculation) it is tagged Industry context.</p>
         <p><strong>No inside sources.</strong> Nothing here rests on anything I was told. The public record carries every claim.</p>
       </div>
       <div class="card">
@@ -702,7 +708,7 @@ def build():
     </div>
     """))
     H.append(section(f"""
-    <div class="eyebrow">13 &mdash; Open items &amp; corrections</div>
+    <div class="eyebrow">13 &middot; Open items &amp; corrections</div>
     <h2>What is not yet nailed down, and what Rev. 0 got wrong</h2>
     <p class="lede">Ten open items. Anything in this list is tagged Unverified where it appears above. The corrections log is public policy: nothing is fixed silently.</p>
     {tbl(['#', 'Item', 'Status'], open_rows, ['5%', '28%', '67%'])}
@@ -717,10 +723,10 @@ def build():
   <div class="wrap">
     <div class="tape">Method &amp; limitations</div>
     <h4>What this brief does and does not claim</h4>
-    <p>Every figure is drawn from SEC filings, company releases, or full call transcripts, except where marked Unverified. Derived figures &mdash; loss multiples, per-unit revenue, the Form D increment &mdash; are arithmetic on filed numbers and are identified as such in the captions.</p>
+    <p>Every figure is drawn from SEC filings, company releases, or full call transcripts, except where marked Unverified. Derived figures (loss multiples, per-unit revenue, the Form D increment) are arithmetic on filed numbers and are identified as such in the captions.</p>
     <p><strong>This brief does not assert, and no filing states, that Harley-Davidson intends to sell, wind down, reabsorb or otherwise change its relationship with LiveWire, StaCyc or Dust, or that the Sprint will be built by Hero MotoCorp.</strong> &sect;10 is an enumeration of what the record has done before, identified as judgment. The Alta investment amount has never been disclosed by Harley-Davidson; the bound in &sect;04 is an inference from Faster Faster, Inc.&rsquo;s Regulation D notices and is labelled as such.</p>
     <p>Marc Fenigstein&rsquo;s account of the Alta&ndash;Harley collaboration is quoted from a published interview, is his, and is unverified. The author knows him and has worked with him. That relationship is disclosed in &sect;12 and here.</p>
-    <p>Prior issues: <a href="../02/">No. 02 &mdash; Harley-Davidson: Back to the Bricks</a> &middot; <a href="../01/">No. 01 &mdash; LiveWire: 5 Years In and 1% of Plan</a> &middot; <a href="../../">Index</a></p>
+    <p>Prior issues: <a href="../02/">No. 02, Harley-Davidson: Back to the Bricks</a> &middot; <a href="../01/">No. 01, LiveWire: 5 Years In and 1% of Plan</a> &middot; <a href="../../">Index</a></p>
     <p style="margin-top:26px; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)">
       Contact Patch Advisory &middot; Ground Truth No. {NN} &middot; {REV} &middot; William Weppner &middot; {DATE}
     </p>
