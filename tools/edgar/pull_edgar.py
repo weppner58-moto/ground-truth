@@ -127,6 +127,23 @@ def html_to_text(html_bytes):
     return text.strip() + "\n"
 
 
+def submission_to_text(data, form):
+    """Complete-submission .txt: keep the EX-99 documents for an 8-K, else the main form."""
+    raw = data.decode("utf-8", "replace")
+    docs = re.findall(r"<DOCUMENT>(.*?)</DOCUMENT>", raw, flags=re.S)
+    keep = []
+    for doc in docs:
+        m = re.search(r"<TYPE>([^\n<]+)", doc)
+        dtype = (m.group(1).strip() if m else "").upper()
+        want = dtype.startswith("EX-99") if form.startswith("8-K") else dtype == form.upper()
+        if not want:
+            continue
+        body = re.search(r"<TEXT>(.*?)</TEXT>", doc, flags=re.S)
+        body = body.group(1) if body else doc
+        keep.append(f"[{dtype}]\n\n" + html_to_text(body.encode("utf-8")))
+    return "\n\n".join(keep) if keep else html_to_text(raw.encode("utf-8"))
+
+
 def wanted_docs(form, names, all_8k):
     """Pick which files in a filing directory to keep."""
     keep = []
@@ -198,6 +215,10 @@ def main():
             else:
                 # 10-K / 10-Q / proxy: the primary document only (no ex31/ex32/ex10 boilerplate)
                 docs = [primary] if primary and primary in names else wanted_docs(form, names, args.all_8k)[:1]
+            if not docs:
+                # Some older filing directories list only the complete submission file.
+                # Pull it and split out the documents we want.
+                docs = [f"{acc}.txt"]
             for d in docs:
                 url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{acc_nodash}/{d}"
                 raw_path = raw_root / tk / tag / d
@@ -216,7 +237,12 @@ def main():
                 if d.lower().endswith(".pdf"):
                     text_bytes = 0
                 else:
-                    text = html_to_text(data) if d.lower().endswith((".htm", ".html")) else data.decode("utf-8", "replace")
+                    if d == f"{acc}.txt":
+                        text = submission_to_text(data, form)
+                    elif d.lower().endswith((".htm", ".html")):
+                        text = html_to_text(data)
+                    else:
+                        text = data.decode("utf-8", "replace")
                     txt_path.parent.mkdir(parents=True, exist_ok=True)
                     txt_path.write_text(text, encoding="utf-8")
                     text_bytes = len(text.encode("utf-8"))
