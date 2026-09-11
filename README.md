@@ -34,6 +34,8 @@ python3 tools/gt03/build_series.py                    # site/groundtruth/03/seri
 python3 tools/lib/render_slides.py site/groundtruth/03/series/index.html 03 \
   "1:The-Record" "2:Same-Sentence" "3:Too-Small-to-Say" "4:The-Sprint-and-Final-Word"   # PNGs + PDFs
 python3 tools/gt03/calc.py                            # every derived figure, reproduced
+python3 tools/lib/split_brief.py 03                   # public page + full/ (registered readers); safe to re-run
+python3 tools/lib/render_brief_pdf.py 03              # site/groundtruth/assets/GroundTruth-03_Full-Brief.pdf
 
 No. 02 builds the same way from `tools/gt02/` (its chart/render helpers live in `tools/gt02/lib/`).
 ```
@@ -53,7 +55,7 @@ Custom domain: contactpatchadvisory.com. The registration gate is in `functions/
 | `TURNSTILE_SITEKEY`, `TURNSTILE_SECRET` | plain text, secret | optional bot check on the form |
 | `NOTIFY` + `NOTIFY_TO` | send_email binding, plain text | optional email to you on each registration (needs Email Routing on the zone) |
 
-Without `GATE_SECRET` nothing is gated, so a preview deploy serves the whole site. Gated paths: `/groundtruth/assets/*.pdf` and `/groundtruth/NN/full/`.
+Without `GATE_SECRET` nothing is gated, so a preview deploy serves the whole site. Gated paths: `/groundtruth/NN/full/` (the complete brief) and `/groundtruth/assets/GroundTruth-NN_Full-Brief.pdf`. The public page of each issue is the hero, Start here and section 01, then the register panel; the series pages and carousel PDFs stay open.
 Short links `/01`, `/02`, `/03`, `/gt` and the old GitHub Pages paths are in `site/_redirects`.
 
 Local run: `wrangler pages dev site --kv GT_LIST --binding GATE_SECRET=x --binding ADMIN_TOKEN=y`.

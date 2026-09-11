@@ -1,10 +1,11 @@
-// Gate: the full-brief PDFs and any /groundtruth/NN/full/ path need a reader cookie.
-// Everything else under /groundtruth/ is public. Without GATE_SECRET set, nothing is gated
-// (so a preview deploy with no bindings still serves the whole site).
+// Gate: the registered-readers page of each issue (/groundtruth/NN/full/) and the full-brief PDFs
+// need a reader cookie. The public pages, the series pages and the carousel PDFs (the same cards
+// that run on LinkedIn) stay open. Without GATE_SECRET set nothing is gated, so a preview deploy
+// with no bindings still serves the whole site.
 import { readCookie } from "../_lib.js";
 
 const GATED = [
-  /^\/groundtruth\/assets\/.+\.pdf$/i,
+  /^\/groundtruth\/assets\/GroundTruth-\d\d_Full-Brief\.pdf$/i,
   /^\/groundtruth\/\d\d\/full\/?/i,
 ];
 
