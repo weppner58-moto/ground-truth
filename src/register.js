@@ -1,7 +1,7 @@
 // GET  /groundtruth/register/?next=...   renders the form
 // POST /groundtruth/register/            stores the registration, sets the cookie, sends the reader on
 //
-// Bindings (Pages project settings):
+// Bindings (Worker settings / wrangler.toml):
 //   GATE_SECRET        secret, any long random string; signs the reader cookie
 //   GT_LIST            KV namespace; one key per email
 //   ADMIN_TOKEN        secret; unlocks /groundtruth/registrations (CSV export)
@@ -9,7 +9,7 @@
 //   TURNSTILE_SECRET   optional; verifies it
 //   NOTIFY_TO          optional; email address to notify on each registration
 //   NOTIFY             optional; send_email binding (Email Routing) used with NOTIFY_TO
-import { makeCookie, safeNext, esc } from "../../_lib.js";
+import { makeCookie, safeNext, esc } from "./lib.js";
 
 const page = (env, { next, error = "", values = {} }) => `<!doctype html>
 <html lang="en"><head>
@@ -69,12 +69,12 @@ ${error ? `<div class="err">${esc(error)}</div>` : ""}
 const html = (body, status = 200, headers = {}) =>
   new Response(body, { status, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", ...headers } });
 
-export async function onRequestGet({ request, env }) {
+export async function registerGet(request, env) {
   const next = safeNext(new URL(request.url).searchParams.get("next"));
   return html(page(env, { next }));
 }
 
-export async function onRequestPost({ request, env }) {
+export async function registerPost(request, env) {
   const form = await request.formData();
   const v = k => String(form.get(k) ?? "").trim().slice(0, 200);
   const next = safeNext(v("next"));

@@ -1,5 +1,19 @@
-# Cloudflare Pages project configuration. Bindings (GT_LIST, GATE_SECRET, ADMIN_TOKEN, TURNSTILE_*, NOTIFY*)
-# are set in the Pages project settings; see README "Deploying".
+# contactpatchadvisory.com: a Worker with static assets. Deploys with `npx wrangler deploy`
+# (Cloudflare's Git integration runs exactly that). Secrets GATE_SECRET and ADMIN_TOKEN are set in the
+# dashboard (Worker > Settings > Variables and secrets) and survive deploys. See README "Deploying".
 name = "contactpatchadvisory"
-pages_build_output_dir = "site"
+main = "src/index.js"
 compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./site"
+binding = "ASSETS"
+not_found_handling = "404-page"
+run_worker_first = ["/groundtruth/*"]
+
+# KV namespace for registrations. Create it once (Storage & Databases > KV > Create a namespace, call it
+# groundtruth-readers), paste its ID below and remove the leading # on the three lines. Until then the
+# form works and sets the cookie, but records are not stored.
+# [[kv_namespaces]]
+# binding = "GT_LIST"
+# id = "PASTE_THE_NAMESPACE_ID_HERE"

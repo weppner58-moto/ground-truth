@@ -46,21 +46,29 @@ No. 01 is hand-built: `python3 tools/gt01/embed.py` embeds the images in `tools/
 
 ## Deploying
 
-Cloudflare Pages, Git-connected to this repo, build output `site/`, no build command (built output is committed).
-Custom domain: contactpatchadvisory.com. The registration gate is in `functions/` and needs these project settings:
+A Cloudflare Worker with static assets, Git-connected to this repo: every push to `main` runs `npx wrangler deploy`.
+`wrangler.toml` points the Worker at `src/index.js` and the assets at `site/`; the Worker runs first for
+`/groundtruth/*` and serves everything else straight from `site/`. Custom domain: contactpatchadvisory.com
+(Worker > Settings > Domains & Routes).
 
-| Setting | Type | Purpose |
+| Setting | Where | Purpose |
 |---|---|---|
-| `GT_LIST` | KV namespace binding | one record per registered email |
-| `GATE_SECRET` | secret | signs the reader cookie (`gt_reader`, one year, `/groundtruth` only) |
+| `GT_LIST` | KV namespace, id in `wrangler.toml` | one record per registered email |
+| `GATE_SECRET` | secret, Worker > Settings > Variables and secrets | signs the reader cookie (`gt_reader`, one year, `/groundtruth` only) |
 | `ADMIN_TOKEN` | secret | `curl -H "Authorization: Bearer $ADMIN_TOKEN" https://contactpatchadvisory.com/groundtruth/registrations` returns the list as CSV |
-| `TURNSTILE_SITEKEY`, `TURNSTILE_SECRET` | plain text, secret | optional bot check on the form |
-| `NOTIFY` + `NOTIFY_TO` | send_email binding, plain text | optional email to you on each registration (needs Email Routing on the zone) |
+| `TURNSTILE_SITEKEY`, `TURNSTILE_SECRET` | variable, secret | optional bot check on the form |
+| `NOTIFY` + `NOTIFY_TO` | send_email binding, variable | optional email to you on each registration (needs Email Routing on the zone) |
 
-Without `GATE_SECRET` nothing is gated, so a preview deploy serves the whole site. Gated paths: `/groundtruth/NN/full/` (the complete brief) and `/groundtruth/assets/GroundTruth-NN_Full-Brief.pdf`. The public page of each issue is the hero, Start here and section 01, then the register panel; the series pages and carousel PDFs stay open.
-Short links `/01`, `/02`, `/03`, `/gt` and the old GitHub Pages paths are in `site/_redirects`.
+Without `GATE_SECRET` nothing is gated. Gated paths: `/groundtruth/NN/full/` (the complete brief) and
+`/groundtruth/assets/GroundTruth-NN_Full-Brief.pdf`. The public page of each issue is the hero, Start here and
+section 01, then the register panel; the series pages and carousel PDFs stay open. Short links `/01`, `/02`,
+`/03`, `/gt` and the old GitHub Pages paths are in `site/_redirects`.
 
-Local run: `wrangler pages dev site --kv GT_LIST --binding GATE_SECRET=x --binding ADMIN_TOKEN=y`.
+Local run: `wrangler dev --var GATE_SECRET:x --var ADMIN_TOKEN:y`.
+
+GitHub Pages (weppner58-moto.github.io/ground-truth) serves the `gh-pages` branch, which is the `site/` tree
+(`git subtree split --prefix=site -b gh-pages`), no gate. Once the Cloudflare domain is live that branch goes
+back to redirect stubs.
 
 ## Method
 

@@ -1,5 +1,5 @@
 // GET /groundtruth/registrations  with  Authorization: Bearer <ADMIN_TOKEN>  ->  CSV of the list.
-export async function onRequestGet({ request, env }) {
+export async function registrationsCsv(request, env) {
   const auth = request.headers.get("Authorization") || "";
   if (!env.ADMIN_TOKEN || auth !== `Bearer ${env.ADMIN_TOKEN}`) return new Response("Not found", { status: 404 });
   if (!env.GT_LIST) return new Response("No list binding", { status: 500 });
