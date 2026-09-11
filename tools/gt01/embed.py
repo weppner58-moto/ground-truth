@@ -38,9 +38,56 @@ PARTS = [("The Growth", "386% is 55 bikes to 267. The plan was 100,000. The miss
          ("The Loan & the Final Word", "Nov 2025: equity backstop out, secured claim in. $85M due Dec 2027.")]
 CARD_IMG = {0: "gt01-04-tape.jpg", 1: "gt01-03-floor.jpg", 2: "gt01-02-form.jpg", 3: "gt01-01-juneau.jpg", -1: "gt01-05-team.jpg"}
 CARD_CAP = {0: "LVWR on the tape", 1: "An S2 and a Honcho, same floor", 2: "The paperwork", 3: "Juneau Avenue, the lender's address", -1: "LiveWire, Milwaukee"}
+# Second pass (11 Sep): the photos that were on the page from the first build, keyed by a hash of their
+# base64 (see key()). Each becomes the named sketch when that file exists in tools/gt01/img/.
+REPLACE = {
+    "95cf407c": "gt01-07-floor2019.jpg", "ccffc6da": "gt01-07-floor2019.jpg",
+    "fcc6ad86": "gt01-08-stripped.jpg",  "20725b8d": "gt01-08-stripped.jpg",
+    "afb2f500": "gt01-09-redshift.jpg",
+    "e582679c": "gt01-10-bench.jpg",
+    "dc0eaa6a": "gt01-11-kymco.jpg", "7e333a36": "gt01-11-kymco.jpg", "69430279": "gt01-11-kymco.jpg",
+    "183f0211": "gt01-12-honcho-grass.jpg", "3a99c3a5": "gt01-12-honcho-grass.jpg",
+    "dd1f3ae8": "gt01-13-honcho-stand.jpg", "e641700a": "gt01-13-honcho-stand.jpg",
+    "b77e2c18": "gt01-14-groms.jpg", "ae5419c9": "gt01-14-groms.jpg",
+    "8d29fb50": "gt01-15-dust.jpg", "7e817020": "gt01-15-dust.jpg", "7a75530c": "gt01-15-dust.jpg",
+    "7df70d3c": "gt01-16-parts.jpg",
+    "32d1d386": "gt01-17-chair.jpg", "50492726": "gt01-17-chair.jpg",
+}
+# Logos come off the page and become text pills (the page already has .brand-txt).
+LOGOS = {
+    "1ae5ce73": "LIVEWIRE GROUP &middot; NYSE: LVWR",
+    "dd999ff3": "HARLEY-DAVIDSON, INC. &middot; NYSE: HOG",
+    "53c5914d": "ALTA MOTORS",
+}
 KICK = "LiveWire: 5 Years In and 1% of Plan · The route"
 URL = "contactpatchadvisory.com/groundtruth/01/"
 ISSUE = "Ground Truth No. 01"
+
+
+def key(b64):
+    import hashlib
+    return hashlib.md5(b64[:20000].encode()).hexdigest()[:8]
+
+
+def swap(html):
+    """Replace first-build photos with the sketches that exist, and logos with text pills."""
+    n = {"img": 0, "logo": 0}
+    def repl(m):
+        tag = m.group(0); k = key(m.group(2))
+        if k in LOGOS:
+            n["logo"] += 1
+            return f'<span class="brand-txt">{LOGOS[k]}</span>'
+        f = REPLACE.get(k)
+        if f and (IMG / f).exists():
+            n["img"] += 1
+            return re.sub(r'src="data:[^"]+"', f'src="{data_uri(IMG / f)}"', tag, count=1)
+        return tag
+    html = re.sub(r'<img[^>]*src="data:image/(\w+);base64,([^"]+)"[^>]*>', repl, html)
+    # the Alta logo clip figure in §05 goes entirely once the Redshift sketch is in
+    if (IMG / "gt01-09-redshift.jpg").exists():
+        html, c = re.subn(r'<figure class="clip"[^>]*><span class="cm"></span><img [^>]*alt="Alta Motors logo"[^>]*>.*?</figure>', "", html, count=1, flags=re.S)
+        n["logo"] += c
+    return html, n
 
 
 def embed_brief():
@@ -60,6 +107,7 @@ def embed_brief():
     # bare .phx blocks (inside .ph-grid) and .phx already wrapped in .part-img
     html = re.sub(r"<div class=[\"']part-img[\"']>\s*<div class=[\"']phx[\"']>.*?</div>\s*</div>\s*</div>", repl, html, flags=re.S)
     html = re.sub(r"<div class=[\"']phx[\"']>.*?<div class=[\"']s[\"']>.*?</div>\s*</div>", repl, html, flags=re.S)
+    html, sw = swap(html)
     if full.exists():
         # write back as the raw full page, then split
         (D / "full" / "index.html").write_text("<!-- gt:full -->\n" + html if not html.startswith("<!-- gt:full -->") else html)
@@ -69,12 +117,14 @@ def embed_brief():
     else:
         src.write_text(html)
     subprocess.run([sys.executable, str(ROOT / "tools" / "lib" / "split_brief.py"), "01"], check=True)
-    print(f"brief: {n} image(s) embedded")
+    print(f"brief: {n} placeholder(s) filled, {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced")
 
 
 def rebuild_cards():
     p = D / "series" / "index.html"
     s = p.read_text()
+    s, sw = swap(s)
+    print(f"series: {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced")
     s = re.sub(r"<div class=\"slide[^\"]*card[^\"]*\" id=\"(s\d-card|route-card)\">.*?</div>\n(?=\s*<div class=\"slide|\s*</div>\s*<script)", "", s, flags=re.S)
     if "body.web .slide.card" not in s:
         s = s.replace("</style>", CARD_CSS + "</style>", 1)
