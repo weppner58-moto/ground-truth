@@ -1,7 +1,7 @@
-# contactpatchadvisory.com: the Worker purple-silence-9d96 (the one the domain is attached to), static assets from site/. Deploys with `npx wrangler deploy`
+# contactpatchadvisory.com: the Worker "ground-truth" (Git-connected to this repo), static assets from site/. Deploys with `npx wrangler deploy`
 # (Cloudflare's Git integration runs exactly that). Secrets GATE_SECRET and ADMIN_TOKEN are set in the
 # dashboard (Worker > Settings > Variables and secrets) and survive deploys. See README "Deploying".
-name = "purple-silence-9d96"
+name = "ground-truth"
 main = "src/index.js"
 compatibility_date = "2026-09-01"
 
