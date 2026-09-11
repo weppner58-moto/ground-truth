@@ -504,7 +504,7 @@ def build():
                   "The Milwaukee-Eight and the Revolution Max got built and kept. The Street, the one time Harley built its own small bike in its own plants, lost money, closed the Indian plant, and handed the segment to Hero.",
                   "Harley develops from within when the product carries the full brand at the full price. Below that line it has never once succeeded on its own, and it stopped trying in 2020.",
                   "Bawal, Haryana, 2014", "The Street 750 line at Harley&rsquo;s own Indian plant. Closed September 2020; one month later the Hero agreements were signed.",
-                  "A liquid-cooled middleweight cruiser being assembled in a bright modern Indian plant, workers in blue, monsoon sky outside. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "A liquid-cooled middleweight cruiser being assembled in a bright modern Indian plant, workers in blue, monsoon sky outside. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt03-04-bawal.jpg"))
     H.append(section(brandrow("06 &middot; Built in-house") + f"""
     <h2>Two engines kept. One small bike lost money and left.</h2>
     <p class="lede">The table has three things Harley built rather than bought in the last fifteen years. Two are still the engines of its highest-priced lines. The third is the reason the Sprint is a Hero.</p>

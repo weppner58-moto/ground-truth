@@ -29,6 +29,7 @@ def main():
     fonts_css = (ROOT / "tools/lib/fonts-local.css").read_text()
     fonts_css = fonts_css.replace("url('fonts/", f"url('file://{ROOT}/tools/lib/fonts/")
     html = html.replace('<body class="web">', "<body>").replace("<body class='web'>", "<body>")
+    html = html.replace('<script>document.body.classList.add("web");</script>', "")  # No. 01 adds it by script
     html = re.sub(r'<link[^>]+fonts\.googleapis[^>]*>', "", html)
     html = html.replace("</head>", f"<style>{fonts_css}</style></head>", 1)
     tmp = out / "_render.html"
@@ -39,6 +40,7 @@ def main():
         pg = b.new_page(viewport={"width": 1240, "height": 1500}, device_scale_factor=1)
         pg.goto(tmp.as_uri())
         pg.wait_for_timeout(600)
+        pg.evaluate("document.body.classList.remove('web')")
         pg.evaluate("document.fonts && document.fonts.ready")
         pg.wait_for_timeout(400)
         ids = pg.evaluate("Array.from(document.querySelectorAll('.slide')).map(e=>e.id)")

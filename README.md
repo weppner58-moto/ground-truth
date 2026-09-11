@@ -38,6 +38,8 @@ python3 tools/lib/split_brief.py 03                   # public page + full/ (reg
 python3 tools/lib/render_brief_pdf.py 03              # site/groundtruth/assets/GroundTruth-03_Full-Brief.pdf
 
 No. 02 builds the same way from `tools/gt02/` (its chart/render helpers live in `tools/gt02/lib/`).
+No. 01 is hand-built: `python3 tools/gt01/embed.py` embeds the images in `tools/gt01/img/` and rebuilds its route cards
+(from `tools/lib/cards.py`), then render_slides with "1:The-Growth" "2:The-Lineup" "3:The-Contracts" "4:The-Loan-and-Final-Word".
 ```
 
 `tools/lib/` holds the house CSS (`brief.css`, `series.css`), the bio block, the chart emitters (`charts.py`), the slide renderer, and the local fonts used for rendering. Needs Playwright (Chromium), Pillow and img2pdf.
