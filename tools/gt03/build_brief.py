@@ -6,6 +6,7 @@ Content lives in this file; CSS, bio and glyphs come from tools/lib.
 """
 import sys
 from pathlib import Path
+import sys as _sys; _sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools" / "lib")); from sitenav import nav_html, bottombar_html
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
@@ -228,6 +229,7 @@ def build():
 <header class="topbar">
   <div class="wrap">
     <div class="mark">CONTACT&nbsp;<span>PATCH</span></div>
+    {nav_html()}
     <div class="stamp">Ground Truth No. {NN} &middot; Draft &middot; {REV}</div>
   </div>
 </header>
@@ -761,6 +763,7 @@ def build():
   }});
 }})();
 </script>
+{bottombar_html()}
 </body></html>
 """)
     OUT.parent.mkdir(parents=True, exist_ok=True)

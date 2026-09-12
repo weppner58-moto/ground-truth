@@ -456,6 +456,24 @@ p{margin:18px 0;max-width:64ch}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo,:root:not([data-theme="light"]) .brand img,:root:not([data-theme="light"]) .part-img.dark img{filter:none}}
 :root[data-theme="dark"] .logo,:root[data-theme="dark"] .brand img,:root[data-theme="dark"] .part-img.dark img{filter:none}
 .bio-wrap{margin-top:26px}
+/* site navigation in the sticky top bar, and the bar pinned to the bottom */
+.sitenav{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.sitenav a{font-family:var(--f-mono,var(--mono));font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:7px 10px;border:1px solid var(--rule);color:var(--ink-2,var(--ink2));text-decoration:none;white-space:nowrap}
+.sitenav a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+.sitenav a.now{border-color:var(--tape,var(--ink));background:var(--tape,var(--ink));color:var(--tape-ink,var(--ground,var(--paper)))}
+.topbar{position:sticky;top:0;z-index:20;background:var(--ground,var(--paper))}
+.topbar .stamp{margin-left:0}
+@media (max-width:720px){.sitenav{width:100%;order:3}.sitenav a{flex:1;text-align:center;padding:7px 4px}.topbar .stamp{display:none}}
+body{padding-bottom:44px}
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--ground,var(--paper));border-top:1px solid var(--rule)}
+.bottombar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:42px;padding-block:5px}
+.bottombar .bb-mark{font-family:var(--f-mono,var(--mono));font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3,var(--ink3));white-space:nowrap}
+.bottombar nav{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto}
+.bottombar nav a{font-family:var(--f-mono,var(--mono));font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 9px;color:var(--ink-2,var(--ink2));text-decoration:none;white-space:nowrap;border:1px solid transparent}
+.bottombar nav a:hover{color:var(--cyan);text-decoration:none}
+.bottombar nav a.now{color:var(--magenta,var(--mag))}
+@media (max-width:560px){.bottombar .bb-mark{display:none}.bottombar nav{width:100%;justify-content:space-between}}
+@media print{.bottombar,.sitenav{display:none}body{padding-bottom:0}}
 </style>
 
 <style>
@@ -477,13 +495,10 @@ p{margin:18px 0;max-width:64ch}
 </style>
 </head><body>
 
-
-
-
-
 <header class="topbar">
   <div class="wrap">
     <div class="mark">CONTACT&nbsp;<span>PATCH</span></div>
+    <nav class="sitenav"><a href="/">Home</a><a href="/#who">Who</a><a href="/#services">Services</a><a href="/news/">News</a><a href="/groundtruth/" class="now">Ground Truth</a><a href="/#contact">Contact</a></nav>
     <div class="stamp">Ground Truth No. 02 &middot; Draft &middot; Rev. 2</div>
   </div>
 </header>
@@ -770,7 +785,8 @@ p{margin:18px 0;max-width:64ch}
     <p>Every figure is drawn from SEC filings, company releases or call transcripts, or is arithmetic on them identified as such. Segment figures are on Harley-Davidson&rsquo;s reporting basis; LiveWire&rsquo;s own filings report slightly different segment totals ($75.5M vs $75.0M for FY2025) and are used only for LiveWire&rsquo;s cash and loan terms.</p>
     <p><strong>This brief does not assert, and no filing states, that Harley-Davidson intends to fund, acquire, divest or wind down LiveWire.</strong> The options in &sect;07 are an enumeration of what the filings permit, not a forecast. The 2027 picture in &sect;12 uses the company&rsquo;s own targets as inputs and is labelled Calculated.</p>
     <p>Product facts about the Sprint and the Sportster 883 beyond what management said on the record are trade reporting and are flagged as open items. The 883 designation is management&rsquo;s own.</p>
-    <p style="margin-top:22px">Contact Patch Advisory &middot; Ground Truth No. 02 &middot; William Weppner &middot; September 2026 &middot; Rev. 2 &middot; <a href="../01/">No. 01</a> &middot; <a href="../">Index</a></p>
+    <p style="margin-top:22px">Contact Patch Advisory &middot; Ground Truth No. 02 &middot; William Weppner &middot; September 2026 &middot; Rev. 2 &middot; <a href="../01/">No. 01</a> &middot; <a href="../../">Index</a></p>
   </div>
 </footer>
+<div class="bottombar"><div class="wrap"><span class="bb-mark">Contact Patch Advisory</span><nav><a href="/">Home</a><a href="/#who">Who</a><a href="/#services">Services</a><a href="/news/">News</a><a href="/groundtruth/" class="now">Ground Truth</a><a href="/#contact">Contact</a></nav></div></div>
 </body></html>

@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import CARD_CSS, route_card, data_uri  # noqa: E402
+from sitenav import NAV_CSS, nav_html, bottombar_html  # noqa: E402
 
 IMG = ROOT / "tools" / "gt01" / "img"
 D = ROOT / "site" / "groundtruth" / "01"
@@ -90,6 +91,22 @@ def swap(html):
     return html, n
 
 
+def sitenav(html, series=False):
+    """Practice-site links in the sticky header and the bar pinned to the bottom (idempotent)."""
+    if ".sitenav{" not in html:
+        html = html.replace("</style>", NAV_CSS + ("body.web .bottombar{display:block}.bottombar{display:none}" if series else "") + "</style>", 1)
+    if 'class="sitenav"' not in html and not series:
+        html = re.sub(r'(<header class="topbar">\s*<div class="wrap">\s*<div class="mark">.*?</div>)', lambda m: m.group(1) + "\n    " + nav_html(), html, count=1, flags=re.S)
+    if 'class="bottombar"' not in html:
+        if "</body>" in html:
+            html = html.replace("</body>", bottombar_html() + "\n</body>", 1)
+        elif '<script>document.body.classList.add("web");</script>' in html:
+            html = html.replace('<script>document.body.classList.add("web");</script>', bottombar_html() + '\n<script>document.body.classList.add("web");</script>', 1)
+        else:
+            html = html.rstrip() + "\n" + bottombar_html() + "\n"
+    return html
+
+
 def embed_brief():
     full = D / "full" / "index.html"
     src = D / "index.html"
@@ -108,6 +125,7 @@ def embed_brief():
     html = re.sub(r"<div class=[\"']part-img[\"']>\s*<div class=[\"']phx[\"']>.*?</div>\s*</div>\s*</div>", repl, html, flags=re.S)
     html = re.sub(r"<div class=[\"']phx[\"']>.*?<div class=[\"']s[\"']>.*?</div>\s*</div>", repl, html, flags=re.S)
     html, sw = swap(html)
+    html = sitenav(html)
     if full.exists():
         # write back as the raw full page, then split
         (D / "full" / "index.html").write_text("<!-- gt:full -->\n" + html if not html.startswith("<!-- gt:full -->") else html)
@@ -124,6 +142,7 @@ def rebuild_cards():
     p = D / "series" / "index.html"
     s = p.read_text()
     s, sw = swap(s)
+    s = sitenav(s, series=True)
     print(f"series: {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced")
     s = re.sub(r"<div class=\"slide[^\"]*card[^\"]*\" id=\"(s\d-card|route-card)\">.*?</div>\n(?=\s*<div class=\"slide|\s*</div>\s*<script)", "", s, flags=re.S)
     if "body.web .slide.card" not in s:

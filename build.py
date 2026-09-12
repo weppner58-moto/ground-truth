@@ -8,7 +8,10 @@ Reads:  site.tpl.html (home page), site/css/site.css, posts/*.py
 Writes: site/index.html, site/news/index.html, site/news/<slug>/index.html,
         site/sitemap.xml, site/feed.xml, and the single-file contact-patch.html
 """
-import base64, glob, html, importlib.util, json, os, re
+import base64, glob, html, importlib.util, json, os, re, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools", "lib"))
+from sitenav import bottombar_html
+from cards import data_uri
 
 SITE = "https://contactpatchadvisory.com"
 OUT  = "site"
@@ -78,6 +81,7 @@ def page(title, desc, canonical, css_href, body, head_extra=""):
 </head>
 <body>
 {body}
+{bottombar_html(active=None)}
 </body>
 </html>
 '''
@@ -147,6 +151,24 @@ def build_home(posts):
         # renumber contact so exhibits stay sequential
         body = body.replace('<b>04</b> <span>Contact</span>', '<b>05</b> <span>Contact</span>')
 
+    gt = f'''  <section id="groundtruth-home">
+    <div class="wrap">
+      <div class="exh mono"><b>GT</b> <span>Ground Truth</span> <i></i></div>
+      <h2 class="disp">The research series.</h2>
+      <div class="gt-home">
+        <div>
+          <h3>Primary-document research on the motorcycle industry.</h3>
+          <p>Every figure linked to its filing. Corrections published, not made quietly. Three issues so far: LiveWire five years in, Harley-Davidson's plan added up, and sixty-six years of Harley buying what it could build.</p>
+          <p class="gt-list"><a href="groundtruth/01/">No. 01 &middot; LiveWire: 5 Years In and 1% of Plan</a><br><a href="groundtruth/02/">No. 02 &middot; Harley-Davidson: Back to the Bricks, Down to Breakeven</a><br><a href="groundtruth/03/">No. 03 &middot; Harley-Davidson: Outside In</a></p>
+          <div class="btn-row"><a class="btn btn-solid" href="groundtruth/">Read Ground Truth <span class="ar">&rarr;</span></a></div>
+        </div>
+        <a class="gt-img" href="groundtruth/03/"><img src="{data_uri(os.path.join("tools", "gt03", "img", "neemrana.jpg"))}" alt="Neemrana, Rajasthan: the Sprint's engine on Hero's line"><div class="c">No. 03 &middot; Neemrana, Rajasthan</div></a>
+      </div>
+    </div>
+  </section>
+
+'''
+    body = body.replace('  <section id="contact"', gt + '  <section id="contact"', 1)
     body = re.sub(r"<footer class=\"footer\">.*?</footer>", FOOTER, body, flags=re.S)
     for k, v in IMGS.items():
         body = body.replace(k, v)

@@ -5,6 +5,7 @@ Run from the repo root:  python3 tools/gt02/build_brief.py
 Uses tools/lib/brief.css (the No. 01 stylesheet, portraits included) and tools/lib/charts.py.
 """
 import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "tools", "lib")); from sitenav import nav_html, bottombar_html
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "gt02", "lib"))  # No. 02 chart/render API; tools/lib is the current one
 from charts import bars, hbars, waterfall, MAG, CYAN, INK3
@@ -187,6 +188,7 @@ def build():
 <header class="topbar">
   <div class="wrap">
     <div class="mark">CONTACT&nbsp;<span>PATCH</span></div>
+    {nav_html()}
     <div class="stamp">{ISSUE} &middot; Draft &middot; Rev. 2</div>
   </div>
 </header>
@@ -842,6 +844,7 @@ def build():
     <p style="margin-top:22px">Contact Patch Advisory &middot; {ISSUE} &middot; William Weppner &middot; {DATE} &middot; Rev. 2 &middot; <a href="../01/">No. 01</a> &middot; <a href="../../">Index</a></p>
   </div>
 </footer>
+{bottombar_html()}
 </body></html>''')
 
     html = "\n".join(H)

@@ -6,11 +6,13 @@ second page of each carousel PDF and as stand-alone card PDFs by tools/lib/rende
 Run from the repo root:  python3 tools/gt02/build_series.py
 """
 import os, sys, re
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "tools", "lib"))
+from sitenav import NAV_CSS, bottombar_html
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "gt02", "lib"))  # No. 02 chart/render API; tools/lib is the current one
 from charts import bars, hbars, waterfall, MAG, CYAN, INK3
 
-CSS = open(os.path.join(ROOT, "tools", "lib", "series.css")).read()
+CSS = open(os.path.join(ROOT, "tools", "lib", "series.css")).read() + NAV_CSS + "body.web .bottombar{display:block}.bottombar{display:none}"
 OUT = os.path.join(ROOT, "site", "groundtruth", "02", "series", "index.html")
 URL = "contactpatchadvisory.com/groundtruth/02"
 TITLE = "Harley-Davidson: Back to the Bricks, Down to Breakeven"
@@ -447,6 +449,7 @@ body.web .slide.card{{display:none}}
 {chr(10).join(parts_html)}
 </div>
 <script>document.body.classList.add("web");</script>
+{bottombar_html()}
 </body></html>'''
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     open(OUT, "w").write(html)

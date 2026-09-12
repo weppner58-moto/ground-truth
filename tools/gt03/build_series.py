@@ -7,6 +7,7 @@ Then:                    python3 tools/lib/render_slides.py groundtruth/03/serie
 """
 import sys
 from pathlib import Path
+import sys as _sys; _sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools" / "lib")); from sitenav import NAV_CSS, bottombar_html
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
@@ -101,6 +102,7 @@ def route_card(sid, n_on, dark=True):
 
 def build():
     css = (LIB / "series.css").read_text() + EXTRA_CSS
+    css += NAV_CSS + "body.web .bottombar{display:block}.bottombar{display:none}"
     S = []
     S.append(f"""<!doctype html>
 <html lang="en"><head>
@@ -512,7 +514,7 @@ def build():
 
     # stand-alone route card
     S.append(route_card("route-card", -1))
-    S.append("</div>\n</body></html>\n")
+    S.append("</div>\n" + bottombar_html() + "\n</body></html>\n")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("".join(S))
     print("wrote", OUT, OUT.stat().st_size, "bytes")
