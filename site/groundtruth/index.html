@@ -80,6 +80,19 @@ body{padding-bottom:44px}
 .issue-img::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
 .issue-img .c{position:absolute;left:0;right:0;bottom:0;padding:8px 12px;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#E7E9EB;background:linear-gradient(transparent,rgba(11,12,14,.85))}
 @media (max-width:760px){.issue{grid-template-columns:1fr}}
+
+.gt-tabs{position:sticky;top:58px;z-index:19;background:var(--ground);border-bottom:1px solid var(--rule)}
+.gt-tabs .wrap{display:flex;gap:0;overflow-x:auto;padding-block:0}
+.gt-tabs a{flex:1 0 auto;display:flex;flex-direction:column;gap:2px;padding:10px 14px 9px;border-right:1px solid var(--rule);text-decoration:none;color:var(--ink-3);border-bottom:3px solid transparent;margin-bottom:-1px;min-width:150px}
+.gt-tabs a:first-child{border-left:1px solid var(--rule)}
+.gt-tabs a b{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:18px;line-height:1;color:var(--ink-2)}
+.gt-tabs a span{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.gt-tabs a:hover{text-decoration:none;color:var(--cyan)} .gt-tabs a:hover b{color:var(--cyan)}
+.gt-tabs a.on{border-bottom-color:var(--magenta);color:var(--magenta)} .gt-tabs a.on b{color:var(--ink)}
+html{scroll-behavior:smooth;scroll-padding-top:128px}
+section[id]{scroll-margin-top:128px}
+@media (max-width:640px){.gt-tabs a{min-width:120px;padding:8px 10px 7px}.gt-tabs a b{font-size:16px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head><body>
 
@@ -87,6 +100,12 @@ body{padding-bottom:44px}
   <a class="mark" href="../" style="color:inherit">CONTACT&nbsp;<span>PATCH</span></a>
   <nav class="sitenav"><a href="/">Home</a><a href="/#who">Who</a><a href="/#services">Services</a><a href="/news/">News</a><a href="/groundtruth/" class="now">Ground Truth</a><a href="/#contact">Contact</a></nav>
 </div></header>
+<nav class="gt-tabs" aria-label="Issues"><div class="wrap">
+  <a href="#no03" data-t="no03"><b>No. 03</b><span>Outside In</span></a>
+  <a href="#no02" data-t="no02"><b>No. 02</b><span>Back to the Bricks</span></a>
+  <a href="#no01" data-t="no01"><b>No. 01</b><span>LiveWire, 5 Years In</span></a>
+  <a href="#method" data-t="method"><b>Method</b><span>How these are built</span></a>
+</div></nav>
 
 <main>
 <div class="hero"><div class="wrap">
@@ -95,7 +114,7 @@ body{padding-bottom:44px}
   <p class="dek">The announcements in this industry are loud and the numbers behind them are quiet. These briefs read the filings: every figure linked to the document it came from, and every correction published rather than made silently.</p>
 </div></div>
 
-<section><div class="wrap">
+<section id="no03"><div class="wrap">
   <div class="issue"><div>
   <h2>No. 03 · Harley-Davidson: Outside In</h2>
   <p>Sixty-six years of buying what it could build. Every brand Harley-Davidson ever bought was sold or shut, with the same sentence: Aermacchi, Holiday Rambler, Buell, MV Agusta. MV Agusta alone lost $268 million in twenty-four months and went back to the seller for a euro. Alta was a stake too small to disclose, gone in six months. StaCyc cost $14.9 million and now outsells LiveWire thirty-three to one. The rule that falls out: Harley builds when the product carries the full brand at the full price, and buys, licenses or partners for everything below it. Kept when it feeds the dealer, dropped when it competes with the badge. The Sprint, on a Hero engine with its plant undecided, is the test.</p>
@@ -135,7 +154,7 @@ body{padding-bottom:44px}
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="no02"><div class="wrap">
   <div class="issue"><div>
   <h2>No. 02 · Harley-Davidson</h2>
   <p>Add up Harley-Davidson&rsquo;s own 2026 guidance (motor company, finance company, electric subsidiary) and the enterprise lands between a $15 million loss and a $50 million profit. It made $779 million in 2023. The subsidiary is guided to lose more than the motor company is guided to make. This brief reads the parent&rsquo;s filings: what LiveWire has cost, where the 2025 profit actually came from, what &ldquo;Back to the Bricks&rdquo; commits to and leaves out, and what a 2027 Harley-Davidson looks like if the plan works exactly as written.</p>
@@ -175,7 +194,7 @@ body{padding-bottom:44px}
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="no01"><div class="wrap">
   <div class="issue"><div>
   <h2>No. 01 · LiveWire Group</h2>
   <p>Five years ago Harley-Davidson told investors LiveWire would do about 100,000 motorcycles, $1.8 billion in revenue and a profit in 2026. It is 2026: 923 motorcycles, $31 million, a $70&ndash;80 million loss. One percent of plan. A 386% growth claim sent me into the filings to find out why; the contracts are what I found: two manufacturing agreements that make buying motorcycles value-destructive and not buying them expensive, and a loan that decided how this ends eight months before the quarter everyone is arguing about.</p>
@@ -215,7 +234,7 @@ body{padding-bottom:44px}
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="method"><div class="wrap">
   <h2>How these are built</h2>
   <ul>
     <li><strong>Primary documents first.</strong> Figures come from filed financial statements or are computed from them, and the computation is shown.</li>
@@ -233,4 +252,16 @@ body{padding-bottom:44px}
 </div></footer>
 </main>
 <div class="bottombar"><div class="wrap"><span class="bb-mark">Contact Patch Advisory</span><nav><a href="/">Home</a><a href="/#who">Who</a><a href="/#services">Services</a><a href="/news/">News</a><a href="/groundtruth/" class="now">Ground Truth</a><a href="/#contact">Contact</a></nav></div></div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.gt-tabs a'));
+  var secs=tabs.map(function(a){return document.getElementById(a.getAttribute('data-t'));});
+  function pick(){
+    var y=window.scrollY+140, cur=secs[0];
+    secs.forEach(function(s){ if(s && s.offsetTop<=y) cur=s; });
+    tabs.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-t')===cur.id); });
+  }
+  window.addEventListener('scroll', pick, {passive:true}); window.addEventListener('resize', pick); pick();
+})();
+</script>
 </body></html>
