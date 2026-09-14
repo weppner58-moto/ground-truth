@@ -63,6 +63,8 @@ LOGOS = {
 # One image per page. Slide id -> (file, caption). A file that does not exist yet drops the band
 # until the render lands (then re-run). Files under tools/<issue>/img/.
 SERIES_ASSIGN = {
+    "s1-1":  ("gt01/img/gt01-one.jpg", "LiveWire ONE", "contain"),
+    "s4-9":  ("gt01/img/gt01-one.jpg", "The lineup they have", "contain"),
     "s1-6":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
     "s2-6":  ("gt01/img/gt01-11-kymco.jpg", "KYMCO assembly line, Taiwan"),
     "s3-1":  ("gt01/img/gt01-18-line.jpg", "KYMCO, Taiwan"),
@@ -146,7 +148,9 @@ def skeleton(html):
 def assign_series(html):
     """Apply SERIES_ASSIGN: swap or drop the band on each listed slide."""
     n = {"set": 0, "drop": 0}
-    for sid, (f, cap) in SERIES_ASSIGN.items():
+    for sid, spec in SERIES_ASSIGN.items():
+        f, cap = spec[0], spec[1]
+        extra = spec[2] if len(spec) > 2 else ""
         m = re.search(r'<div class="slide[^"]*" id="%s">.*?(?=<div class="slide|\s*</div>\s*<script)' % sid, html, re.S)
         if not m:
             continue
@@ -157,6 +161,8 @@ def assign_series(html):
         if (TOOLS / f).exists():
             new = re.sub(r'src="data:[^"]+"', f'src="{data_uri(TOOLS / f)}"', band.group(0), count=1)
             new = re.sub(r'<div class="c">.*?</div>', f'<div class="c">{cap}</div>', new, count=1, flags=re.S) if '<div class="c">' in new else new.replace("</div>", f'<div class="c">{cap}</div></div>')
+            if extra and f' {extra}' not in new[:60]:
+                new = new.replace('<div class="band', f'<div class="band {extra}', 1)
             n["set"] += 1
         else:
             new = ""
