@@ -60,6 +60,27 @@ LOGOS = {
     "dd999ff3": "HARLEY-DAVIDSON, INC. &middot; NYSE: HOG",
     "53c5914d": "ALTA MOTORS",
 }
+# One image per page. Slide id -> (file, caption). A file that does not exist yet drops the band
+# until the render lands (then re-run). Files under tools/<issue>/img/.
+SERIES_ASSIGN = {
+    "s1-6":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
+    "s2-6":  ("gt01/img/gt01-11-kymco.jpg", "KYMCO assembly line, Taiwan"),
+    "s3-1":  ("gt01/img/gt01-18-line.jpg", "KYMCO, Taiwan"),
+    "s3-7":  ("gt01/img/gt01-20-crates.jpg", "Take-or-pay"),
+    "s3-9":  ("gt01/img/gt01-21-loan.jpg", "Next: the loan"),
+    "s4-3":  ("gt01/img/gt01-22-lien.jpg", "Built it, badged it, sold it, lent against it"),
+    "s4-7":  ("gt01/img/gt01-14-groms.jpg", "The segment it has to win"),
+    "s4-8":  ("gt01/img/gt01-10-bench.jpg", "Real engineering, real sourcing"),
+    "s4-11": ("gt03/img/gt03-06-juneau-dusk.jpg", "Next: the parent"),
+}
+# Brief clip figures keyed by their <b> label. None removes the figure for good; a file name hides
+# the figure until that render exists.
+BRIEF_ASSIGN = {
+    "H-D LiveWire, 2019": None,
+    "KYMCO assembly, Taiwan": "gt01/img/gt01-18-line.jpg",
+    "Grom, $3,599": "gt01/img/gt01-23-grom-kerb.jpg",
+}
+TOOLS = ROOT / "tools"
 KICK = "LiveWire: 5 Years In and 1% of Plan · The route"
 URL = "contactpatchadvisory.com/groundtruth/01/"
 ISSUE = "Ground Truth No. 01"
@@ -122,6 +143,68 @@ def skeleton(html):
     return lead + HEAD + html
 
 
+def assign_series(html):
+    """Apply SERIES_ASSIGN: swap or drop the band on each listed slide."""
+    n = {"set": 0, "drop": 0}
+    for sid, (f, cap) in SERIES_ASSIGN.items():
+        m = re.search(r'<div class="slide[^"]*" id="%s">.*?(?=<div class="slide|\s*</div>\s*<script)' % sid, html, re.S)
+        if not m:
+            continue
+        blk = m.group(0)
+        band = re.search(r'\n?[ \t]*<div class="band[^"]*">\s*<img[^>]*>\s*(?:<div class="c">.*?</div>\s*)?</div>', blk, re.S)
+        if not band:
+            continue
+        if (TOOLS / f).exists():
+            new = re.sub(r'src="data:[^"]+"', f'src="{data_uri(TOOLS / f)}"', band.group(0), count=1)
+            new = re.sub(r'<div class="c">.*?</div>', f'<div class="c">{cap}</div>', new, count=1, flags=re.S) if '<div class="c">' in new else new.replace("</div>", f'<div class="c">{cap}</div></div>')
+            n["set"] += 1
+        else:
+            new = ""
+            n["drop"] += 1
+        blk2 = blk[:band.start()] + new + blk[band.end():]
+        html = html[:m.start()] + blk2 + html[m.end():]
+    return html, n
+
+
+BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
+def assign_brief(html):
+    """Apply BRIEF_ASSIGN to the clip figures on the brief; mark sketch figures' source line."""
+    n = {"set": 0, "hide": 0, "rm": 0}
+    for lab, f in BRIEF_ASSIGN.items():
+        m = re.search(r'<figure class="clip"[^>]*>(?:(?!</figure>).)*?<b>%s</b>.*?</figure>' % re.escape(lab), html, re.S)
+        if not m:
+            continue
+        fig = m.group(0)
+        if f is None:
+            new = ""
+            n["rm"] += 1
+        elif (TOOLS / f).exists():
+            new = re.sub(r'src="data:[^"]+"', f'src="{data_uri(TOOLS / f)}"', fig, count=1).replace(" hidden", "")
+            n["set"] += 1
+        else:
+            new = re.sub(r'src="data:[^"]+"', f'src="{BLANK}"', fig, count=1)
+            if " hidden" not in new[:40]:
+                new = new.replace('<figure class="clip"', '<figure class="clip" hidden', 1)
+            n["hide"] += 1
+        html = html[:m.start()] + new + html[m.end():]
+    return html, n
+
+
+def mark_sketch_sources(html):
+    """Clip figures that now hold a sketch say so on their source line instead of naming a photo."""
+    sk = set()
+    for f in IMG.glob("*.jpg"):
+        sk.add(key(__import__("base64").b64encode(f.read_bytes()).decode()))
+    def fix(m):
+        fig = m.group(0)
+        im = re.search(r'src="data:image/\w+;base64,([^"]+)"', fig)
+        if not im or key(im.group(1)) not in sk:
+            return fig
+        return re.sub(r'(<div class="src"><b>[^<]*</b>)<span>[^<]*</span>', r'\1<span>Sketch</span>', fig, count=1)
+    return re.sub(r'<figure class="clip"[^>]*>.*?</figure>', fix, html, flags=re.S)
+
+
 def sitenav(html, series=False):
     """Practice-site links in the sticky header and the bar pinned to the bottom (idempotent)."""
     if ".sitenav{" not in html:
@@ -156,6 +239,8 @@ def embed_brief():
     html = re.sub(r"<div class=[\"']part-img[\"']>\s*<div class=[\"']phx[\"']>.*?</div>\s*</div>\s*</div>", repl, html, flags=re.S)
     html = re.sub(r"<div class=[\"']phx[\"']>.*?<div class=[\"']s[\"']>.*?</div>\s*</div>", repl, html, flags=re.S)
     html, sw = swap(html)
+    html, ba = assign_brief(html)
+    html = mark_sketch_sources(html)
     html = skeleton(sitenav(html))
     if full.exists():
         # write back as the raw full page, then split
@@ -166,15 +251,16 @@ def embed_brief():
     else:
         src.write_text(html)
     subprocess.run([sys.executable, str(ROOT / "tools" / "lib" / "split_brief.py"), "01"], check=True)
-    print(f"brief: {n} placeholder(s) filled, {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced")
+    print(f"brief: {n} placeholder(s) filled, {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced; clips: {ba}")
 
 
 def rebuild_cards():
     p = D / "series" / "index.html"
     s = p.read_text()
     s, sw = swap(s)
+    s, sa = assign_series(s)
     s = skeleton(sitenav(s, series=True))
-    print(f"series: {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced")
+    print(f"series: {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced; bands {sa}")
     s = re.sub(r"<div class=\"slide[^\"]*card[^\"]*\" id=\"(s\d-card|route-card)\">.*?</div>\n(?=\s*<div class=\"slide|\s*</div>\s*<script)", "", s, flags=re.S)
     if "body.web .slide.card" not in s:
         s = s.replace("</style>", CARD_CSS + "</style>", 1)
