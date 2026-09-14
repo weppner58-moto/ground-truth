@@ -191,6 +191,15 @@ def assign_brief(html):
     return html, n
 
 
+CREDITS_OLD = re.compile(r"Image credits: LiveWire ONE, S2 Del Mar and S4 Honcho photographs &copy; LiveWire Group, Inc\., from the company's own product pages; Dust Model_1 &copy; Dust Moto; Alta Redshift &copy; Alta Motors \(archived press image\)\. Honda Grom photographs &copy; American Honda, product and lifestyle imagery\. Reproduced here for editorial comment; confirm rights before any commercial distribution\.")
+CREDITS_NEW = ("Image credits: the scene illustrations are charcoal sketches by William Weppner, drawn for this series. "
+               "Product photographs on the price ladder: LiveWire ONE, S2 Del Mar and S4 Honcho &copy; LiveWire Group, Inc., from the company's own product pages; "
+               "Dust Model_1 &copy; Dust Moto. Reproduced for editorial comment; confirm rights before any commercial distribution.")
+
+def credits(html):
+    return CREDITS_OLD.sub(CREDITS_NEW, html, count=1)
+
+
 def mark_sketch_sources(html):
     """Clip figures that now hold a sketch say so on their source line instead of naming a photo."""
     sk = set()
@@ -240,7 +249,7 @@ def embed_brief():
     html = re.sub(r"<div class=[\"']phx[\"']>.*?<div class=[\"']s[\"']>.*?</div>\s*</div>", repl, html, flags=re.S)
     html, sw = swap(html)
     html, ba = assign_brief(html)
-    html = mark_sketch_sources(html)
+    html = credits(mark_sketch_sources(html))
     html = skeleton(sitenav(html))
     if full.exists():
         # write back as the raw full page, then split
