@@ -555,7 +555,7 @@ def build():
                   "Each CEO&rsquo;s outside moves are the next CEO&rsquo;s focus story. LiveWire is eleven months into a CEO who did not start it, with the sentence already said and the cheapest unwind in the table.",
                   "The parent never wanted the electric motorcycle. It wanted the floor traffic. Read that way, the whole record is one decision.",
                   "Juneau Avenue", "The headquarters, where every one of these decisions was signed. The building has room for one brand.",
-                  "A red-brick industrial headquarters block on a Milwaukee street at dusk, one lit window, wet pavement. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no signage."))
+                  "A red-brick industrial headquarters block on a Milwaukee street at dusk, one lit window, wet pavement. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no signage.", img="gt03-06-juneau-dusk.jpg"))
     ceo_rows = [
         ("Richard Teerlink", "&ndash;1997", "Eaglemark 49% and 100%; Buell 49%", "Holiday Rambler"),
         ("Jeffrey Bleustein", "1997&ndash;2005", "Buell to ~100%", "none"),
