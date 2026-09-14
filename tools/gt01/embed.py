@@ -88,12 +88,38 @@ def swap(html):
     if (IMG / "gt01-09-redshift.jpg").exists():
         html, c = re.subn(r'<figure class="clip"[^>]*><span class="cm"></span><img [^>]*alt="Alta Motors logo"[^>]*>.*?</figure>', "", html, count=1, flags=re.S)
         n["logo"] += c
+    # logos drawn inside the SVG charts (hero and the final-word chart) become wordmark text
+    def svglogo(m):
+        a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(0)))
+        x, y, w, hh = float(a["x"]), float(a["y"]), float(a["width"]), float(a["height"])
+        name = "LIVEWIRE GROUP" if w >= 200 else "HARLEY-DAVIDSON"
+        if x + w > 1000: ax, anchor = x + w, "end"
+        elif x < 100: ax, anchor = x, "start"
+        else: ax, anchor = x + w / 2, "middle"
+        n["logo"] += 1
+        return (f'<text x="{ax:g}" y="{y + hh * 0.68:g}" text-anchor="{anchor}" style="fill:var(--ink)" font-family="Big Shoulders Display,Impact,sans-serif" '
+                f'font-weight="800" font-size="{min(30, hh * 0.6):g}" letter-spacing="2">{name}</text>')
+    html = re.sub(r'<image class="logo"[^>]*/>', svglogo, html)
     # a band that letterboxed a logo-ish photo on white ("contain") should fill with the sketch
     sk = {key(__import__("base64").b64encode((IMG / f).read_bytes()).decode()) for f in set(REPLACE.values()) if (IMG / f).exists()}
     def unbox(m):
         return m.group(0).replace(" contain", "", 1) if key(m.group(2)) in sk else m.group(0)
     html = re.sub(r'<div class="band[^"]* contain"[^>]*>\s*<img[^>]*src="data:image/(\w+);base64,([^"]+)"', unbox, html)
     return html, n
+
+
+HEAD = '<!doctype html>\n<meta charset="utf-8">\n'
+def skeleton(html):
+    """No. 01 was hand-built without a head; give it a doctype and a charset so Safari stops guessing Latin-1."""
+    if '<meta charset' in html:
+        return html
+    lead = ""
+    if html.startswith("<!-- gt:"):
+        lead, html = html.split("\n", 1)
+        lead += "\n"
+    if '<meta name="viewport"' not in html:
+        html = '<meta name="viewport" content="width=device-width,initial-scale=1">\n' + html
+    return lead + HEAD + html
 
 
 def sitenav(html, series=False):
@@ -130,7 +156,7 @@ def embed_brief():
     html = re.sub(r"<div class=[\"']part-img[\"']>\s*<div class=[\"']phx[\"']>.*?</div>\s*</div>\s*</div>", repl, html, flags=re.S)
     html = re.sub(r"<div class=[\"']phx[\"']>.*?<div class=[\"']s[\"']>.*?</div>\s*</div>", repl, html, flags=re.S)
     html, sw = swap(html)
-    html = sitenav(html)
+    html = skeleton(sitenav(html))
     if full.exists():
         # write back as the raw full page, then split
         (D / "full" / "index.html").write_text("<!-- gt:full -->\n" + html if not html.startswith("<!-- gt:full -->") else html)
@@ -147,7 +173,7 @@ def rebuild_cards():
     p = D / "series" / "index.html"
     s = p.read_text()
     s, sw = swap(s)
-    s = sitenav(s, series=True)
+    s = skeleton(sitenav(s, series=True))
     print(f"series: {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced")
     s = re.sub(r"<div class=\"slide[^\"]*card[^\"]*\" id=\"(s\d-card|route-card)\">.*?</div>\n(?=\s*<div class=\"slide|\s*</div>\s*<script)", "", s, flags=re.S)
     if "body.web .slide.card" not in s:
