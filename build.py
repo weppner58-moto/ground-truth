@@ -158,7 +158,8 @@ def build_home(posts):
       <div class="gt-home">
         <div>
           <h3>Primary-document research on the motorcycle industry.</h3>
-          <p>Every figure linked to its filing. Corrections published, not made quietly. Three issues so far: LiveWire five years in, Harley-Davidson's plan added up, and sixty-six years of Harley buying what it could build.</p>
+          <p>The powersports industry is complicated and fragmented, and it defies transparent operational and financial analysis. Too many moving parts, and the analysts covering it rarely bring the perspective of a rider, a product planner, and an operator who has worked inside several of its companies. This series is that perspective, written for anyone who has to form a view on these companies quickly: analysts, dealers, suppliers, and the people inside them.</p>
+          <p>Every figure linked to its filing. Corrections published, not made quietly. Three issues so far, and the series continues: No. 04 follows the third-quarter calls.</p>
           <p class="gt-list"><a href="groundtruth/01/">No. 01 &middot; LiveWire: 5 Years In and 1% of Plan</a><br><a href="groundtruth/02/">No. 02 &middot; Harley-Davidson: Back to the Bricks, Down to Breakeven</a><br><a href="groundtruth/03/">No. 03 &middot; Harley-Davidson: Outside In</a></p>
           <div class="btn-row"><a class="btn btn-solid" href="groundtruth/">Read Ground Truth <span class="ar">&rarr;</span></a></div>
         </div>
