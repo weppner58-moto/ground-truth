@@ -79,7 +79,9 @@ def part_img(img_title, img_desc, sketch, img=None):
         data = base64.b64encode((IMG / img).read_bytes()).decode()
         mime = mimetypes.guess_type(img)[0] or "image/jpeg"
         return f"<div class='part-img'><img src='data:{mime};base64,{data}' alt='{img_title}. {img_desc}'><div class='c'>{img_title}</div></div>"
-    return f"<div class='part-img'><div class='phx'><span class='tag'>Image to source</span><div class='t'>{img_title}</div><div class='d'>{img_desc}</div><div class='s'>Sketch: {sketch}</div></div></div>"
+    # no render yet: the slot stays empty on the page (the brief in the project doc carries the prompt)
+    slot = img or ""
+    return f"<div class='part-img part-img-empty' data-slot='{slot}' hidden></div>"
 
 
 def part(i, title, dek, point, why, img_title, img_desc, sketch, img=None):
@@ -287,7 +289,7 @@ def build():
     <div class="eyebrow">00 &middot; Start here</div>
     <h2>The finding, and the trail that led to it</h2>
     <p class="lede">Harley-Davidson has spent sixty-six years buying, licensing and partnering its way into every segment below the big twin, and building from within only when the product carries the full brand at the full price. Here is how three old filings led me to that sentence.</p>
-    <p>Start with what they said. May 5, 2026, the Q1 call, the new CEO explaining the plan: &ldquo;By using and leveraging existing powertrain, existing platforms, we can have a much broader assortment of motorcycles to present.&rdquo; The first new motorcycle under that plan is the Sprint. Its engine is a {n('440cc')} single that Hero MotoCorp co-developed with Harley and builds in Neemrana for the X440, a {n('&#8377;2.29 lakh')} motorcycle. On the same call: &ldquo;we&rsquo;re finalizing the specific production plans.&rdquo; A company that says it will lean on the platforms it already has is opening the plan with one it does not own.</p>
+    <p>Start with what they said. May 5, 2026, the Q1 call, the new CEO explaining the plan: &ldquo;By using and leveraging existing powertrain, existing platforms, we can have a much broader assortment of motorcycles to present.&rdquo; The first new motorcycle under that plan is the Sprint. Its engine is a {n('440cc')} single that Hero MotoCorp co-developed with Harley and builds in Neemrana for the X440, a {n('&#8377;2.29 lakh')} motorcycle, about $2,760. On the same call: &ldquo;we&rsquo;re finalizing the specific production plans.&rdquo; A company that says it will lean on the platforms it already has is opening the plan with one it does not own.</p>
     <p>That sent me back through the record. Not the press record; the filed one. What did Harley pay each time it reached outside the building, what did it get, and how did it end?</p>
     <ul class="finds">
       <li>Open the FY2009 and FY2010 10-Ks and MV Agusta is not the &ldquo;~$163M&rdquo; everyone quotes. It is {n('$268.4M')} of net loss from discontinued operations in twenty-four months, on {n('$105.1M')} of consideration, {n('$20.1M')} of which was written off on the day it closed.</li>
@@ -344,7 +346,7 @@ def build():
         ("2018", "Equity in Alta Motors (Faster Faster, Inc.) + co-development", "Out", ("<span class='hi'>never stated</span>", "num"), "H-D out by August; Alta closed 17 Oct 2018; BRP bought the IP. H-D&rsquo;s own Silicon Valley EV R&amp;D facility announced 5 Sep 2018"),
         ("2019", "StaCyc, Inc.", "Out", ("$14.9M", "num"), "LiveWire&rsquo;s only profitable unit. <span class='hi'>21,633</span> units in 2025"),
         ("2019", "Qianjiang (Geely), 338cc for China", "Out, licence", ("n/d", "num"), "X350/X500 in Asia. The X350RA is the U.S. Riding Academy bike, not for sale"),
-        ("2020", "Hero MotoCorp, India distribution and brand licence", "Out, licence", ("follows ~$75M exit", "num"), "X440 launched Jul 2023, Hero-built, &#8377;2.29 lakh. <span class='hi'>The Sprint&rsquo;s engine</span>"),
+        ("2020", "Hero MotoCorp, India distribution and brand licence", "Out, licence", ("follows ~$75M exit", "num"), "X440 launched Jul 2023, Hero-built, &#8377;2.29 lakh (about $2,760). <span class='hi'>The Sprint&rsquo;s engine</span>"),
         ("2021", "Revolution Max / Pan America", "<b>In</b>", ("n/d", "num"), "Pan America, Sportster S, Nightster. Thailand 2024&ndash;26; coming home"),
         ("2021", "LiveWire SPAC; KYMCO $100M", "Out, capital", ("H-D $100M; $1.77B EV", "num"), "923 units TTM; $422M of consolidated losses (No. 02)"),
         ("2025", "HDFS: 4.9% each to KKR and PIMCO; &gt;$5B of receivables; two-thirds forward flow", "Out, capital", ("~$1.25B in", "num"), "HDFS operating income guided from $490M to $55&ndash;70M (No. 02 &sect;2)"),
@@ -519,7 +521,7 @@ def build():
 
     # ═════════ PART V — THE SPRINT RHYME ═════════
     H.append(part(4, "The Sprint rhyme", "1960, an Aermacchi. 2026, a Hero. The same hole below the big twin, and somebody else&rsquo;s engine in it both times.",
-                  "The first Sprint was built in Varese by a company Harley half-owned. The new one runs a 440 single Hero co-developed and builds in Neemrana for a &#8377;2.29 lakh motorcycle. Where the Sprint is built and what it costs are undecided.",
+                  "The first Sprint was built in Varese by a company Harley half-owned. The new one runs a 440 single Hero co-developed and builds in Neemrana for a &#8377;2.29 lakh motorcycle, about $2,760. Where the Sprint is built and what it costs are undecided.",
                   "Those two facts are the test of the rule. Hero-built means the rule held and the plan&rsquo;s &ldquo;existing platforms&rdquo; include a licensee&rsquo;s. York-built means it is not a $6,000 motorcycle, and Street says what happens next.",
                   "Neemrana, Rajasthan, 2023", "The X440 on Hero&rsquo;s line at the Garden Factory. Co-developed at Hero&rsquo;s CIT, priced at &#8377;2,29,000. The Sprint&rsquo;s engine.",
                   "A 440cc single-cylinder roadster, oil-cooled engine exposed, on a stand in a clean Indian factory with trees visible through open bays. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="neemrana.jpg"))

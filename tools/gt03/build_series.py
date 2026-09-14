@@ -139,7 +139,7 @@ def build():
   <div class='quote'>“By using and leveraging existing powertrain, existing platforms, we can have a much broader assortment of motorcycles to present.”</div>
   <div class='src'>Artie Starrs, CEO · Q1 2026 earnings call</div>
   <div class='spacer'></div>
-  <p class='wide' style='font-size:30px'>The first new motorcycle under that plan is the Sprint. Its engine is a <strong>440cc single Hero MotoCorp builds in Rajasthan</strong> for a ₹2.29 lakh motorcycle.</p>
+  <p class='wide' style='font-size:30px'>The first new motorcycle under that plan is the Sprint. Its engine is a <strong>440cc single Hero MotoCorp builds in Rajasthan</strong> for a ₹2.29 lakh motorcycle, about $2,760.</p>
   <p class='wide' style='font-size:30px'>Same call: <strong>“we’re finalizing the specific production plans.”</strong></p>
   {foot('Source: Q1 2026 call transcript')}""", dark=True, tag=f"01 / {N:02d}"))
     S.append(slide("s1-3", f"""

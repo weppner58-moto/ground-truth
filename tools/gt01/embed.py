@@ -65,7 +65,9 @@ LOGOS = {
 SERIES_ASSIGN = {
     "s1-1":  ("gt01/img/gt01-one.jpg", "LiveWire ONE", "contain"),
     "s4-9":  ("gt01/img/gt01-one.jpg", "The lineup they have", "contain"),
-    "s1-6":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
+    "s1-3":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
+    "s1-6":  ("gt01/img/gt01-24-denominator.jpg", "Here's the denominator"),
+    "s2-7":  ("gt01/img/gt01-15-dust.jpg", "Dust: the acquired programme", "", "band cmk sm"),
     "s2-6":  ("gt01/img/gt01-11-kymco.jpg", "KYMCO assembly line, Taiwan"),
     "s3-1":  ("gt01/img/gt01-18-line.jpg", "KYMCO, Taiwan"),
     "s3-7":  ("gt01/img/gt01-20-crates.jpg", "Take-or-pay"),
@@ -163,6 +165,8 @@ def assign_series(html):
             new = re.sub(r'<div class="c">.*?</div>', f'<div class="c">{cap}</div>', new, count=1, flags=re.S) if '<div class="c">' in new else new.replace("</div>", f'<div class="c">{cap}</div></div>')
             if extra and f' {extra}' not in new[:60]:
                 new = new.replace('<div class="band', f'<div class="band {extra}', 1)
+            if len(spec) > 3:
+                new = re.sub(r'<div class="band[^"]*"', f'<div class="{spec[3]}"', new, count=1)
             n["set"] += 1
         else:
             new = ""

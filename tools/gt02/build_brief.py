@@ -58,7 +58,8 @@ def part_img(img_title, img_desc, img_src, img=None):
         data = base64.b64encode((IMG / img).read_bytes()).decode()
         mime = mimetypes.guess_type(img)[0] or "image/jpeg"
         return f"<div class=\"part-img\"><img src=\"data:{mime};base64,{data}\" alt=\"{img_title}. {img_desc}\"><div class=\"c\">{img_title}</div></div>"
-    return f'<div class="part-img"><div class="phx" style="height:240px;aspect-ratio:auto;border:0"><span class="tag">Image to source</span><div class="t">{img_title}</div><div class="d">{img_desc}</div><div class="s">{img_src}</div></div></div>'
+    slot = img or ""
+    return f'<div class="part-img part-img-empty" data-slot="{slot}" hidden></div>'
 
 def part(pid, roman, title, dek, point, why, img_title, img_desc, img_src, img=None):
     return f'''
