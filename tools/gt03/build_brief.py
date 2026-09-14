@@ -330,7 +330,7 @@ def build():
                   "Sixteen moves. Every purchased brand is gone. Every purchased channel or component is still here: the finance company, the balance bikes, the licences, the assembly lines.",
                   "The pattern is the argument. Once you see what stayed and what went, the Sprint, the 883 and LiveWire stop being three decisions and become one.",
                   "Varese, 1961", "An Aermacchi-built Harley-Davidson Sprint on the line at Schiranna. The first time Harley filled the gap below the big twin with somebody else&rsquo;s motorcycle.",
-                  "1961 Aermacchi Harley-Davidson Sprint 250, single-cylinder, horizontal engine, on a factory assembly line in Varese, Italy. Ink and wash, period photo feel, 3:2, no logos."))
+                  "1961 Aermacchi Harley-Davidson Sprint 250, single-cylinder, horizontal engine, on a factory assembly line in Varese, Italy. Ink and wash, period photo feel, 3:2, no logos.", img="gt03-01-varese.jpg"))
 
     rows = [
         ("1960", "50% of Aermacchi&rsquo;s motorcycle division, Varese", "Out", ("~$250K", "num"), "The original <b>Harley-Davidson Sprint</b>, 250/350 singles. Full ownership early 1970s. Sold to the Castiglionis (Cagiva) 1978"),
@@ -369,7 +369,7 @@ def build():
                   "Buell: ~$125M to shut, sixteen years after the first stake. MV Agusta: $105.1M in, $268.4M of losses in twenty-four months, sold back for a euro with &euro;20M of Harley cash inside.",
                   "1996: &ldquo;concentrate on its core motorcycle business.&rdquo; 2009 and 2010: &ldquo;focus &hellip; on the Harley-Davidson brand.&rdquo; The words repeat because the decision does: a second brand that competes with Harley-Davidson for engineering dollars does not survive the next CEO.",
                   "East Troy, October 2009", "The last Buell on the line. Production ended at the end of the month; employment on December 18.",
-                  "A single sportbike at the end of an otherwise empty assembly line, fluorescent light, workers&rsquo; jackets on hooks, Wisconsin winter through the loading door. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "A single sportbike at the end of an otherwise empty assembly line, fluorescent light, workers&rsquo; jackets on hooks, Wisconsin winter through the loading door. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt03-02-easttroy.jpg"))
 
     H.append(section(brandrow("02 &middot; Buell") + f"""
     <h2>Sixteen years, one paragraph, $125 million</h2>
@@ -425,7 +425,7 @@ def build():
                   "Alta: one sentence in one press release, no amount in any filing, bounded by Alta&rsquo;s own Form D at $5.65M, gone in six months. StaCyc: $14.9M, earn-out paid in full, 21,633 units in 2025 to LiveWire&rsquo;s 653.",
                   "Together they show what Harley actually wanted from electric. Not a motorcycle company. A battery it could learn from, and a $649 product that puts a family on a dealer floor.",
                   "Brisbane, California, 2018", "Alta Motors&rsquo; Redshift on a Harley dealer floor, one of 44 that carried it. Six months later the building was empty.",
-                  "A small electric dirt bike on a polished dealership floor between two large cruisers, price tag hanging, morning light through showroom glass. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "A small electric dirt bike on a polished dealership floor between two large cruisers, price tag hanging, morning light through showroom glass. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt03-03-redshift-floor.jpg"))
 
     fd_rows = [
         ("7 Mar 2016", "$7.0M convertible notes", ("$1.77M", "num"), ("18", "num"), "Marc Fenigstein, CEO"),
