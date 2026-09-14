@@ -48,7 +48,19 @@ def here(on):
     parts = ["Part I", "Part II", "Part III", "Part IV", "Part V", "Part VI"]
     return '<div class="here">' + " ".join(f'<span class="{"on" if p==on else ""}">{p}</span>' for p in parts) + "</div>"
 
-def part(pid, roman, title, dek, point, why, img_title, img_desc, img_src):
+from pathlib import Path
+IMG = Path(ROOT) / "tools" / "gt02" / "img"
+
+def part_img(img_title, img_desc, img_src, img=None):
+    """A render if tools/gt02/img/<img> exists, else the sketch placeholder."""
+    if img and (IMG / img).exists():
+        import base64, mimetypes
+        data = base64.b64encode((IMG / img).read_bytes()).decode()
+        mime = mimetypes.guess_type(img)[0] or "image/jpeg"
+        return f"<div class=\"part-img\"><img src=\"data:{mime};base64,{data}\" alt=\"{img_title}. {img_desc}\"><div class=\"c\">{img_title}</div></div>"
+    return f'<div class="part-img"><div class="phx" style="height:240px;aspect-ratio:auto;border:0"><span class="tag">Image to source</span><div class="t">{img_title}</div><div class="d">{img_desc}</div><div class="s">{img_src}</div></div></div>'
+
+def part(pid, roman, title, dek, point, why, img_title, img_desc, img_src, img=None):
     return f'''
 <div class="wrap part" id="{pid}">
   <div class="brandrow">{here(roman)}<div class="brand"><span style="font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:14px;letter-spacing:.06em;color:var(--ink-3)">Harley-Davidson, Inc.</span></div></div>
@@ -62,7 +74,7 @@ def part(pid, roman, title, dek, point, why, img_title, img_desc, img_src):
         <div><b>Why it matters</b><span>{why}</span></div>
       </div>
     </div>
-    <div class="part-img"><div class="phx" style="height:240px;aspect-ratio:auto;border:0"><span class="tag">Image to source</span><div class="t">{img_title}</div><div class="d">{img_desc}</div><div class="s">{img_src}</div></div></div>
+    {part_img(img_title, img_desc, img_src, img)}
   </div>
 </div>'''
 
@@ -291,7 +303,7 @@ def build():
                   "The company&rsquo;s own 2026 guidance, added up, and the five-year line it sits at the bottom of.",
                   "Harley-Davidson, Inc. is guided to roughly breakeven operating income in 2026, and the subsidiary&rsquo;s guided loss is larger than the motor company&rsquo;s guided profit.",
                   "Every argument about Sportsters, dealers and tariffs happens inside that arithmetic. Growth from here is measured from a base near zero.",
-                  "Juneau Avenue", "The Milwaukee headquarters, reopened for return-to-office in March 2026. Exterior, brick.", "Sketch: The Harley-Davidson headquarters on Juneau Avenue, Milwaukee, a long red-brick factory facade with tall windows, present day, overcast morning light. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "Juneau Avenue", "The Milwaukee headquarters, reopened for return-to-office in March 2026. Exterior, brick.", "Sketch: The Harley-Davidson headquarters on Juneau Avenue, Milwaukee, a long red-brick factory facade with tall windows, present day, overcast morning light. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt02-01-juneau.jpg"))
 
     H.append(f'''
 <section>
@@ -375,7 +387,7 @@ def build():
                   "Where the 2025 profit came from, and what it cost to get it.",
                   "In 2025 the motor company lost money and the subsidiary lost more. The year was profitable because the finance company sold its loan book and paid a $1 billion dividend to the parent. That does not happen twice.",
                   "HDFS earned about a quarter-billion a year before the sale and is guided to $55&ndash;70M after it. The company traded a recurring earner for a one-time cheque.",
-                  "HDFS, Plano", "Harley-Davidson Financial Services offices, Plano, Texas. Or a dealer finance desk.", "Sketch: A dealership finance desk, a rider signing loan papers across from a finance manager, cruisers blurred on the showroom floor behind them, present day, flat fluorescent light. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "The finance desk", "Where the loan book came from: a rider signing across from the finance manager.", "Sketch: A dealership finance desk, a rider signing loan papers across from a finance manager, cruisers blurred on the showroom floor behind them, present day, flat fluorescent light. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt02-02-hdfs-desk.jpg"))
 
     H.append(f'''
 <section>
@@ -432,7 +444,7 @@ def build():
                   "What LiveWire costs the parent, in the parent&rsquo;s own numbers, and the date on which that stops being a line item and becomes a decision.",
                   "$422M of consolidated operating losses since 2022; a fifth of the 2025 profit drag and a third of the trailing one; from 0.6% of revenue and 2.7% of headcount. Cash runs out around May 2027. The note is due in December 2027.",
                   "Because LiveWire is consolidated, no ownership change short of deconsolidation improves Harley-Davidson&rsquo;s reported operating income. Back to the Bricks handles this by not counting it.",
-                  "S2 Del Mar on a Harley floor", "A LiveWire on a Harley-Davidson dealer floor, or the LiveWire space at Harley-Davidson headquarters.", "Sketch: A single electric motorcycle on a display stand at the edge of a dealer showroom, hemmed in by larger cruisers and touring bikes, present day, hard overhead spotlights. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "S2 Del Mar on a Harley floor", "A LiveWire on a Harley-Davidson dealer floor, or the LiveWire space at Harley-Davidson headquarters.", "Sketch: A single electric motorcycle on a display stand at the edge of a dealer showroom, hemmed in by larger cruisers and touring bikes, present day, hard overhead spotlights. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt02-03-delmar-floor.jpg"))
 
     H.append(f'''
 <section>
@@ -533,7 +545,7 @@ def build():
                   "What Back to the Bricks actually commits to, and what the plan it replaces committed to.",
                   "Five pillars and six targets, all HDMC. The 2027 EBITDA number translates to roughly a 5% operating margin, below 2019. Hardwire promised 15% by 2025 and delivered (0.8%).",
                   "A stabilisation plan with a growth target attached is a reasonable thing to publish after 2025. Calling it ambitious is not.",
-                  "Back to the Bricks", "The 5 May 2026 webcast title slide, or Starrs at a dealer meeting.", "Sketch: A chief executive at a lectern addressing a hall of motorcycle dealers, a wide blank screen behind him, 2026 corporate meeting, cool stage lighting. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "Back to the Bricks", "The 5 May 2026 webcast title slide, or Starrs at a dealer meeting.", "Sketch: A chief executive at a lectern addressing a hall of motorcycle dealers, a wide blank screen behind him, 2026 corporate meeting, cool stage lighting. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt02-04-keynote.jpg"))
 
     H.append(f'''
 <section>
@@ -606,7 +618,7 @@ def build():
                   "What the capital did, and the one motorcycle the growth target is riding on.",
                   "$1.63B of buybacks at an average of $31 for a stock at $28. A mid-single-digit growth target that needs about 6,600 units a year, and a Sportster that once sold 35,000&ndash;40,000.",
                   "The plan has one volume lever. It was discontinued four years ago because it did not make money. Starrs says the cost is now right. Nothing else in the lineup has that kind of volume in it.",
-                  "Sportster 883", "An Evolution-engined 883: Iron 883 or a customised example. The bike the plan is betting on.", "Sketch: An air-cooled Sportster 883 with a peanut tank and low bars, parked at a kerb on a city street, late 2010s, low evening sun. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "Sportster 883", "An Evolution-engined 883: Iron 883 or a customised example. The bike the plan is betting on.", "Sketch: An air-cooled Sportster 883 with a peanut tank and low bars, parked at a kerb on a city street, late 2010s, low evening sun. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt02-05-883.jpg"))
 
     H.append(f'''
 <section>
@@ -696,7 +708,7 @@ def build():
                   "Three things that are true at once, and the question the plan leaves open.",
                   "LiveWire did not break Harley-Davidson. LiveWire is exactly what the new Harley-Davidson cannot afford. And the decision about it has a date inside the plan&rsquo;s own window.",
                   "Anyone telling you the electric bet sank Harley is choosing the flattering villain. Anyone telling you it does not matter is not adding up the guidance.",
-                  "The bricks", "Headquarters brickwork, close. Or a York assembly line.", "Sketch: A motorcycle assembly line in York, Pennsylvania, workers lowering an engine into a frame on a moving conveyor, present day, high skylight factory light. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos."))
+                  "The bricks", "Headquarters brickwork, close. Or a York assembly line.", "Sketch: A motorcycle assembly line in York, Pennsylvania, workers lowering an engine into a frame on a moving conveyor, present day, high skylight factory light. Charcoal sketch with a blue-grey wash on a dark chalkboard ground, vignetted edges; any people seen from behind or with faces unresolved, no identifiable ethnicity; 3:2, no logos.", img="gt02-06-bricks.jpg"))
 
     H.append(f'''
 <section class="final-sec">

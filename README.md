@@ -79,3 +79,5 @@ Built against a complete local archive of both companies' SEC filings: 260 docum
 ---
 
 William Weppner · Contact Patch Advisory · independent expert witness and litigation consultant, EV and powersports product liability.
+
+No. 02 images: drop renders into `tools/gt02/img/` as `gt02-01-juneau.jpg`, `gt02-02-hdfs-desk.jpg`, `gt02-03-delmar-floor.jpg`, `gt02-04-keynote.jpg`, `gt02-05-883.jpg`, `gt02-06-bricks.jpg` (1200 wide, q80). `build_brief.py` puts each on its part when the file exists; `build_series.py` puts them on the route cards. Then `split_brief.py 02`, render_slides with "1:The-Arithmetic" "2:The-Sale" "3:The-Subsidiary" "4:The-Bricks", and `render_brief_pdf.py 02`.

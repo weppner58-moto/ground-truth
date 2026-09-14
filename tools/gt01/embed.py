@@ -88,6 +88,11 @@ def swap(html):
     if (IMG / "gt01-09-redshift.jpg").exists():
         html, c = re.subn(r'<figure class="clip"[^>]*><span class="cm"></span><img [^>]*alt="Alta Motors logo"[^>]*>.*?</figure>', "", html, count=1, flags=re.S)
         n["logo"] += c
+    # a band that letterboxed a logo-ish photo on white ("contain") should fill with the sketch
+    sk = {key(__import__("base64").b64encode((IMG / f).read_bytes()).decode()) for f in set(REPLACE.values()) if (IMG / f).exists()}
+    def unbox(m):
+        return m.group(0).replace(" contain", "", 1) if key(m.group(2)) in sk else m.group(0)
+    html = re.sub(r'<div class="band[^"]* contain"[^>]*>\s*<img[^>]*src="data:image/(\w+);base64,([^"]+)"', unbox, html)
     return html, n
 
 

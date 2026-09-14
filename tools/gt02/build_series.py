@@ -8,6 +8,7 @@ Run from the repo root:  python3 tools/gt02/build_series.py
 import os, sys, re
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "tools", "lib"))
 from sitenav import NAV_CSS, bottombar_html
+from cards import data_uri
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "gt02", "lib"))  # No. 02 chart/render API; tools/lib is the current one
 from charts import bars, hbars, waterfall, MAG, CYAN, INK3
@@ -32,6 +33,11 @@ EXTRA_CSS = """
 .routegrid .rp{font-size:15.5px;line-height:1.38;color:var(--dink3)}
 .routegrid div.on{outline:2px solid var(--dmag);outline-offset:-2px}
 .routegrid div.on .rt{color:var(--dmag)}
+.slide.card.img .cband{margin:18px 0 22px}
+.slide.card.img .cband img{height:300px}
+.slide.card.img .routegrid div{padding:12px 14px 13px}
+.slide.card.img .routegrid .rt{font-size:25px}
+.slide.card.img .routegrid .rp{font-size:14px}
 .routegrid:not(.all) div:not(.on) .rt{opacity:.55}
 .tbl{width:100%;border-collapse:collapse;font-size:24px}
 .tbl th{font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:0 10px 12px 0;border-bottom:2px solid var(--rule2);font-weight:500}
@@ -75,18 +81,29 @@ def cover(part_n, part_title, h1, dek, sid):
   <p class="wide" style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--dink3);margin:0">Part {part_n} · {part_title}</p>''',
   dark=True, tag="Ground Truth No. 02", sid=sid, foot_l="Harley-Davidson, Inc. · HOG", foot_r="September 2026")
 
+CARD_IMG = {0: "gt02-01-juneau.jpg", 1: "gt02-02-hdfs-desk.jpg", 2: "gt02-03-delmar-floor.jpg", 3: "gt02-04-keynote.jpg", -1: "gt02-06-bricks.jpg"}
+CARD_CAP = {0: "Juneau Avenue, Milwaukee", 1: "The finance desk", 2: "One electric on a Harley floor", 3: "Back to the Bricks, 5 May 2026", -1: "The bricks"}
+IMG = os.path.join(ROOT, "tools", "gt02", "img")
+
 def route_card(on_index, sid, heading=None, dek=None):
     cells = []
     for i, (rn, rt, rp) in enumerate(ROUTE):
         cells.append(f'<div class="{"on" if i == on_index else ""}"><div class="rn">{rn}</div><div class="rt">{rt}</div><div class="rp">{rp}</div></div>')
     heading = heading or ROUTE[on_index][1]
     dek = dek or "What Harley-Davidson's own filings say about the plan, the subsidiary, and 2027."
+    f = os.path.join(IMG, CARD_IMG.get(on_index, ""))
+    if CARD_IMG.get(on_index) and os.path.exists(f):
+        band = f'<div class="band cmk cband"><img src="{data_uri(f)}" alt="{CARD_CAP[on_index]}"><div class="c">{CARD_CAP[on_index]}</div></div>'
+        top = f'<h1 style="font-size:64px;max-width:14ch">{heading}</h1>\n  {band}'
+        cls = "card img"
+    else:
+        top = f'<h1 style="font-size:80px;max-width:12ch">{heading}</h1>\n  <p class="wide" style="margin-top:22px;color:var(--dink3);font-size:24px;margin-bottom:30px">{dek}</p>'
+        cls = "card"
     return slide(f'''
   <div class="kick">{TITLE} · The route</div>
-  <h1 style="font-size:80px;max-width:12ch">{heading}</h1>
-  <p class="wide" style="margin-top:22px;color:var(--dink3);font-size:24px;margin-bottom:30px">{dek}</p>
+  {top}
   <div class="routegrid{" all" if on_index < 0 else ""}" style="margin-bottom:34px">{"".join(cells)}</div>''',
-  dark=True, tag="Ground Truth No. 02", sid=sid, foot_l="Contact Patch · Ground Truth No. 02", foot_r=URL, extra_cls="card")
+  dark=True, tag="Ground Truth No. 02", sid=sid, foot_l="Contact Patch · Ground Truth No. 02", foot_r=URL, extra_cls=cls)
 
 def stat(k, v, sub, mag=True, size=84):
     return f'<div class="col stat {"m" if mag else ""}"><div class="k">{k}</div><div class="v {"m" if mag else ""}" style="font-size:{size}px">{v}</div><div class="sub">{sub}</div></div>'
