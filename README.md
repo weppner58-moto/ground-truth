@@ -85,3 +85,5 @@ No. 02 images: drop renders into `tools/gt02/img/` as `gt02-01-juneau.jpg`, `gt0
 Index thumbnails: `python3 tools/lib/index_thumbs.py` captures each brief's hero chart (dark, 1200 wide) to `tools/gtNN/img/hero.jpg` and rewrites the index so every issue shows its sketch and its chart. Run it after any hero chart changes.
 
 Sketches through the body of Nos. 02 and 03: `python3 tools/lib/place.py NN` after the builders and before render. Slots are listed in the file (section number or slide id -> file, caption); a missing file leaves the slot empty. Unfilled part images are hidden, not shown as placeholder boxes.
+
+Charts as images: `python3 tools/lib/figcap.py NN` captures the hero chart and every FIG of a brief (dark, 1200 wide) into `tools/gtNN/img/`; place.py puts them on the part covers. Re-run after a chart changes.

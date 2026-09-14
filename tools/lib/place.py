@@ -44,6 +44,12 @@ PLACES = {
             "s4-8": ("gt02/img/gt02-13-york-line.jpg", "2027, if every target lands"),
         },
         "cards": {},  # No. 02's builder already puts images on its cards
+        "covers": {  # part cover -> (file, caption); charts come from tools/lib/figcap.py
+            "s1-1": ("gt02/img/hero.jpg", "2026 guidance, added up"),
+            "s2-1": ("gt02/img/fig-04.jpg", "HDFS operating income, $ millions: the cliff after the sale"),
+            "s3-1": ("gt02/img/fig-05.jpg", "LiveWire\'s share of the drag on consolidated operating income"),
+            "s4-1": ("gt02/img/fig-08.jpg", "Consolidated operating income, actual and on the plan, $ millions"),
+        },
     },
     "03": {
         "brief": {
@@ -71,8 +77,14 @@ PLACES = {
             "s1-card": ("gt03/img/gt03-07-museum.jpg", "Sixty-six years of outside moves"),
             "s2-card": ("gt03/img/gt03-02-easttroy.jpg", "East Troy, October 2009"),
             "s3-card": ("gt03/img/gt03-03-redshift-floor.jpg", "Brisbane, California, 2018"),
-            "s4-card": ("gt03/img/gt03-04-bawal.jpg", "Bawal, Haryana, 2014"),
+            "s4-card": ("gt03/img/fig-01.jpg", "What the outside moves cost to unwind, $ millions"),
             "route-card": ("gt03/img/gt03-06-juneau-dusk.jpg", "Juneau Avenue, Milwaukee"),
+        },
+        "covers": {
+            "s1-1": ("gt03/img/hero.jpg", "Sixty-six years of outside moves"),
+            "s2-1": ("gt03/img/fig-02.jpg", "MV Agusta: what went in, what was written off, what was lost"),
+            "s3-1": ("gt03/img/fig-04.jpg", "2025: thirty-three StaCycs for every LiveWire motorcycle"),
+            "s4-1": ("gt03/img/gt03-04-bawal.jpg", "Bawal, 2014: built in-house, closed 2020"),
         },
     },
 }
@@ -87,6 +99,11 @@ BAND_CSS = """
 /* place.py */
 .gt-band{margin:0 0 28px}
 .gt-band img{height:230px}
+.gt-band.chart img{object-fit:contain;height:auto;max-height:440px;background:#0B0C0E}
+.gt-band.cover img{height:330px}
+.gt-band.chart .c{position:static;background:none;border-top:1px solid var(--drule);color:var(--dink3);padding:9px 12px 8px}
+.slide.gt-cover h1{font-size:92px!important}
+.slide.gt-cover .spacer:first-of-type{flex:0 0 12px}
 .slide.card.img .rgrid .t{font-size:30px}
 /* /place.py */"""
 
@@ -146,6 +163,23 @@ def series(n):
         band = f'\n  <div class="band cmk gt-band"><img src="{data_uri(TOOLS / f)}" alt="{cap}"><div class="c">{cap}</div></div>'
         s = s[:at] + band + s[at:]
         n_set += 1
+    n_cov = 0
+    for sid, (f, cap) in PLACES[n].get("covers", {}).items():
+        if not (TOOLS / f).exists():
+            continue
+        m = re.search(r"<div class=([\"'])(slide[^\"']*)\1 id=%s>(.*?)(?=<div class=[\"']slide|\s*</div>\s*<script)" % q(sid), s, re.S)
+        if not m:
+            continue
+        blk = m.group(0)
+        cls = m.group(2) if "gt-cover" in m.group(2) else m.group(2) + " gt-cover"
+        blk = re.sub(r"<div class=([\"'])slide[^\"']*\1 id=", lambda mm: f"<div class={mm.group(1)}{cls}{mm.group(1)} id=", blk, count=1)
+        kind = "chart" if ("fig-" in f or "hero" in f) else "cover"
+        band = f'\n  <div class="band cmk gt-band {kind}"><img src="{data_uri(TOOLS / f)}" alt="{cap}"><div class="c">{cap}</div></div>'
+        dek = re.search(r"</h1>\s*<p class=[\"']wide[\"'][^>]*>.*?</p>", blk, re.S)
+        at = dek.end() if dek else blk.index("</h1>") + 5
+        blk = blk[:at] + band + blk[at:]
+        s = s[:m.start()] + blk + s[m.end():]
+        n_cov += 1
     n_card = 0
     for sid, (f, cap) in PLACES[n]["cards"].items():
         if not (TOOLS / f).exists():
@@ -166,7 +200,7 @@ def series(n):
         s = s[:m.start()] + blk + s[m.end():]
         n_card += 1
     p.write_text(s)
-    print(f"{n} series: {n_set} band(s), {n_card} card image(s)")
+    print(f"{n} series: {n_set} band(s), {n_cov} cover(s), {n_card} card image(s)")
 
 
 if __name__ == "__main__":
