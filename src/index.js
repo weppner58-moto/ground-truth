@@ -18,6 +18,7 @@ import { readCookie } from "./lib.js";
 const GATED_PDF = /^\/groundtruth\/assets\/GroundTruth-\d\d_Full-Brief\.pdf$/i;
 const ISSUE = /^\/groundtruth\/(\d\d)\/$/;
 const FULL = /^\/groundtruth\/(\d\d)\/full(\/.*)?$/;
+const SHORT = /^\/(\d\d|gt)\/?$/;
 
 export default {
   async fetch(request, env) {
@@ -38,6 +39,10 @@ export default {
     const f = p.match(FULL);
     if (f) return Response.redirect(new URL(`/groundtruth/${f[1]}/${url.hash || ""}`, url).toString(), 301);
 
+    // short links from the posts: /03 -> /groundtruth/03/, keeping ?p= so the campaign tag survives
+    const sl = p.match(SHORT);
+    if (sl) return Response.redirect(new URL(`/groundtruth/${sl[1] === "gt" ? "" : sl[1] + "/"}${url.search}`, url).toString(), 301);
+
     const i = p.match(ISSUE);
     if (i) {
       // one URL: the complete brief for a registered reader, the public page otherwise
@@ -47,6 +52,9 @@ export default {
       const h = new Headers(r.headers);
       h.set("cache-control", "private, no-store");
       h.set("vary", "Cookie");
+      // ?p=1 on a post link marks which part sent the reader; kept in a cookie until they register
+      const tag = (url.searchParams.get("p") || url.searchParams.get("utm_content") || "").replace(/[^\w.-]/g, "").slice(0, 24);
+      if (tag) h.append("Set-Cookie", `gt_src=${i[1]}-${tag}; Path=/; Max-Age=2592000; SameSite=Lax; Secure`);
       return new Response(r.body, { status: r.status, headers: h });
     }
 

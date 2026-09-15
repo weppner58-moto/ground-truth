@@ -4,7 +4,7 @@ export async function registrationsCsv(request, env) {
   const tok = new URL(request.url).searchParams.get("token") || "";
   if (!env.ADMIN_TOKEN || (auth !== `Bearer ${env.ADMIN_TOKEN}` && tok !== env.ADMIN_TOKEN)) return new Response("Not found", { status: 404 });
   if (!env.GT_LIST) return new Response("No list binding", { status: 500 });
-  const cols = ["email", "name", "company", "role", "registered", "first", "source", "country"];
+  const cols = ["email", "name", "company", "role", "registered", "first", "source", "campaign", "country"];
   const q = s => `"${String(s ?? "").replace(/"/g, '""')}"`;
   let out = cols.join(",") + "\n", cursor;
   do {

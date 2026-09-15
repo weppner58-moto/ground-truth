@@ -9,7 +9,7 @@ compatibility_date = "2026-09-01"
 directory = "./site"
 binding = "ASSETS"
 not_found_handling = "404-page"
-run_worker_first = ["/groundtruth/*"]
+run_worker_first = ["/groundtruth/*", "/01", "/02", "/03", "/04", "/gt"]
 
 # GATE_KEY signs the reader cookie until a real GATE_SECRET secret exists (tools/setup-gate.sh sets one).
 # It only protects a name-and-email gate, so living in the repo is acceptable; the secret overrides it.

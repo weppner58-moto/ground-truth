@@ -103,6 +103,7 @@ export async function registerPost(request, env) {
     source: next,
     referer: request.headers.get("Referer") || "",
     country: request.headers.get("CF-IPCountry") || "",
+    campaign: (/(?:^|;\s*)gt_src=([\w.-]+)/.exec(request.headers.get("Cookie") || "") || [])[1] || "",
   };
   if (env.GT_LIST) {
     const prior = await env.GT_LIST.get(values.email, "json");
