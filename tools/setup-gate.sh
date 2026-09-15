@@ -5,7 +5,11 @@
 # writes its id into wrangler.toml, sets the two secrets, commits and pushes. Re-running is safe.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-npx --yes wrangler whoami >/dev/null 2>&1 || npx --yes wrangler login
+if ! npx --yes wrangler whoami 2>/dev/null | grep -q "You are logged in"; then
+  echo "Signing in to Cloudflare in your browser"
+  npx --yes wrangler login
+fi
+npx --yes wrangler whoami 2>/dev/null | grep -q "You are logged in" || { echo "Not signed in; run: npx wrangler login"; exit 1; }
 if grep -q '^# \[\[kv_namespaces\]\]' wrangler.toml; then
   echo "Creating the KV namespace groundtruth-readers"
   out=$(npx --yes wrangler kv namespace create GT_LIST 2>&1) || { echo "$out"; exit 1; }
