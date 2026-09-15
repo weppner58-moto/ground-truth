@@ -87,3 +87,5 @@ Index thumbnails: `python3 tools/lib/index_thumbs.py` captures each brief's hero
 Sketches through the body of Nos. 02 and 03: `python3 tools/lib/place.py NN` after the builders and before render. Slots are listed in the file (section number or slide id -> file, caption); a missing file leaves the slot empty. Unfilled part images are hidden, not shown as placeholder boxes.
 
 Charts as images: `python3 tools/lib/figcap.py NN` captures the hero chart and every FIG of a brief (dark, 1200 wide) into `tools/gtNN/img/`; place.py puts them on the part covers. Re-run after a chart changes.
+
+Product photos: `tools/lib/products/` (one, s2, honcho, lineup, stacyc). `tools/lib/bands.py` gives the two-up band (product beside sketch); slots are `SERIES_DUO` in `tools/gt01/embed.py` and the `duo` tables in `tools/lib/place.py`. Product photos may repeat across slides; sketches stay once per page.

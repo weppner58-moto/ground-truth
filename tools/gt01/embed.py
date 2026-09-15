@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import CARD_CSS, route_card, data_uri  # noqa: E402
 from sitenav import NAV_CSS, nav_html, bottombar_html  # noqa: E402
+from bands import DUO_CSS, duo  # noqa: E402
 
 IMG = ROOT / "tools" / "gt01" / "img"
 D = ROOT / "site" / "groundtruth" / "01"
@@ -53,6 +54,19 @@ REPLACE = {
     "8d29fb50": "gt01-15-dust.jpg", "7e817020": "gt01-15-dust.jpg", "7a75530c": "gt01-15-dust.jpg",
     "7df70d3c": "gt01-16-parts.jpg",
     "32d1d386": "gt01-17-chair.jpg", "50492726": "gt01-17-chair.jpg",
+    # product photos on the price ladder (series and brief) -> the current studio shots
+    "1080a6a8": "lib/products/one.jpg", "89552776": "lib/products/one.jpg",
+    "8ab41138": "lib/products/s2.jpg", "43ce2e4f": "lib/products/s2.jpg", "6dc7e15b": "lib/products/s2.jpg", "636328e5": "lib/products/s2.jpg",
+    "83ab2eea": "lib/products/honcho.jpg", "5feac193": "lib/products/honcho.jpg",
+}
+# Two images on one slide: a product shot beside the sketch, or two products. Left, right, captions.
+SERIES_DUO = {
+    "s1-3":  ("lineup.jpg", "gt01/img/gt01-19-quarter.jpg", "The lineup, $799 to $16,499", "Q2 2026: 267 motorcycles"),
+    "s1-6":  ("s2.jpg", "gt01/img/gt01-24-denominator.jpg", "S2 Del Mar: the bike behind the 386%", "Here's the denominator"),
+    "s1-10": ("honcho.jpg", "gt01/img/gt01-12-honcho-grass.jpg", "S4 Honcho, $4,999", "Next up: the Honcho"),
+    "s2-4":  ("one.jpg", "honcho.jpg", "LiveWire ONE, $16,499", "S4 Honcho, $4,999. Nothing between them."),
+    "s2-5":  ("honcho.jpg", "gt01/img/gt01-13-honcho-stand.jpg", "S4 Honcho", "Honcho on the stand"),
+    "s4-7":  ("honcho.jpg", "gt01/img/gt01-14-groms.jpg", "2,000 Honchos in a strong first year", "The segment it has to win"),
 }
 # Logos come off the page and become text pills (the page already has .brand-txt).
 LOGOS = {
@@ -63,8 +77,9 @@ LOGOS = {
 # One image per page. Slide id -> (file, caption). A file that does not exist yet drops the band
 # until the render lands (then re-run). Files under tools/<issue>/img/.
 SERIES_ASSIGN = {
-    "s1-1":  ("gt01/img/gt01-one.jpg", "LiveWire ONE", "contain"),
-    "s4-9":  ("gt01/img/gt01-one.jpg", "The lineup they have", "contain"),
+    "s1-1":  ("lib/products/one.jpg", "LiveWire ONE, 2021", "contain"),
+    "s4-9":  ("lib/products/lineup.jpg", "The lineup they have", "contain"),
+    "s3-5":  ("lib/products/s2.jpg", "S2 Del Mar: bought at cost-plus, written down on arrival", "contain"),
     "s1-3":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
     "s1-6":  ("gt01/img/gt01-24-denominator.jpg", "Here's the denominator"),
     "s2-7":  ("gt01/img/gt01-15-dust.jpg", "Dust: the acquired programme", "", "band cmk sm"),
@@ -104,9 +119,10 @@ def swap(html):
             n["logo"] += 1
             return f'<span class="brand-txt">{LOGOS[k]}</span>'
         f = REPLACE.get(k)
-        if f and (IMG / f).exists():
+        fp = (TOOLS / f) if f and "/" in f else (IMG / f) if f else None
+        if fp and fp.exists():
             n["img"] += 1
-            return re.sub(r'src="data:[^"]+"', f'src="{data_uri(IMG / f)}"', tag, count=1)
+            return re.sub(r'src="data:[^"]+"', f'src="{data_uri(fp)}"', tag, count=1)
         return tag
     html = re.sub(r'<img[^>]*src="data:image/(\w+);base64,([^"]+)"[^>]*>', repl, html)
     # the Alta logo clip figure in §05 goes entirely once the Redshift sketch is in
@@ -149,8 +165,25 @@ def skeleton(html):
 
 def assign_series(html):
     """Apply SERIES_ASSIGN: swap or drop the band on each listed slide."""
-    n = {"set": 0, "drop": 0}
+    n = {"set": 0, "drop": 0, "duo": 0}
+    if "/* bands.py */" not in html:
+        html = html.replace("</style>", DUO_CSS + "</style>", 1)
+    html = re.sub(r'\s*<div class="band duo[^"]*">.*?</div></div></div>', "", html, flags=re.S)  # previous run
+    for sid, (lf, rf, cl, cr) in SERIES_DUO.items():
+        m = re.search(r'<div class="slide[^"]*" id="%s">.*?(?=<div class="slide|\s*</div>\s*<script)' % sid, html, re.S)
+        if not m:
+            continue
+        blk = m.group(0)
+        blk = re.sub(r'\n?[ \t]*<div class="band[^"]*">.*?</div>\s*</div>(?=\s*<div class="(?:kick|quote|h|src|spacer|grid|row|foot|stat|k)|\s*<h|\s*<p|\s*<img)', "", blk, count=1, flags=re.S) if '<div class="band duo' in blk else re.sub(r'\n?[ \t]*<div class="band[^"]*">\s*<img[^>]*>\s*(?:<div class="c">.*?</div>\s*)?</div>', "", blk, count=1, flags=re.S)
+        hdr = re.search(r'<div class="tophdr">.*?</div>\s*</div>', blk, re.S)
+        if not hdr:
+            continue
+        blk = blk[:hdr.end()] + "\n  " + duo(lf, rf, cl, cr, extra="sm") + blk[hdr.end():]
+        html = html[:m.start()] + blk + html[m.end():]
+        n["duo"] += 1
     for sid, spec in SERIES_ASSIGN.items():
+        if sid in SERIES_DUO:
+            continue
         f, cap = spec[0], spec[1]
         extra = spec[2] if len(spec) > 2 else ""
         m = re.search(r'<div class="slide[^"]*" id="%s">.*?(?=<div class="slide|\s*</div>\s*<script)' % sid, html, re.S)

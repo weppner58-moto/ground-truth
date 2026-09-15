@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import data_uri, CARD_CSS  # noqa: E402
+from bands import DUO_CSS, duo  # noqa: E402
 
 TOOLS = ROOT / "tools"
 
@@ -44,6 +45,9 @@ PLACES = {
             "s4-8": ("gt02/img/gt02-13-york-line.jpg", "2027, if every target lands"),
         },
         "cards": {},  # No. 02's builder already puts images on its cards
+        "duo": {  # slide id -> (left, right, caption, caption); product photos by bare name from tools/lib/products/
+            "s3-3": ("s2.jpg", "honcho.jpg", "S2 Del Mar, $15,499", "S4 Honcho, $4,999: the subsidiary's lineup"),
+        },
         "covers": {  # part cover -> (file, caption); charts come from tools/lib/figcap.py
             "s1-1": ("gt02/img/hero.jpg", "2026 guidance, added up"),
             "s2-1": ("gt02/img/fig-04.jpg", "HDFS operating income, $ millions: the cliff after the sale"),
@@ -64,9 +68,7 @@ PLACES = {
         "series": {
             "s1-3": ("gt03/img/gt03-11-x440.jpg", "The engine it does not own"),
             "s1-7": ("gt03/img/gt03-13-frames.jpg", "Same sentence, three CEOs"),
-            "s1-8": ("gt03/img/gt03-09-stacyc-race.jpg", "StaCyc vs LiveWire"),
             "s2-4": ("gt03/img/gt03-08-mv.jpg", "MV Agusta, 2008"),
-            "s3-7": ("gt01/img/gt01-06-stacyc.jpg", "StaCyc, 2019"),
             "s3-10": ("gt02/img/gt02-02-hdfs-desk.jpg", "Eaglemark, 1993"),
             "s4-2": ("gt03/img/gt03-10-engine.jpg", "Built in-house"),
             "s4-4": ("gt03/img/gt03-01-varese.jpg", "Varese, 1961"),
@@ -79,6 +81,10 @@ PLACES = {
             "s3-card": ("gt03/img/gt03-03-redshift-floor.jpg", "Brisbane, California, 2018"),
             "s4-card": ("gt03/img/fig-01.jpg", "What the outside moves cost to unwind, $ millions"),
             "route-card": ("gt03/img/gt03-06-juneau-dusk.jpg", "Juneau Avenue, Milwaukee"),
+        },
+        "duo": {
+            "s1-8": ("stacyc.jpg", "gt03/img/gt03-09-stacyc-race.jpg", "StaCyc, from $799", "21,633 in 2025"),
+            "s3-7": ("stacyc.jpg", "gt01/img/gt01-06-stacyc.jpg", "StaCyc, bought March 2019", "$14.9 million"),
         },
         "covers": {
             "s1-1": ("gt03/img/hero.jpg", "Sixty-six years of outside moves"),
@@ -146,7 +152,9 @@ def series(n):
     s = re.sub(r"\n?/\* place\.py \*/.*?/\* /place\.py \*/", "", s, count=1, flags=re.S)
     if "body.web .slide.card" not in s:
         s = s.replace("</style>", CARD_CSS + "</style>", 1)
-    s = s.replace("</style>", BAND_CSS + "\n</style>", 1)
+    s = re.sub(r"\n?/\* bands\.py \*/.*?/\* /bands\.py \*/", "", s, count=1, flags=re.S)
+    s = s.replace("</style>", BAND_CSS + DUO_CSS + "\n</style>", 1)
+    s = re.sub(r"\s*<div class=\"band duo[^\"]*\">.*?</div></div></div>", "", s, flags=re.S)
     s = re.sub(r"\s*<div class=[\"']band cmk gt-band[^\"']*[\"']>.*?</div></div>", "", s, flags=re.S)
     n_set = 0
     for sid, (f, cap) in PLACES[n]["series"].items():
@@ -163,6 +171,17 @@ def series(n):
         band = f'\n  <div class="band cmk gt-band"><img src="{data_uri(TOOLS / f)}" alt="{cap}"><div class="c">{cap}</div></div>'
         s = s[:at] + band + s[at:]
         n_set += 1
+    n_duo = 0
+    for sid, (lf, rf, cl, cr) in PLACES[n].get("duo", {}).items():
+        m = re.search(r"<div class=[\"']slide[^\"']*[\"'] id=%s>\s*<div class=%s>" % (q(sid), q("tophdr")), s, re.S)
+        if not m:
+            continue
+        tag = re.search(r"<div class=%s>.*?</div>\s*</div>" % q("tag"), s[m.end():], re.S)
+        if not tag:
+            continue
+        at = m.end() + tag.end()
+        s = s[:at] + "\n  " + duo(lf, rf, cl, cr) + s[at:]
+        n_duo += 1
     n_cov = 0
     for sid, (f, cap) in PLACES[n].get("covers", {}).items():
         if not (TOOLS / f).exists():
@@ -200,7 +219,7 @@ def series(n):
         s = s[:m.start()] + blk + s[m.end():]
         n_card += 1
     p.write_text(s)
-    print(f"{n} series: {n_set} band(s), {n_cov} cover(s), {n_card} card image(s)")
+    print(f"{n} series: {n_set} band(s), {n_duo} duo(s), {n_cov} cover(s), {n_card} card image(s)")
 
 
 if __name__ == "__main__":
