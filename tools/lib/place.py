@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import data_uri, CARD_CSS  # noqa: E402
 from bands import DUO_CSS, duo  # noqa: E402
+import blurbs  # noqa: E402
 
 TOOLS = ROOT / "tools"
 
@@ -46,7 +47,7 @@ PLACES = {
         },
         "cards": {},  # No. 02's builder already puts images on its cards
         "duo": {  # slide id -> (left, right, caption, caption); product photos by bare name from tools/lib/products/
-            "s3-3": ("s2.jpg", "honcho.jpg", "S2 Del Mar, $15,499", "S4 Honcho, $4,999: the subsidiary's lineup"),
+            "s3-3": ("s2.jpg", ("glyph", "1 in 3", "dollars of the profit drag, from 0.6% of revenue"), "S2 Del Mar, $15,499", ""),
         },
         "covers": {  # part cover -> (file, caption); charts come from tools/lib/figcap.py
             "s1-1": ("gt02/img/hero.jpg", "2026 guidance, added up"),
@@ -70,6 +71,7 @@ PLACES = {
             "s1-7": ("gt03/img/gt03-13-frames.jpg", "Same sentence, three CEOs"),
             "s2-4": ("gt03/img/gt03-08-mv.jpg", "MV Agusta, 2008"),
             "s3-10": ("gt02/img/gt02-02-hdfs-desk.jpg", "Eaglemark, 1993"),
+            "s3-8": ("gt01/img/gt01-06-stacyc.jpg", "What it was bought for"),
             "s4-2": ("gt03/img/gt03-10-engine.jpg", "Built in-house"),
             "s4-4": ("gt03/img/gt03-01-varese.jpg", "Varese, 1961"),
             "s4-5": ("gt03/img/neemrana.jpg", "Neemrana, 2023"),
@@ -83,8 +85,8 @@ PLACES = {
             "route-card": ("gt03/img/gt03-06-juneau-dusk.jpg", "Juneau Avenue, Milwaukee"),
         },
         "duo": {
-            "s1-8": ("stacyc.jpg", "gt03/img/gt03-09-stacyc-race.jpg", "StaCyc, from $799", "21,633 in 2025"),
-            "s3-7": ("stacyc.jpg", "gt01/img/gt01-06-stacyc.jpg", "StaCyc, bought March 2019", "$14.9 million"),
+            "s1-8": ("stacyc.jpg", ("glyph", "33 : 1", "StaCycs per LiveWire motorcycle, 2025"), "StaCyc, from $799", ""),
+            "s3-7": ("gt03/img/gt03-09-stacyc-race.jpg", ("glyph", "$799", "starting price. The only LiveWire segment that makes money"), "StaCyc, bought March 2019", ""),
         },
         "covers": {
             "s1-1": ("gt03/img/hero.jpg", "Sixty-six years of outside moves"),
@@ -140,6 +142,7 @@ def brief(n):
         fig = f'\n    <div class="part-img gt-fig"><img src="{data_uri(TOOLS / f)}" alt="{re.sub("&[a-z]+;", "", cap)}"><div class="c">{cap}</div></div>'
         h = h[:at] + fig + h[at:]
         n_set += 1
+    h, nb = blurbs.apply(h)
     target.write_text(h)
     if public:
         subprocess.run([sys.executable, str(ROOT / "tools" / "lib" / "split_brief.py"), n], check=True)
@@ -218,8 +221,9 @@ def series(n):
         blk = blk.replace(body, body2, 1)
         s = s[:m.start()] + blk + s[m.end():]
         n_card += 1
+    s, nb = blurbs.apply(s)
     p.write_text(s)
-    print(f"{n} series: {n_set} band(s), {n_duo} duo(s), {n_cov} cover(s), {n_card} card image(s)")
+    print(f"{n} series: {n_set} band(s), {n_duo} duo(s), {n_cov} cover(s), {n_card} card image(s), {nb} blurb(s)")
 
 
 if __name__ == "__main__":

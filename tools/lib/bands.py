@@ -22,6 +22,13 @@ DUO_CSS = """
 .band.duo .cell::before,.band.duo .cell::after{content:"";position:absolute;width:12px;height:12px;border:1.5px solid var(--mag);pointer-events:none}
 .band.duo .cell::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
 .band.duo .cell::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.band.duo .cell.glyph{background:#101215;display:flex;flex-direction:column;justify-content:center;padding:18px 22px;min-height:260px}
+.band.duo .cell.glyph .g-big{font-family:var(--disp);font-weight:800;font-size:96px;line-height:.9;color:var(--dmag,var(--mag));letter-spacing:-.01em}
+.band.duo .cell.glyph .g-lab{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#C9CDD2;margin-top:14px;line-height:1.5}
+.band.duo .cell:has(> .blurb) > .c{position:static;background:none;padding:8px 12px 0;color:#E7E9EB}
+.band.duo .cell.white:has(> .blurb) > .c{color:#4A4E54;border-top:1px solid #E3E0D8}
+.band.duo .cell .blurb{padding:6px 12px 9px;border-top:0}
+.band.duo .cell.white img{padding-bottom:14px}
 .band.product{background:#fff}
 .band.product img{object-fit:contain;padding:14px 18px 34px;height:300px}
 .band.product .c{color:#4A4E54;background:none;border-top:1px solid #E3E0D8;padding:7px 12px 6px}
@@ -40,6 +47,8 @@ def is_product(f):
 
 
 def cell(f, cap):
+    if isinstance(f, tuple) and f[0] == "glyph":
+        return f'<div class="cell glyph"><div class="g-big">{f[1]}</div><div class="g-lab">{f[2]}</div></div>'
     p = _src(f)
     white = " white" if p.parent == PRODUCTS else ""
     return f'<div class="cell{white}"><img src="{data_uri(p)}" alt="{cap}"><div class="c">{cap}</div></div>'

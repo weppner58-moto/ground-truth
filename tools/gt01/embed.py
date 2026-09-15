@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import CARD_CSS, route_card, data_uri  # noqa: E402
 from sitenav import NAV_CSS, nav_html, bottombar_html  # noqa: E402
 from bands import DUO_CSS, duo  # noqa: E402
+import blurbs  # noqa: E402
 
 IMG = ROOT / "tools" / "gt01" / "img"
 D = ROOT / "site" / "groundtruth" / "01"
@@ -61,12 +62,12 @@ REPLACE = {
 }
 # Two images on one slide: a product shot beside the sketch, or two products. Left, right, captions.
 SERIES_DUO = {
-    "s1-3":  ("lineup.jpg", "gt01/img/gt01-19-quarter.jpg", "The lineup, $799 to $16,499", "Q2 2026: 267 motorcycles"),
-    "s1-6":  ("s2.jpg", "gt01/img/gt01-24-denominator.jpg", "S2 Del Mar: the bike behind the 386%", "Here's the denominator"),
-    "s1-10": ("honcho.jpg", "gt01/img/gt01-12-honcho-grass.jpg", "S4 Honcho, $4,999", "Next up: the Honcho"),
+    "s1-3":  ("lineup.jpg", ("glyph", "0.9%", "of the plan. 923 motorcycles against 100,000"), "The lineup, $799 to $16,499", ""),
+    "s1-6":  ("s2.jpg", ("glyph", "386%", "Q2 unit growth. 55 motorcycles to 267"), "S2 Del Mar: the bike behind the number", ""),
+    "s1-10": ("honcho.jpg", ("glyph", "$4,999", "S4 Honcho. Built by KYMCO. Part 2"), "Next up: the Honcho", ""),
     "s2-4":  ("one.jpg", "honcho.jpg", "LiveWire ONE, $16,499", "S4 Honcho, $4,999. Nothing between them."),
-    "s2-5":  ("honcho.jpg", "gt01/img/gt01-13-honcho-stand.jpg", "S4 Honcho", "Honcho on the stand"),
-    "s4-7":  ("honcho.jpg", "gt01/img/gt01-14-groms.jpg", "2,000 Honchos in a strong first year", "The segment it has to win"),
+    "s2-5":  ("gt01/img/gt01-13-honcho-stand.jpg", ("glyph", "+39%", "over the Grom, $3,599, the bike that owns the segment"), "Honcho on the stand", ""),
+    "s4-7":  ("gt01/img/gt01-12-honcho-grass.jpg", ("glyph", "40,000", "units a year before any conclusion changes"), "2,000 Honchos in a strong first year", ""),
 }
 # Logos come off the page and become text pills (the page already has .brand-txt).
 LOGOS = {
@@ -80,8 +81,7 @@ SERIES_ASSIGN = {
     "s1-1":  ("lib/products/one.jpg", "LiveWire ONE, 2021", "contain"),
     "s4-9":  ("lib/products/lineup.jpg", "The lineup they have", "contain"),
     "s3-5":  ("lib/products/s2.jpg", "S2 Del Mar: bought at cost-plus, written down on arrival", "contain"),
-    "s1-3":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
-    "s1-6":  ("gt01/img/gt01-24-denominator.jpg", "Here's the denominator"),
+    "s1-5":  ("gt01/img/gt01-19-quarter.jpg", "Q2 2026: 267 motorcycles"),
     "s2-7":  ("gt01/img/gt01-15-dust.jpg", "Dust: the acquired programme", "", "band cmk sm"),
     "s2-6":  ("gt01/img/gt01-11-kymco.jpg", "KYMCO assembly line, Taiwan"),
     "s3-1":  ("gt01/img/gt01-18-line.jpg", "KYMCO, Taiwan"),
@@ -166,8 +166,8 @@ def skeleton(html):
 def assign_series(html):
     """Apply SERIES_ASSIGN: swap or drop the band on each listed slide."""
     n = {"set": 0, "drop": 0, "duo": 0}
-    if "/* bands.py */" not in html:
-        html = html.replace("</style>", DUO_CSS + "</style>", 1)
+    html = re.sub(r"\n?/\* bands\.py \*/.*?/\* /bands\.py \*/", "", html, count=1, flags=re.S)
+    html = html.replace("</style>", DUO_CSS + "</style>", 1)
     html = re.sub(r'\s*<div class="band duo[^"]*">.*?</div></div></div>', "", html, flags=re.S)  # previous run
     for sid, (lf, rf, cl, cr) in SERIES_DUO.items():
         m = re.search(r'<div class="slide[^"]*" id="%s">.*?(?=<div class="slide|\s*</div>\s*<script)' % sid, html, re.S)
@@ -313,6 +313,7 @@ def embed_brief():
     html, sw = swap(html)
     html, ba = assign_brief(html)
     html = credits(mark_sketch_sources(html))
+    html, nb = blurbs.apply(html)
     html = skeleton(sitenav(html))
     if full.exists():
         # write back as the raw full page, then split
@@ -344,6 +345,8 @@ def rebuild_cards():
         cover_end = re.search(rf"<div class=\"slide[^\"]*\" id=\"s{n+1}-1\">.*?</div>\n(?=\s*<div class=\"slide)", s, re.S)
         s = s[:cover_end.end()] + card(f"s{n+1}-card", n) + s[cover_end.end():]
     s = s.replace("\n</div>\n<script>", "\n" + card("route-card", -1) + "</div>\n<script>", 1)
+    s, nb = blurbs.apply(s)
+    print(f"series: {nb} blurb(s)")
     p.write_text(s)
     print("series: 5 route cards rebuilt")
 

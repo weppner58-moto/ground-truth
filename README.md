@@ -89,3 +89,5 @@ Sketches through the body of Nos. 02 and 03: `python3 tools/lib/place.py NN` aft
 Charts as images: `python3 tools/lib/figcap.py NN` captures the hero chart and every FIG of a brief (dark, 1200 wide) into `tools/gtNN/img/`; place.py puts them on the part covers. Re-run after a chart changes.
 
 Product photos: `tools/lib/products/` (one, s2, honcho, lineup, stacyc). `tools/lib/bands.py` gives the two-up band (product beside sketch); slots are `SERIES_DUO` in `tools/gt01/embed.py` and the `duo` tables in `tools/lib/place.py`. Product photos may repeat across slides; sketches stay once per page.
+
+Build order for a carousel: builder (or `tools/gt01/embed.py`) -> `tools/lib/place.py NN` (Nos. 02, 03) -> `tools/lib/fit.py NN` (shrinks bands, then content, on any slide that runs past 1350 px) -> `tools/lib/render_slides.py`. `tools/lib/blurbs.py` holds the one-line captions under every picture, keyed by file name; both pipelines apply it.
