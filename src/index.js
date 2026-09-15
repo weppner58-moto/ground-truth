@@ -4,18 +4,20 @@
 // The Worker runs first for /groundtruth/* and handles:
 //   GET/POST /groundtruth/register/      the registration form; stores the record, sets the reader cookie
 //   GET      /groundtruth/registrations  CSV export, Authorization: Bearer <ADMIN_TOKEN>
-//   gate     /groundtruth/NN/full/*  and  /groundtruth/assets/GroundTruth-NN_Full-Brief.pdf  need the cookie
+//   gate     /groundtruth/NN/   one URL per issue: the whole brief for readers with the cookie (served from
+//            site/groundtruth/NN/full/index.html), the public page with the register panel for everyone else
+//            /groundtruth/assets/GroundTruth-NN_Full-Brief.pdf needs the cookie; /groundtruth/NN/full/ redirects
 //
 // Bindings: ASSETS (assets), GT_LIST (KV), secrets GATE_SECRET and ADMIN_TOKEN; optional TURNSTILE_SITEKEY,
-// TURNSTILE_SECRET, NOTIFY (send_email) + NOTIFY_TO. Without GATE_SECRET nothing is gated.
+// TURNSTILE_SECRET, NOTIFY (send_email) + NOTIFY_TO. GATE_KEY in wrangler.toml [vars] stands in for GATE_SECRET
+// until a real secret is set; with neither, nothing is gated and the full page is public.
 import { registerGet, registerPost } from "./register.js";
 import { registrationsCsv } from "./registrations.js";
 import { readCookie } from "./lib.js";
 
-const GATED = [
-  /^\/groundtruth\/assets\/GroundTruth-\d\d_Full-Brief\.pdf$/i,
-  /^\/groundtruth\/\d\d\/full(\/|$)/i,
-];
+const GATED_PDF = /^\/groundtruth\/assets\/GroundTruth-\d\d_Full-Brief\.pdf$/i;
+const ISSUE = /^\/groundtruth\/(\d\d)\/$/;
+const FULL = /^\/groundtruth\/(\d\d)\/full(\/.*)?$/;
 
 export default {
   async fetch(request, env) {
@@ -29,13 +31,29 @@ export default {
     }
     if (p === "/groundtruth/registrations") return registrationsCsv(request, env);
 
-    if (env.GATE_SECRET && GATED.some(re => re.test(p))) {
-      const email = await readCookie(env.GATE_SECRET, request);
-      if (!email) {
-        const to = new URL("/groundtruth/register/", url);
-        to.searchParams.set("next", p + url.search);
-        return Response.redirect(to.toString(), 302);
-      }
+    const secret = env.GATE_SECRET || env.GATE_KEY;
+    const reader = secret ? await readCookie(secret, request) : null;
+
+    // the old two-URL layout: send /NN/full/ to the issue URL
+    const f = p.match(FULL);
+    if (f) return Response.redirect(new URL(`/groundtruth/${f[1]}/${url.hash || ""}`, url).toString(), 301);
+
+    const i = p.match(ISSUE);
+    if (i) {
+      // one URL: the complete brief for a registered reader, the public page otherwise
+      // the assets binding serves a directory's index.html at the directory URL (index.html itself redirects)
+      const which = (!secret || reader) ? `/groundtruth/${i[1]}/full/` : `/groundtruth/${i[1]}/`;
+      const r = await env.ASSETS.fetch(new Request(new URL(which, url), request));
+      const h = new Headers(r.headers);
+      h.set("cache-control", "private, no-store");
+      h.set("vary", "Cookie");
+      return new Response(r.body, { status: r.status, headers: h });
+    }
+
+    if (secret && GATED_PDF.test(p) && !reader) {
+      const to = new URL("/groundtruth/register/", url);
+      to.searchParams.set("next", p + url.search);
+      return Response.redirect(to.toString(), 302);
     }
     return env.ASSETS.fetch(request);
   },

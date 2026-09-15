@@ -5,9 +5,11 @@ Split a built brief into the public page and the registered-readers page.
   python3 tools/lib/split_brief.py 03 [--free 2]
 
 Reads  site/groundtruth/NN/index.html   (the full page a builder writes)
-Writes site/groundtruth/NN/full/index.html   the whole brief, served only with the reader cookie
-       site/groundtruth/NN/index.html        the public page: hero, the first --free numbered
-                                             sections, the register panel, Method & standing, footer
+Writes site/groundtruth/NN/full/index.html   the whole brief. The Worker serves it AT /groundtruth/NN/
+                                             to readers with the cookie (links are relative to that URL)
+       site/groundtruth/NN/index.html        the public page at the same URL for everyone else: hero, the
+                                             first --free numbered sections, the register panel, Method &
+                                             standing, footer
 
 Idempotent: if index.html is already a public page (marked <!-- gt:public -->), the full page is
 read back from full/index.html, so builders and this script can run in any order.
@@ -43,18 +45,19 @@ def main():
     eyebrows = [e for e in eyebrows if not e.startswith("Method")]
     figs = len(re.findall(r"<figure", gated))
     pdf = f"../assets/GroundTruth-{n}_Full-Brief.pdf"
-    full_url = f"/groundtruth/{n}/full/"
+    first_gated = re.search(r'<section[^>]*id="([^"]+)"', gated) or re.search(r'id="([^"]+)"', gated)
+    full_url = f"/groundtruth/{n}/" + (f"%23{first_gated.group(1)}" if first_gated else "")
 
     panel = f"""
 <section class="gate"><div class="wrap">
   <div class="gate-box">
     <span class="tape">Registered readers continue here</span>
     <h2>{len(eyebrows)} more sections behind one form.</h2>
-    <p>Name and email, once, and this browser is through for a year: the rest of the brief, every figure linked to its filing, the source index, and the whole thing as a PDF. The open items and the corrections log stay public; that is the method.</p>
+    <p>Name and email, once, and this browser is through for a year: the page keeps scrolling from here, every figure linked to its filing, the source index, and the whole brief as a PDF. The open items and the corrections log stay public; that is the method.</p>
     <p class="gate-list">{" &nbsp;&middot;&nbsp; ".join(eyebrows)}</p>
     <div class="gate-row">
-      <a class="gate-btn" href="/groundtruth/register/?next={full_url}">Register and continue</a>
-      <a class="gate-alt" href="full/">Already registered? Continue</a>
+      <a class="gate-btn" href="/groundtruth/register/?next={full_url}">Register and keep reading</a>
+      <span class="gate-alt">Registered on another browser? Register again; it takes ten seconds.</span>
     </div>
   </div>
 </div></section>
@@ -82,12 +85,12 @@ def main():
     if ".gate-box{" not in public: public = public.replace("</head>", css + "</head>", 1)
     # anchors that now live behind the gate go to the full page
     kept_ids = set(re.findall(r'id="([^"]+)"', kept + tail))
-    public = re.sub(r'href="#([^"]+)"', lambda m: m.group(0) if m.group(1) in kept_ids else f'href="full/#{m.group(1)}"', public)
+    public = re.sub(r'href="#([^"]+)"', lambda m: m.group(0) if m.group(1) in kept_ids else f'href="/groundtruth/register/?next=/groundtruth/{n}/%23{m.group(1)}"', public)
     public = MARK + "\n" + public
 
-    bar = f"""<div class="full-bar"><div class="wrap"><span>Registered reader &middot; the complete brief</span><span><a href="../">Public page</a> &nbsp;&middot;&nbsp; <a href="{pdf}">Download the PDF</a></span></div></div>
+    bar = f"""<div class="full-bar"><div class="wrap"><span>Registered reader &middot; the complete brief</span><span><a href="{pdf}">Download the PDF</a> &nbsp;&middot;&nbsp; <a href="../">All issues</a></span></div></div>
 """
-    fullp = shift(html)
+    fullp = html  # served at /groundtruth/NN/, so links stay as built
     if ".gate-box{" not in fullp: fullp = fullp.replace("</head>", css + "</head>", 1)
     fullp = re.sub(r"(<body[^>]*>)", r"\1\n" + bar.replace("\\", "\\\\"), fullp, count=1)
     fullp = "<!-- gt:full -->\n" + fullp

@@ -16,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import data_uri  # noqa: E402
+from logo import apply as logo_apply  # noqa: E402
 
 INDEX = ROOT / "site" / "groundtruth" / "index.html"
 SKETCH = {
@@ -64,8 +65,8 @@ def rewrite():
     h = h.replace("</style>", CSS + "</style>", 1)
     for n, (f, cap) in SKETCH.items():
         i = h.index(f'id="no{n}"')
-        j = h.index('<div class="issue-figs">', i) if '<div class="issue-figs">' in h[i:h.index('<div class="cards">', i)] else h.index('<div class="issue-img">', i)
-        k = h.index('<div class="cards">', j)
+        j = h.index('<div class="issue-figs">', i) if '<div class="issue-figs">' in h[i:h.index('<div class="cards', i)] else h.index('<div class="issue-img">', i)
+        k = h.index('<div class="cards', j)
         # the block runs to the end of the .issue grid: "...</div></div>\n  <div class="cards">"
         end = h.rindex("</div>", j, k)  # closes .issue
         hero = ROOT / "tools" / f"gt{n}" / "img" / "hero.jpg"
@@ -75,6 +76,7 @@ def rewrite():
                  + (f'<a class="issue-img chart" href="{n}/"><img src="{data_uri(hero)}" alt="{CHART[n]}"><div class="c">{CHART[n]} &rarr;</div></a>' if hero.exists() else "")
                  + "</div>")
         h = h[:j] + block + h[end:]
+    h = logo_apply(h)
     INDEX.write_text(h)
     print("index rewritten", len(h), "B")
 

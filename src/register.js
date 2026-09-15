@@ -10,6 +10,7 @@
 //   NOTIFY_TO          optional; email address to notify on each registration
 //   NOTIFY             optional; send_email binding (Email Routing) used with NOTIFY_TO
 import { makeCookie, safeNext, esc } from "./lib.js";
+import { INK, PAPER } from "./logo.js";
 
 const page = (env, { next, error = "", values = {} }) => `<!doctype html>
 <html lang="en"><head>
@@ -26,7 +27,9 @@ ${env.TURNSTILE_SITEKEY ? '<script src="https://challenges.cloudflare.com/turnst
 :root[data-theme="dark"]{--ground:#0B0C0E;--ground-2:#101215;--ink:#E7E9EB;--ink-2:#A2A8AF;--ink-3:#6C7379;--rule:#23272B;--rule-2:#343A40;--cyan:#4FC3D2;--magenta:#D6437A;--tape:#E7E9EB;--tape-ink:#0B0C0E}
 *{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.6}
 .wrap{max-width:640px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(18px,4vw,52px) 80px}
-.mark{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:21px;letter-spacing:.02em;color:var(--ink);text-decoration:none}.mark span{color:var(--cyan)}
+.mark{display:block}.mark img{display:block;height:64px;width:auto}.mark .lg-paper{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mark .lg-ink{display:none}:root:not([data-theme="light"]) .mark .lg-paper{display:block}}
+:root[data-theme="dark"] .mark .lg-ink{display:none}:root[data-theme="dark"] .mark .lg-paper{display:block}
 .tape{display:inline-block;margin-top:36px;background:var(--tape);color:var(--tape-ink);font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px 4px}
 h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:clamp(40px,8vw,64px);line-height:.92;margin:14px 0 12px;text-wrap:balance}
 p{max-width:58ch;color:var(--ink-2);margin:12px 0}
@@ -43,10 +46,10 @@ button:hover{background:var(--cyan)}
 .fine{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);line-height:1.7;margin-top:28px}
 .fine a{color:var(--cyan)}
 </style></head><body><div class="wrap">
-<a class="mark" href="/">CONTACT&nbsp;<span>PATCH</span> ADVISORY</a>
+<a class="mark" href="/"><img class="lg-ink" src="${INK}" alt="Contact Patch Advisory"><img class="lg-paper" src="${PAPER}" alt=""></a>
 <div class="tape">Ground Truth &middot; Registered readers</div>
 <h1>The brief in full.</h1>
-<p>The carousels on LinkedIn and the pages here are open. The complete briefs as PDF, with every figure linked to its filing, the corrections log and the open items, go to registered readers. Name and email, nothing else, and you are through for a year on this browser.</p>
+<p>The carousels on LinkedIn and the opening sections of every brief are open. The rest of each brief, with every figure linked to its filing, and the complete briefs as PDF, go to registered readers. Name and email, nothing else, and you are through for a year on this browser; the page you came from picks up where it stopped.</p>
 ${error ? `<div class="err">${esc(error)}</div>` : ""}
 <form method="post" action="/groundtruth/register/">
   <input type="hidden" name="next" value="${esc(next)}">
@@ -116,6 +119,7 @@ export async function registerPost(request, env) {
   }
 
   const headers = { Location: new URL(next, request.url).toString() };
-  if (env.GATE_SECRET) headers["Set-Cookie"] = await makeCookie(env.GATE_SECRET, values.email);
+  const secret = env.GATE_SECRET || env.GATE_KEY;
+  if (secret) headers["Set-Cookie"] = await makeCookie(secret, values.email);
   return new Response(null, { status: 303, headers });
 }

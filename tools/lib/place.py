@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT / "tools" / "lib"))
 from cards import data_uri, CARD_CSS  # noqa: E402
 from bands import DUO_CSS, duo  # noqa: E402
 import blurbs  # noqa: E402
+from logo import apply as logo_apply  # noqa: E402
 
 TOOLS = ROOT / "tools"
 
@@ -143,6 +144,7 @@ def brief(n):
         h = h[:at] + fig + h[at:]
         n_set += 1
     h, nb = blurbs.apply(h)
+    h = logo_apply(h)
     target.write_text(h)
     if public:
         subprocess.run([sys.executable, str(ROOT / "tools" / "lib" / "split_brief.py"), n], check=True)
@@ -222,6 +224,7 @@ def series(n):
         s = s[:m.start()] + blk + s[m.end():]
         n_card += 1
     s, nb = blurbs.apply(s)
+    s = logo_apply(s)
     p.write_text(s)
     print(f"{n} series: {n_set} band(s), {n_duo} duo(s), {n_cov} cover(s), {n_card} card image(s), {nb} blurb(s)")
 

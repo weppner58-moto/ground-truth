@@ -11,9 +11,13 @@ binding = "ASSETS"
 not_found_handling = "404-page"
 run_worker_first = ["/groundtruth/*"]
 
-# KV namespace for registrations. Create it once (Storage & Databases > KV > Create a namespace, call it
-# groundtruth-readers), paste its ID below and remove the leading # on the three lines. Until then the
-# form works and sets the cookie, but records are not stored.
+# GATE_KEY signs the reader cookie until a real GATE_SECRET secret exists (tools/setup-gate.sh sets one).
+# It only protects a name-and-email gate, so living in the repo is acceptable; the secret overrides it.
+[vars]
+GATE_KEY = "44f60fd412f8852304cdb433b1e9845c20b39f55864ee035"
+
+# KV namespace for registrations: tools/setup-gate.sh creates it and fills in the id. Until then the form
+# works and sets the cookie, but the records are not kept anywhere.
 # [[kv_namespaces]]
 # binding = "GT_LIST"
 # id = "PASTE_THE_NAMESPACE_ID_HERE"

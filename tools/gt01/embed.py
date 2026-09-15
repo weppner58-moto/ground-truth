@@ -21,6 +21,7 @@ from cards import CARD_CSS, route_card, data_uri  # noqa: E402
 from sitenav import NAV_CSS, nav_html, bottombar_html  # noqa: E402
 from bands import DUO_CSS, duo  # noqa: E402
 import blurbs  # noqa: E402
+from logo import apply as logo_apply  # noqa: E402
 
 IMG = ROOT / "tools" / "gt01" / "img"
 D = ROOT / "site" / "groundtruth" / "01"
@@ -314,7 +315,7 @@ def embed_brief():
     html, ba = assign_brief(html)
     html = credits(mark_sketch_sources(html))
     html, nb = blurbs.apply(html)
-    html = skeleton(sitenav(html))
+    html = logo_apply(skeleton(sitenav(html)))
     if full.exists():
         # write back as the raw full page, then split
         (D / "full" / "index.html").write_text("<!-- gt:full -->\n" + html if not html.startswith("<!-- gt:full -->") else html)
@@ -346,6 +347,7 @@ def rebuild_cards():
         s = s[:cover_end.end()] + card(f"s{n+1}-card", n) + s[cover_end.end():]
     s = s.replace("\n</div>\n<script>", "\n" + card("route-card", -1) + "</div>\n<script>", 1)
     s, nb = blurbs.apply(s)
+    s = logo_apply(s)
     print(f"series: {nb} blurb(s)")
     p.write_text(s)
     print("series: 5 route cards rebuilt")

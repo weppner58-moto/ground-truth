@@ -10,6 +10,7 @@ Writes: site/index.html, site/news/index.html, site/news/<slug>/index.html,
 """
 import base64, glob, html, importlib.util, json, os, re, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools", "lib"))
+from logo import apply as logo_apply
 from sitenav import bottombar_html
 from cards import data_uri
 
@@ -62,7 +63,7 @@ FOOTER = '''<footer class="footer">
 </footer>'''
 
 def page(title, desc, canonical, css_href, body, head_extra=""):
-    return f'''<!doctype html>
+    return logo_apply(f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -84,7 +85,7 @@ def page(title, desc, canonical, css_href, body, head_extra=""):
 {bottombar_html(active=None)}
 </body>
 </html>
-'''
+''')
 
 def og(title, desc, url, img=f"{SITE}/img/og.jpg", typ="website"):
     return f'''<meta property="og:type" content="{typ}">
@@ -163,7 +164,7 @@ def build_home(posts):
           <p class="gt-list"><a href="groundtruth/01/">No. 01 &middot; LiveWire: 5 Years In and 1% of Plan</a><br><a href="groundtruth/02/">No. 02 &middot; Harley-Davidson: Back to the Bricks, Down to Breakeven</a><br><a href="groundtruth/03/">No. 03 &middot; Harley-Davidson: Outside In</a></p>
           <div class="btn-row"><a class="btn btn-solid" href="groundtruth/">Read Ground Truth <span class="ar">&rarr;</span></a></div>
         </div>
-        <a class="gt-img" href="groundtruth/03/"><img src="{data_uri(os.path.join("tools", "gt03", "img", "neemrana.jpg"))}" alt="Neemrana, Rajasthan: the Sprint's engine on Hero's line"><div class="c">No. 03 &middot; Neemrana, Rajasthan</div></a>
+        <a class="gt-img" href="groundtruth/"><img src="{data_uri(os.path.join("tools", "site", "img", "gt-hero-riders.jpg"))}" alt="A group of riders on a canyon road, from the front"><div class="c">Ground Truth &middot; the research series</div></a>
       </div>
     </div>
   </section>
