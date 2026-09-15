@@ -15,9 +15,17 @@ run_worker_first = ["/groundtruth/*"]
 # It only protects a name-and-email gate, so living in the repo is acceptable; the secret overrides it.
 [vars]
 GATE_KEY = "44f60fd412f8852304cdb433b1e9845c20b39f55864ee035"
+NOTIFY_TO = "weppner58@gmail.com"
 
 # KV namespace for registrations: tools/setup-gate.sh creates it and fills in the id. Until then the form
 # works and sets the cookie, but the records are not kept anywhere.
 [[kv_namespaces]]
 binding = "GT_LIST"
 id = "9afabf790245433eace65258e2cd8d05"
+
+# One email per registration, to NOTIFY_TO. Needs Email Routing enabled on contactpatchadvisory.com in the
+# Cloudflare dashboard, with NOTIFY_TO added and verified there as a destination address. Until then the
+# send fails quietly and the record still lands in KV.
+[[send_email]]
+name = "NOTIFY"
+destination_address = "weppner58@gmail.com"
