@@ -129,7 +129,7 @@ def build():
     S.append(slide("s1-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 1 of 4</div>
-  <h1 style='font-size:118px'>OUTSIDE<br>IN.</h1>
+  <h1 style='font-size:118px'>SIXTEEN<br>OUTSIDE MOVES<br>IN 66 YEARS.</h1>
   <p class='wide' style='margin-top:36px;color:var(--dink3);font-size:30px'>Sixty-six years of Harley-Davidson buying what it could build. Aermacchi, Buell, MV Agusta, Alta, StaCyc, Hero, KYMCO, Dust. What it paid, what it got, what it was for.</p>
   <div class='spacer'></div>
   {foot('Harley-Davidson, Inc. · NYSE: HOG', 'September 2026')}""", dark=True, tag=ISSUE))
@@ -222,7 +222,7 @@ def build():
     S.append(slide("s2-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 2 of 4</div>
-  <h1 style='font-size:110px'>SAME<br>SENTENCE.</h1>
+  <h1 style='font-size:110px'>$125M AND<br>$268M, WITH<br>THE SAME<br>SENTENCE.</h1>
   <p class='wide' style='margin-top:36px;color:var(--dink3);font-size:30px'>Buell and MV Agusta. What the two biggest outside purchases cost, from the filings, and the words used to end both.</p>
   <div class='spacer'></div>
   {foot('Harley-Davidson, Inc. · NYSE: HOG', 'September 2026')}""", dark=True, tag=ISSUE))
@@ -322,7 +322,7 @@ def build():
     S.append(slide("s3-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 3 of 4</div>
-  <h1 style='font-size:104px'>TOO SMALL<br>TO SAY.</h1>
+  <h1 style='font-size:104px'>21,633<br>TO 653.</h1>
   <p class='wide' style='margin-top:36px;color:var(--dink3);font-size:30px'>Alta Motors, which Harley never put a number on. StaCyc, the one purchase that hit every target it was given. Together, what Harley actually wanted from electric.</p>
   <div class='spacer'></div>
   {foot('Harley-Davidson, Inc. · NYSE: HOG', 'September 2026')}""", dark=True, tag=ISSUE))
@@ -427,7 +427,7 @@ def build():
     S.append(slide("s4-1", f"""
   <div class='spacer'></div>
   <div class='kick'>Harley-Davidson: Outside In · Part 4 of 4</div>
-  <h1 style='font-size:92px'>THE SPRINT,<br>AND THE<br>FINAL WORD.</h1>
+  <h1 style='font-size:92px'>1960: AN<br>AERMACCHI.<br>2026: A HERO.</h1>
   <p class='wide' style='margin-top:36px;color:var(--dink3);font-size:30px'>What Harley builds, what it buys, and the rule that falls out. Then the two motorcycles that will test it, and the one thing every purchase was for.</p>
   <div class='spacer'></div>
   {foot('Harley-Davidson, Inc. · NYSE: HOG', 'September 2026')}""", dark=True, tag=ISSUE))

@@ -207,7 +207,7 @@ def build():
 
     # ═══════════ PART 2 — THE SALE ═══════════
     P = []
-    P.append(cover(2, "The sale", "THE<br>SALE.", "In 2025 the motor company lost money and the subsidiary lost more. The year was profitable because the finance company sold its loan book.", "s2-1"))
+    P.append(cover(2, "The sale", "$180M A YEAR,<br>TRADED FOR<br>$1.25B ONCE.", "In 2025 the motor company lost money and the subsidiary lost more. The year was profitable because the finance company sold its loan book.", "s2-1"))
     P.append(route_card(1, "s2-card"))
     fig_seg = waterfall([("HDMC", -28.7, MAG), ("LiveWire", -75.0, MAG), ("HDFS", 490.4, CYAN), ("Consolidated", None, "var(--ink)")],
                         ymin=-130, ymax=520, ticks=[-100, 0, 100, 200, 300, 400, 500], val_fmt="{:+,.1f}", width=900, height=440, pad_l=90)
@@ -270,7 +270,7 @@ def build():
 
     # ═══════════ PART 3 — THE SUBSIDIARY ═══════════
     P = []
-    P.append(cover(3, "The subsidiary", "THE<br>SUBSIDIARY.", "$422 million of LiveWire losses consolidated into Harley-Davidson since 2022. Cash to May 2027. A note due in December.", "s3-1"))
+    P.append(cover(3, "The subsidiary", "GUIDED TO LOSE<br>MORE THAN<br>THE MOTOR<br>COMPANY MAKES.", "$422 million of LiveWire losses consolidated into Harley-Davidson since 2022. Cash to May 2027. A note due in December.", "s3-1"))
     P.append(route_card(2, "s3-card"))
     fig_lw = bars([15.0, 26.3, 19.4, 33.8], ["2023", "2024", "2025", "TTM Jun 2026"], colors=[MAG]*4, opacities=[.55, .75, .85, None],
                   ymax=40, ticks=[0, 10, 20, 30, 40], tick_fmt="{:.0f}%", val_fmt="{:.1f}%", width=900, height=420, pad_l=80)
@@ -341,7 +341,7 @@ def build():
 
     # ═══════════ PART 4 — THE BRICKS ═══════════
     P = []
-    P.append(cover(4, "The bricks", "THE<br>BRICKS.", "Five pillars, six targets, one dated number, and a 2027 that lands everything at once: the EBITDA target, the Sportster, and the LiveWire note.", "s4-1"))
+    P.append(cover(4, "The bricks", "FIVE PILLARS.<br>SIX TARGETS.<br>NO ELECTRIC.", "Five pillars, six targets, one dated number, and a 2027 that lands everything at once: the EBITDA target, the Sportster, and the LiveWire note.", "s4-1"))
     P.append(route_card(3, "s4-card", heading="The plan, the bet,<br>the final word", dek="Parts IV, V and VI of the brief, in one carousel."))
     P.append(slide('''
   <div class="kick">Back to the Bricks · 5 May 2026 · the five pillars, as written</div>

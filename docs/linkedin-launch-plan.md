@@ -52,17 +52,7 @@ The site, checked the week before: register with a test address on /01 and confi
 
 Document post, PDF uploaded natively, from the desktop site. Not a link to the PDF, not images, not a video. The document title field is "Ground Truth No. 01 · Part 1 · The Growth"; LinkedIn shows it above the carousel and indexes it.
 
-The first slide is the post. It decides the dwell time that decides everything after. It has to be a number or a sentence, not a title. No. 01's covers already are ("5 years in. 1% of plan." "From $29,799 to $4,999." "Two contracts, one trap." "It was decided in Nov 2025."). Seven of the other eight are titles and should change before they post; the chart or sketch under them stays. Proposed lines, to approve or rewrite:
-
-| Cover | Now | Proposed |
-|---|---|---|
-| 02 Part 2 | The sale. | $180M a year, traded for $1.25B once. |
-| 02 Part 3 | The subsidiary. | Guided to lose more than the motor company makes. |
-| 02 Part 4 | The bricks. | Five pillars. Six targets. No electric. |
-| 03 Part 1 | Outside in. | Sixteen outside moves in sixty-six years. |
-| 03 Part 2 | Same sentence. | $125M and $268M, with the same sentence. |
-| 03 Part 3 | Too small to say. | 21,633 to 653. |
-| 03 Part 4 | The Sprint, and the final word. | 1960: an Aermacchi. 2026: a Hero. |
+The first slide is the post. It decides the dwell time that decides everything after. It has to be a number or a sentence, not a title, and all twelve now are: "5 years in. 1% of plan." "From $29,799 to $4,999." "Two contracts, one trap." "It was decided in Nov 2025." "Back to the Bricks. Down to breakeven." "$180M a year, traded for $1.25B once." "Guided to lose more than the motor company makes." "Five pillars. Six targets. No electric." "Sixteen outside moves in 66 years." "$125M and $268M, with the same sentence." "21,633 to 653." "1960: an Aermacchi. 2026: a Hero." The chart or sketch sits under each.
 
 The route card is the second slide of every part, so a reader who stops early still knows there is a series and where the rest is.
 
