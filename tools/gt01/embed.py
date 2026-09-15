@@ -157,8 +157,28 @@ def assign_series(html):
         if not m:
             continue
         blk = m.group(0)
+        full = re.search(r'<img class="imgfull"[^>]*>', blk)
+        if full:
+            # a full-width image slide: swap its source, and drop any band a previous run added
+            blk2 = re.sub(r'\n?[ \t]*<div class="band[^"]*">\s*<img[^>]*>\s*(?:<div class="c">.*?</div>\s*)?</div>', "", blk, count=1, flags=re.S)
+            if (TOOLS / f).exists():
+                blk2 = re.sub(r'(<img class="imgfull"[^>]*?src=")data:[^"]+(")', lambda mm: mm.group(1) + data_uri(TOOLS / f) + mm.group(2), blk2, count=1)
+                n["set"] += 1
+            html = html[:m.start()] + blk2 + html[m.end():]
+            continue
         band = re.search(r'\n?[ \t]*<div class="band[^"]*">\s*<img[^>]*>\s*(?:<div class="c">.*?</div>\s*)?</div>', blk, re.S)
         if not band:
+            # a band dropped on an earlier run comes back under the top header once its file exists
+            if not (TOOLS / f).exists():
+                continue
+            hdr = re.search(r'<div class="tophdr">.*?</div>\s*</div>', blk, re.S)
+            if not hdr:
+                continue
+            cls = spec[3] if len(spec) > 3 else "band cmk sm" + (f" {extra}" if extra else "")
+            new = f'\n  <div class="{cls}"><img src="{data_uri(TOOLS / f)}" alt="{cap}"><div class="c">{cap}</div></div>'
+            blk2 = blk[:hdr.end()] + new + blk[hdr.end():]
+            html = html[:m.start()] + blk2 + html[m.end():]
+            n["set"] += 1
             continue
         if (TOOLS / f).exists():
             new = re.sub(r'src="data:[^"]+"', f'src="{data_uri(TOOLS / f)}"', band.group(0), count=1)
