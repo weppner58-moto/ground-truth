@@ -63,10 +63,10 @@ REPLACE = {
 }
 # Two images on one slide: a product shot beside the sketch, or two products. Left, right, captions.
 SERIES_DUO = {
-    "s1-3":  ("lineup.jpg", ("glyph", "0.9%", "of the plan. 923 motorcycles against 100,000"), "The lineup, $799 to $16,499", ""),
+    "s1-3":  ("lineup.jpg", ("glyph", "0.9%", "of the plan. 923 motorcycles against 100,000"), "The lineup, $799 to $13,999", ""),
     "s1-6":  ("s2.jpg", ("glyph", "386%", "Q2 unit growth. 55 motorcycles to 267"), "S2 Del Mar: the bike behind the number", ""),
     "s1-10": ("honcho.jpg", ("glyph", "$4,999", "S4 Honcho. Built by KYMCO. Part 2"), "Next up: the Honcho", ""),
-    "s2-4":  ("one.jpg", "honcho.jpg", "LiveWire ONE, $16,499", "S4 Honcho, $4,999. Nothing between them."),
+    "s2-4":  ("one.jpg", "honcho.jpg", "LiveWire ONE, $13,999", "S4 Honcho, $4,999. Nothing between them."),
     "s2-5":  ("gt01/img/gt01-13-honcho-stand.jpg", ("glyph", "+39%", "over the Grom, $3,599, the bike that owns the segment"), "Honcho on the stand", ""),
     "s4-7":  ("gt01/img/gt01-12-honcho-grass.jpg", ("glyph", "40,000", "units a year before any conclusion changes"), "2,000 Honchos in a strong first year", ""),
 }

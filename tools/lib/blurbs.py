@@ -34,7 +34,7 @@ BLURBS = {
     "gt01-22-lien.jpg": "Built it, badged it, sold it, lent against it. A lien on substantially all of LiveWire's assets.",
     "gt01-23-grom-kerb.jpg": "The category leader, and very nearly the category. About 10,000 a year, by my estimate.",
     "gt01-24-denominator.jpg": "Three bikes on an empty floor. 386% growth is measured against 55 motorcycles.",
-    "gt01-one.jpg": "LiveWire ONE. $29,799 in 2019 as a Harley-Davidson, $21,999 in 2021 as a LiveWire, $16,499 today.",
+    "gt01-one.jpg": "LiveWire ONE. $29,799 in 2019 as a Harley-Davidson, $21,999 in 2021 as a LiveWire, $13,999 today.",
     # No. 02
     "gt02-01-juneau.jpg": "Juneau Avenue, reopened for return-to-office in March 2026. Every decision in this brief was signed here.",
     "gt02-02-hdfs-desk.jpg": "The finance desk. Two-thirds of the loans written here for the next five years are already sold.",
@@ -65,10 +65,10 @@ BLURBS = {
     "gt03-12-883.jpg": "The other half of the test. If the 883 makes money at $10,000 in York, it is the first small Harley that ever has.",
     "gt03-13-frames.jpg": "Each CEO's purchases are the next CEO's focus story. Same sentence, three times.",
     # product photos
-    "one.jpg": "LiveWire ONE. $29,799 in 2019, $21,999 in 2021, $16,499 today. Same motorcycle.",
-    "s2.jpg": "S2 Del Mar. $15,499, built by Harley-Davidson at cost plus a mark-up. The bike behind the 386%.",
+    "one.jpg": "LiveWire ONE. $29,799 in 2019, $21,999 in 2021, $13,999 today. Same motorcycle.",
+    "s2.jpg": "S2 Del Mar. Launched at $15,499, now $11,999. Built by Harley-Davidson at cost plus a mark-up. The bike behind the 386%.",
     "honcho.jpg": "S4 Honcho. $4,999, built by KYMCO under a take-or-pay contract. The volume bike.",
-    "lineup.jpg": "The lineup, $799 to $16,499. One segment in it makes money, and it is the one without a motor.",
+    "lineup.jpg": "The lineup, $799 to $13,999. One segment in it makes money, and it is the one without a motor.",
     "stacyc.jpg": "StaCyc. Bought for $14.9 million in 2019. Outsells LiveWire motorcycles thirty-three to one.",
 }
 
