@@ -40,8 +40,8 @@ PARTS = [("The Growth", "386% is 55 bikes to 267. The plan was 100,000. The miss
          ("The Lineup", "$29,799 to $4,999. Premium to price. The overhead never followed."),
          ("The Contracts", "Buying bikes loses money. Not buying them costs money. Both in writing."),
          ("The Loan & the Final Word", "Nov 2025: equity backstop out, secured claim in. $85M due Dec 2027.")]
-CARD_IMG = {0: "gt01-04-tape.jpg", 1: "gt01-03-floor.jpg", 2: "gt01-02-form.jpg", 3: "gt01-01-juneau.jpg", -1: "gt01-05-team.jpg"}
-CARD_CAP = {0: "LVWR on the tape", 1: "An S2 and a Honcho, same floor", 2: "The paperwork", 3: "Juneau Avenue, the lender's address", -1: "LiveWire, Milwaukee"}
+CARD_IMG = {0: "gt01-04-tape.jpg", 1: "gt01-03-floor.jpg", 2: "gt01-02-form.jpg", 3: "../../lib/products/honcho.jpg", -1: "gt01-06-stacyc.jpg"}
+CARD_CAP = {0: "LVWR on the tape", 1: "An S2 and a Honcho, same floor", 2: "The paperwork", 3: "S4 Honcho, $4,999, built by KYMCO", -1: "STACYC: the one segment that makes money"}
 # Second pass (11 Sep): the photos that were on the page from the first build, keyed by a hash of their
 # base64 (see key()). Each becomes the named sketch when that file exists in tools/gt01/img/.
 REPLACE = {
@@ -90,7 +90,8 @@ SERIES_ASSIGN = {
     "s3-9":  ("gt01/img/gt01-21-loan.jpg", "Next: the loan"),
     "s4-3":  ("gt01/img/gt01-22-lien.jpg", "Built it, badged it, sold it, lent against it"),
     "s4-7":  ("gt01/img/gt01-14-groms.jpg", "The segment it has to win"),
-    "s4-8":  ("gt01/img/gt01-10-bench.jpg", "Real engineering, real sourcing"),
+    "s4-8":  ("gt01/img/gt01-05-team.jpg", "The people who did the work"),
+    "s4-1":  ("gt01/img/gt01-01-juneau.jpg", "Juneau Avenue, Milwaukee: where it was decided", "", "band cmk sm"),
     "s4-11": ("gt03/img/gt03-06-juneau-dusk.jpg", "Next: the parent"),
 }
 # Brief clip figures keyed by their <b> label. None removes the figure for good; a file name hides
@@ -335,7 +336,7 @@ def rebuild_cards():
     s, sa = assign_series(s)
     s = skeleton(sitenav(s, series=True))
     print(f"series: {sw['img']} photo(s) swapped for sketches, {sw['logo']} logo(s) replaced; bands {sa}")
-    s = re.sub(r"<div class=\"slide[^\"]*card[^\"]*\" id=\"(s\d-card|route-card)\">.*?</div>\n(?=\s*<div class=\"slide|\s*</div>\s*<script)", "", s, flags=re.S)
+    s = re.sub(r"<div class=\"slide[^\"]*card[^\"]*\" id=\"(s\d-card|route-card)\">.*?</div>\n(?=\s*<div class=\"slide|\s*</div>\s*(?:<script|<div class=\"bottombar\"))", "", s, flags=re.S)
     if "body.web .slide.card" not in s:
         s = s.replace("</style>", CARD_CSS + "</style>", 1)
     def card(sid, n):
@@ -345,7 +346,10 @@ def rebuild_cards():
     for n in range(4):
         cover_end = re.search(rf"<div class=\"slide[^\"]*\" id=\"s{n+1}-1\">.*?</div>\n(?=\s*<div class=\"slide)", s, re.S)
         s = s[:cover_end.end()] + card(f"s{n+1}-card", n) + s[cover_end.end():]
-    s = s.replace("\n</div>\n<script>", "\n" + card("route-card", -1) + "</div>\n<script>", 1)
+    if "\n</div>\n<div class=\"bottombar\">" in s:
+        s = s.replace("\n</div>\n<div class=\"bottombar\">", "\n" + card("route-card", -1) + "</div>\n<div class=\"bottombar\">", 1)
+    else:
+        s = s.replace("\n</div>\n<script>", "\n" + card("route-card", -1) + "</div>\n<script>", 1)
     s, nb = blurbs.apply(s)
     s = logo_apply(s)
     print(f"series: {nb} blurb(s)")
